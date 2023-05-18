@@ -1,0 +1,7 @@
+C:\Users\leo40\OneDrive\Empresa\Proyectos\Orange_Pi\Carro_Taller\Prueba_USB\V1.0\FC_Impresion.cydsn\FC_Impresion.cyprj|32619ed1-691f-4528-a24f-88e3370aab41
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|9fd00f9d-d8ec-40c4-bc5e-3856428c1a5e
+C:\Users\leo40\OneDrive\Documentos\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|8a75cdad-7c40-4f21-845b-d3e768e79dbe
+C:\Users\leo40\OneDrive\Documentos\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|d67f47a5-cf7b-4838-88f3-578ac5901a10
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|1242eed5-d2be-4516-bb99-b8db1c39ba41
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|668e0ecf-4a3e-490e-9f2d-49dfd7d062b7
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|3c352a7d-81f9-4e5d-94bd-8efef95299a4

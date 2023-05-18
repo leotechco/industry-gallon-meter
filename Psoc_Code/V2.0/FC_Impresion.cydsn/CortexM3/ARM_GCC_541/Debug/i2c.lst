@@ -1,0 +1,2550 @@
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"i2c.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.leer_hora,"ax",%progbits
+  20              		.align	2
+  21              		.global	leer_hora
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	leer_hora, %function
+  25              	leer_hora:
+  26              	.LFB63:
+  27              		.file 1 "i2c.c"
+   1:i2c.c         **** /*
+   2:i2c.c         **** ***************************************************************************************************
+   3:i2c.c         **** *                                         FC_Impresion CODE
+   4:i2c.c         **** *
+   5:i2c.c         **** *                             (c) Copyright 2016; Distracom S.A
+   6:i2c.c         **** *
+   7:i2c.c         **** *               All rights reserved.  Protected by international copyright laws.
+   8:i2c.c         **** *               Knowledge of the source code may NOT be used to develop a similar product.
+   9:i2c.c         **** *               Please help us continue to provide the Embedded community with the finest
+  10:i2c.c         **** *               software available.  Your honesty is greatly appreciated.
+  11:i2c.c         **** ***************************************************************************************************
+  12:i2c.c         **** */
+  13:i2c.c         **** 
+  14:i2c.c         **** /*
+  15:i2c.c         **** ***************************************************************************************************
+  16:i2c.c         **** *
+  17:i2c.c         **** *                                            FC_Impresion CODE
+  18:i2c.c         **** *
+  19:i2c.c         **** *                                             CYPRESS PSoC5LP
+  20:i2c.c         **** *                                                with the
+  21:i2c.c         **** *                                            CY8C5888LTI-LP097
+  22:i2c.c         **** *
+  23:i2c.c         **** * Filename      : i2c.c
+  24:i2c.c         **** * Version       : V1.00
+  25:i2c.c         **** * Programmer(s) : Leonardo Orjuela   
+  26:i2c.c         ****                   
+  27:i2c.c         **** ***************************************************************************************************
+  28:i2c.c         **** */
+  29:i2c.c         **** 
+  30:i2c.c         **** /*
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 2
+
+
+  31:i2c.c         **** ***************************************************************************************************
+  32:i2c.c         **** *                                             INCLUDE FILES
+  33:i2c.c         **** ***************************************************************************************************
+  34:i2c.c         **** */
+  35:i2c.c         **** #include <project.h>
+  36:i2c.c         **** #include "VariablesG.h"
+  37:i2c.c         **** 
+  38:i2c.c         **** /*
+  39:i2c.c         **** ***************************************************************************************************
+  40:i2c.c         **** *                                         uint8 leer_hora( void )
+  41:i2c.c         **** *
+  42:i2c.c         **** * Description : 
+  43:i2c.c         **** *               
+  44:i2c.c         **** *
+  45:i2c.c         **** * Argument(s) : none
+  46:i2c.c         **** *
+  47:i2c.c         **** * Return(s)   : none
+  48:i2c.c         **** *
+  49:i2c.c         **** * Caller(s)   : 
+  50:i2c.c         **** *
+  51:i2c.c         **** * Note(s)     : none.
+  52:i2c.c         **** ***************************************************************************************************
+  53:i2c.c         **** */
+  54:i2c.c         **** uint8 leer_hora(){
+  28              		.loc 1 54 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 38B5     		push	{r3, r4, r5, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 3, -16
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  38              	.LVL0:
+  55:i2c.c         **** 	uint8 status,i;
+  56:i2c.c         **** 	for(i=1;i<=2;i++){
+  39              		.loc 1 56 0
+  40 0002 0124     		movs	r4, #1
+  41 0004 1DE0     		b	.L2
+  42              	.LVL1:
+  43              	.L4:
+  57:i2c.c         ****         I2C_1_MasterClearStatus();
+  44              		.loc 1 57 0
+  45 0006 FFF7FEFF 		bl	I2C_1_MasterClearStatus
+  46              	.LVL2:
+  58:i2c.c         ****         status = I2C_1_MasterSendStart(0x68, I2C_1_WRITE_XFER_MODE);
+  47              		.loc 1 58 0
+  48 000a 0021     		movs	r1, #0
+  49 000c 6820     		movs	r0, #104
+  50 000e FFF7FEFF 		bl	I2C_1_MasterSendStart
+  51              	.LVL3:
+  59:i2c.c         ****         if(I2C_1_MSTR_NO_ERROR == status)								 		/* Check if transfer completed without errors *
+  52              		.loc 1 59 0
+  53 0012 D0B9     		cbnz	r0, .L5
+  60:i2c.c         ****     	{
+  61:i2c.c         ****             status = I2C_1_MasterWriteByte(i);
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 3
+
+
+  54              		.loc 1 61 0
+  55 0014 2046     		mov	r0, r4
+  56              	.LVL4:
+  57 0016 FFF7FEFF 		bl	I2C_1_MasterWriteByte
+  58              	.LVL5:
+  62:i2c.c         ****             if(status != I2C_1_MSTR_NO_ERROR)
+  59              		.loc 1 62 0
+  60 001a C0B9     		cbnz	r0, .L6
+  63:i2c.c         ****             {
+  64:i2c.c         ****                 return 0;
+  65:i2c.c         ****             }
+  66:i2c.c         **** 			else{
+  67:i2c.c         **** 		        I2C_1_MasterSendStop(); 										/* Send Stop */
+  61              		.loc 1 67 0
+  62 001c FFF7FEFF 		bl	I2C_1_MasterSendStop
+  63              	.LVL6:
+  68:i2c.c         **** 		        CyDelay(10);
+  64              		.loc 1 68 0
+  65 0020 0A20     		movs	r0, #10
+  66 0022 FFF7FEFF 		bl	CyDelay
+  67              	.LVL7:
+  69:i2c.c         **** 		        status = I2C_1_MasterSendStart(0x68, I2C_1_READ_XFER_MODE);
+  68              		.loc 1 69 0
+  69 0026 0121     		movs	r1, #1
+  70 0028 6820     		movs	r0, #104
+  71 002a FFF7FEFF 		bl	I2C_1_MasterSendStart
+  72              	.LVL8:
+  70:i2c.c         **** 		        if(I2C_1_MSTR_NO_ERROR == status){
+  73              		.loc 1 70 0
+  74 002e 80B9     		cbnz	r0, .L7
+  71:i2c.c         **** 		            hora[i-1] = I2C_1_MasterReadByte(I2C_1_NAK_DATA);
+  75              		.loc 1 71 0
+  76 0030 651E     		subs	r5, r4, #1
+  77 0032 FFF7FEFF 		bl	I2C_1_MasterReadByte
+  78              	.LVL9:
+  79 0036 084B     		ldr	r3, .L9
+  80 0038 5855     		strb	r0, [r3, r5]
+  72:i2c.c         **** 		        }
+  73:i2c.c         **** 				else{
+  74:i2c.c         **** 					return 0;
+  75:i2c.c         **** 				}
+  76:i2c.c         **** 		        I2C_1_MasterSendStop();	
+  81              		.loc 1 76 0
+  82 003a FFF7FEFF 		bl	I2C_1_MasterSendStop
+  83              	.LVL10:
+  56:i2c.c         ****         I2C_1_MasterClearStatus();
+  84              		.loc 1 56 0
+  85 003e 0134     		adds	r4, r4, #1
+  86              	.LVL11:
+  87 0040 E4B2     		uxtb	r4, r4
+  88              	.LVL12:
+  89              	.L2:
+  56:i2c.c         ****         I2C_1_MasterClearStatus();
+  90              		.loc 1 56 0 is_stmt 0 discriminator 1
+  91 0042 022C     		cmp	r4, #2
+  92 0044 DFD9     		bls	.L4
+  77:i2c.c         **** 			}
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 4
+
+
+  78:i2c.c         ****         }
+  79:i2c.c         **** 		else{
+  80:i2c.c         **** 			return 0;
+  81:i2c.c         **** 		}		
+  82:i2c.c         **** 	}
+  83:i2c.c         **** 	return 1;
+  93              		.loc 1 83 0 is_stmt 1
+  94 0046 0120     		movs	r0, #1
+  95 0048 38BD     		pop	{r3, r4, r5, pc}
+  96              	.LVL13:
+  97              	.L5:
+  80:i2c.c         **** 		}		
+  98              		.loc 1 80 0
+  99 004a 0020     		movs	r0, #0
+ 100              	.LVL14:
+ 101 004c 38BD     		pop	{r3, r4, r5, pc}
+ 102              	.LVL15:
+ 103              	.L6:
+  64:i2c.c         ****             }
+ 104              		.loc 1 64 0
+ 105 004e 0020     		movs	r0, #0
+ 106              	.LVL16:
+ 107 0050 38BD     		pop	{r3, r4, r5, pc}
+ 108              	.LVL17:
+ 109              	.L7:
+  74:i2c.c         **** 				}
+ 110              		.loc 1 74 0
+ 111 0052 0020     		movs	r0, #0
+ 112              	.LVL18:
+  84:i2c.c         **** }
+ 113              		.loc 1 84 0
+ 114 0054 38BD     		pop	{r3, r4, r5, pc}
+ 115              	.LVL19:
+ 116              	.L10:
+ 117 0056 00BF     		.align	2
+ 118              	.L9:
+ 119 0058 00000000 		.word	hora
+ 120              		.cfi_endproc
+ 121              	.LFE63:
+ 122              		.size	leer_hora, .-leer_hora
+ 123              		.section	.text.leer_fecha,"ax",%progbits
+ 124              		.align	2
+ 125              		.global	leer_fecha
+ 126              		.thumb
+ 127              		.thumb_func
+ 128              		.type	leer_fecha, %function
+ 129              	leer_fecha:
+ 130              	.LFB64:
+  85:i2c.c         **** 
+  86:i2c.c         **** /*
+  87:i2c.c         **** ***************************************************************************************************
+  88:i2c.c         **** *                                         uint8 leer_fecha( void )
+  89:i2c.c         **** *
+  90:i2c.c         **** * Description : 
+  91:i2c.c         **** *               
+  92:i2c.c         **** *
+  93:i2c.c         **** * Argument(s) : none
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 5
+
+
+  94:i2c.c         **** *
+  95:i2c.c         **** * Return(s)   : none
+  96:i2c.c         **** *
+  97:i2c.c         **** * Caller(s)   : 
+  98:i2c.c         **** *
+  99:i2c.c         **** * Note(s)     : none.
+ 100:i2c.c         **** ***************************************************************************************************
+ 101:i2c.c         **** */
+ 102:i2c.c         **** uint8 leer_fecha(){
+ 131              		.loc 1 102 0
+ 132              		.cfi_startproc
+ 133              		@ args = 0, pretend = 0, frame = 0
+ 134              		@ frame_needed = 0, uses_anonymous_args = 0
+ 135 0000 38B5     		push	{r3, r4, r5, lr}
+ 136              		.cfi_def_cfa_offset 16
+ 137              		.cfi_offset 3, -16
+ 138              		.cfi_offset 4, -12
+ 139              		.cfi_offset 5, -8
+ 140              		.cfi_offset 14, -4
+ 141              	.LVL20:
+ 103:i2c.c         **** 	uint8 status,i;
+ 104:i2c.c         **** 	for(i=4;i<=6;i++){
+ 142              		.loc 1 104 0
+ 143 0002 0424     		movs	r4, #4
+ 144 0004 1DE0     		b	.L12
+ 145              	.LVL21:
+ 146              	.L14:
+ 105:i2c.c         ****         I2C_1_MasterClearStatus();
+ 147              		.loc 1 105 0
+ 148 0006 FFF7FEFF 		bl	I2C_1_MasterClearStatus
+ 149              	.LVL22:
+ 106:i2c.c         ****         status = I2C_1_MasterSendStart(0x68, I2C_1_WRITE_XFER_MODE);
+ 150              		.loc 1 106 0
+ 151 000a 0021     		movs	r1, #0
+ 152 000c 6820     		movs	r0, #104
+ 153 000e FFF7FEFF 		bl	I2C_1_MasterSendStart
+ 154              	.LVL23:
+ 107:i2c.c         ****         if(I2C_1_MSTR_NO_ERROR == status)								 		/* Check if transfer completed without errors *
+ 155              		.loc 1 107 0
+ 156 0012 D0B9     		cbnz	r0, .L15
+ 108:i2c.c         ****     	{
+ 109:i2c.c         ****             status = I2C_1_MasterWriteByte(i);
+ 157              		.loc 1 109 0
+ 158 0014 2046     		mov	r0, r4
+ 159              	.LVL24:
+ 160 0016 FFF7FEFF 		bl	I2C_1_MasterWriteByte
+ 161              	.LVL25:
+ 110:i2c.c         ****             if(status != I2C_1_MSTR_NO_ERROR)
+ 162              		.loc 1 110 0
+ 163 001a C0B9     		cbnz	r0, .L16
+ 111:i2c.c         ****             {
+ 112:i2c.c         ****                 return 0;
+ 113:i2c.c         ****             }
+ 114:i2c.c         **** 			else{
+ 115:i2c.c         **** 		        I2C_1_MasterSendStop(); 										/* Send Stop */
+ 164              		.loc 1 115 0
+ 165 001c FFF7FEFF 		bl	I2C_1_MasterSendStop
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 6
+
+
+ 166              	.LVL26:
+ 116:i2c.c         **** 		        CyDelay(10);
+ 167              		.loc 1 116 0
+ 168 0020 0A20     		movs	r0, #10
+ 169 0022 FFF7FEFF 		bl	CyDelay
+ 170              	.LVL27:
+ 117:i2c.c         **** 		        status = I2C_1_MasterSendStart(0x68, I2C_1_READ_XFER_MODE);
+ 171              		.loc 1 117 0
+ 172 0026 0121     		movs	r1, #1
+ 173 0028 6820     		movs	r0, #104
+ 174 002a FFF7FEFF 		bl	I2C_1_MasterSendStart
+ 175              	.LVL28:
+ 118:i2c.c         **** 		        if(I2C_1_MSTR_NO_ERROR == status){
+ 176              		.loc 1 118 0
+ 177 002e 80B9     		cbnz	r0, .L17
+ 119:i2c.c         **** 		            fecha[i-4] = I2C_1_MasterReadByte(I2C_1_NAK_DATA);
+ 178              		.loc 1 119 0
+ 179 0030 251F     		subs	r5, r4, #4
+ 180 0032 FFF7FEFF 		bl	I2C_1_MasterReadByte
+ 181              	.LVL29:
+ 182 0036 084B     		ldr	r3, .L19
+ 183 0038 5855     		strb	r0, [r3, r5]
+ 120:i2c.c         **** 		        }
+ 121:i2c.c         **** 				else{
+ 122:i2c.c         **** 					return 0;
+ 123:i2c.c         **** 				}
+ 124:i2c.c         **** 		        I2C_1_MasterSendStop();	
+ 184              		.loc 1 124 0
+ 185 003a FFF7FEFF 		bl	I2C_1_MasterSendStop
+ 186              	.LVL30:
+ 104:i2c.c         ****         I2C_1_MasterClearStatus();
+ 187              		.loc 1 104 0
+ 188 003e 0134     		adds	r4, r4, #1
+ 189              	.LVL31:
+ 190 0040 E4B2     		uxtb	r4, r4
+ 191              	.LVL32:
+ 192              	.L12:
+ 104:i2c.c         ****         I2C_1_MasterClearStatus();
+ 193              		.loc 1 104 0 is_stmt 0 discriminator 1
+ 194 0042 062C     		cmp	r4, #6
+ 195 0044 DFD9     		bls	.L14
+ 125:i2c.c         **** 			}
+ 126:i2c.c         ****         }
+ 127:i2c.c         **** 		else{
+ 128:i2c.c         **** 			return 0;
+ 129:i2c.c         **** 		}		
+ 130:i2c.c         **** 	}
+ 131:i2c.c         **** 	return 1;
+ 196              		.loc 1 131 0 is_stmt 1
+ 197 0046 0120     		movs	r0, #1
+ 198 0048 38BD     		pop	{r3, r4, r5, pc}
+ 199              	.LVL33:
+ 200              	.L15:
+ 128:i2c.c         **** 		}		
+ 201              		.loc 1 128 0
+ 202 004a 0020     		movs	r0, #0
+ 203              	.LVL34:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 7
+
+
+ 204 004c 38BD     		pop	{r3, r4, r5, pc}
+ 205              	.LVL35:
+ 206              	.L16:
+ 112:i2c.c         ****             }
+ 207              		.loc 1 112 0
+ 208 004e 0020     		movs	r0, #0
+ 209              	.LVL36:
+ 210 0050 38BD     		pop	{r3, r4, r5, pc}
+ 211              	.LVL37:
+ 212              	.L17:
+ 122:i2c.c         **** 				}
+ 213              		.loc 1 122 0
+ 214 0052 0020     		movs	r0, #0
+ 215              	.LVL38:
+ 132:i2c.c         **** }
+ 216              		.loc 1 132 0
+ 217 0054 38BD     		pop	{r3, r4, r5, pc}
+ 218              	.LVL39:
+ 219              	.L20:
+ 220 0056 00BF     		.align	2
+ 221              	.L19:
+ 222 0058 00000000 		.word	fecha
+ 223              		.cfi_endproc
+ 224              	.LFE64:
+ 225              		.size	leer_fecha, .-leer_fecha
+ 226              		.section	.text.write_hora,"ax",%progbits
+ 227              		.align	2
+ 228              		.global	write_hora
+ 229              		.thumb
+ 230              		.thumb_func
+ 231              		.type	write_hora, %function
+ 232              	write_hora:
+ 233              	.LFB65:
+ 133:i2c.c         **** 
+ 134:i2c.c         **** /*
+ 135:i2c.c         **** ***************************************************************************************************
+ 136:i2c.c         **** *                                         uint8 write_hora( void )
+ 137:i2c.c         **** *
+ 138:i2c.c         **** * Description : 
+ 139:i2c.c         **** *               
+ 140:i2c.c         **** *
+ 141:i2c.c         **** * Argument(s) : none
+ 142:i2c.c         **** *
+ 143:i2c.c         **** * Return(s)   : none
+ 144:i2c.c         **** *
+ 145:i2c.c         **** * Caller(s)   : 
+ 146:i2c.c         **** *
+ 147:i2c.c         **** * Note(s)     : none.
+ 148:i2c.c         **** ***************************************************************************************************
+ 149:i2c.c         **** */
+ 150:i2c.c         **** 
+ 151:i2c.c         **** uint8 write_hora( void ){
+ 234              		.loc 1 151 0
+ 235              		.cfi_startproc
+ 236              		@ args = 0, pretend = 0, frame = 8
+ 237              		@ frame_needed = 0, uses_anonymous_args = 0
+ 238 0000 10B5     		push	{r4, lr}
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 8
+
+
+ 239              		.cfi_def_cfa_offset 8
+ 240              		.cfi_offset 4, -8
+ 241              		.cfi_offset 14, -4
+ 242 0002 82B0     		sub	sp, sp, #8
+ 243              		.cfi_def_cfa_offset 16
+ 152:i2c.c         **** 	uint8 status, dato[3],i;
+ 153:i2c.c         **** 	dato[0]=1;
+ 244              		.loc 1 153 0
+ 245 0004 0123     		movs	r3, #1
+ 246 0006 8DF80430 		strb	r3, [sp, #4]
+ 154:i2c.c         **** 	dato[1]=hora[0];
+ 247              		.loc 1 154 0
+ 248 000a 124B     		ldr	r3, .L28
+ 249 000c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 250 000e 8DF80520 		strb	r2, [sp, #5]
+ 155:i2c.c         **** 	dato[2]=hora[1];
+ 251              		.loc 1 155 0
+ 252 0012 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 253 0014 8DF80630 		strb	r3, [sp, #6]
+ 156:i2c.c         **** 	I2C_1_MasterClearStatus();
+ 254              		.loc 1 156 0
+ 255 0018 FFF7FEFF 		bl	I2C_1_MasterClearStatus
+ 256              	.LVL40:
+ 157:i2c.c         ****     status = I2C_1_MasterSendStart(0x68, I2C_1_WRITE_XFER_MODE);
+ 257              		.loc 1 157 0
+ 258 001c 0021     		movs	r1, #0
+ 259 001e 6820     		movs	r0, #104
+ 260 0020 FFF7FEFF 		bl	I2C_1_MasterSendStart
+ 261              	.LVL41:
+ 158:i2c.c         ****     if(I2C_1_MSTR_NO_ERROR == status) 
+ 262              		.loc 1 158 0
+ 263 0024 58B1     		cbz	r0, .L25
+ 159:i2c.c         ****     {
+ 160:i2c.c         ****         for(i=0; i<3; i++)
+ 161:i2c.c         ****         {
+ 162:i2c.c         ****             status = I2C_1_MasterWriteByte(dato[i]);
+ 163:i2c.c         ****             if(status != I2C_1_MSTR_NO_ERROR)
+ 164:i2c.c         ****             {
+ 165:i2c.c         ****                 return 0;
+ 166:i2c.c         ****             }
+ 167:i2c.c         ****         }
+ 168:i2c.c         ****     }
+ 169:i2c.c         ****     else{
+ 170:i2c.c         **** 		return 0;
+ 264              		.loc 1 170 0
+ 265 0026 0020     		movs	r0, #0
+ 266              	.LVL42:
+ 267 0028 11E0     		b	.L23
+ 268              	.LVL43:
+ 269              	.L24:
+ 162:i2c.c         ****             if(status != I2C_1_MSTR_NO_ERROR)
+ 270              		.loc 1 162 0
+ 271 002a 02AB     		add	r3, sp, #8
+ 272 002c 2344     		add	r3, r3, r4
+ 273 002e 13F8040C 		ldrb	r0, [r3, #-4]	@ zero_extendqisi2
+ 274              	.LVL44:
+ 275 0032 FFF7FEFF 		bl	I2C_1_MasterWriteByte
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 9
+
+
+ 276              	.LVL45:
+ 163:i2c.c         ****             {
+ 277              		.loc 1 163 0
+ 278 0036 48B9     		cbnz	r0, .L26
+ 160:i2c.c         ****         {
+ 279              		.loc 1 160 0 discriminator 2
+ 280 0038 0134     		adds	r4, r4, #1
+ 281              	.LVL46:
+ 282 003a E4B2     		uxtb	r4, r4
+ 283              	.LVL47:
+ 284 003c 00E0     		b	.L22
+ 285              	.LVL48:
+ 286              	.L25:
+ 287 003e 0024     		movs	r4, #0
+ 288              	.L22:
+ 289              	.LVL49:
+ 160:i2c.c         ****         {
+ 290              		.loc 1 160 0 is_stmt 0 discriminator 1
+ 291 0040 022C     		cmp	r4, #2
+ 292 0042 F2D9     		bls	.L24
+ 171:i2c.c         ****     }
+ 172:i2c.c         ****     I2C_1_MasterSendStop();	
+ 293              		.loc 1 172 0 is_stmt 1
+ 294 0044 FFF7FEFF 		bl	I2C_1_MasterSendStop
+ 295              	.LVL50:
+ 173:i2c.c         **** 	return 1;
+ 296              		.loc 1 173 0
+ 297 0048 0120     		movs	r0, #1
+ 298 004a 00E0     		b	.L23
+ 299              	.LVL51:
+ 300              	.L26:
+ 165:i2c.c         ****             }
+ 301              		.loc 1 165 0
+ 302 004c 0020     		movs	r0, #0
+ 303              	.LVL52:
+ 304              	.L23:
+ 174:i2c.c         **** }
+ 305              		.loc 1 174 0
+ 306 004e 02B0     		add	sp, sp, #8
+ 307              		.cfi_def_cfa_offset 8
+ 308              		@ sp needed
+ 309 0050 10BD     		pop	{r4, pc}
+ 310              	.L29:
+ 311 0052 00BF     		.align	2
+ 312              	.L28:
+ 313 0054 00000000 		.word	hora
+ 314              		.cfi_endproc
+ 315              	.LFE65:
+ 316              		.size	write_hora, .-write_hora
+ 317              		.section	.text.write_fecha,"ax",%progbits
+ 318              		.align	2
+ 319              		.global	write_fecha
+ 320              		.thumb
+ 321              		.thumb_func
+ 322              		.type	write_fecha, %function
+ 323              	write_fecha:
+ 324              	.LFB66:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 10
+
+
+ 175:i2c.c         **** 
+ 176:i2c.c         **** /*
+ 177:i2c.c         **** ***************************************************************************************************
+ 178:i2c.c         **** *                                         uint8 write_fecha( void )
+ 179:i2c.c         **** *
+ 180:i2c.c         **** * Description : 
+ 181:i2c.c         **** *               
+ 182:i2c.c         **** *
+ 183:i2c.c         **** * Argument(s) : none
+ 184:i2c.c         **** *
+ 185:i2c.c         **** * Return(s)   : none
+ 186:i2c.c         **** *
+ 187:i2c.c         **** * Caller(s)   : 
+ 188:i2c.c         **** *
+ 189:i2c.c         **** * Note(s)     : none.
+ 190:i2c.c         **** ***************************************************************************************************
+ 191:i2c.c         **** */
+ 192:i2c.c         **** 
+ 193:i2c.c         **** uint8 write_fecha( void ){
+ 325              		.loc 1 193 0
+ 326              		.cfi_startproc
+ 327              		@ args = 0, pretend = 0, frame = 8
+ 328              		@ frame_needed = 0, uses_anonymous_args = 0
+ 329 0000 10B5     		push	{r4, lr}
+ 330              		.cfi_def_cfa_offset 8
+ 331              		.cfi_offset 4, -8
+ 332              		.cfi_offset 14, -4
+ 333 0002 82B0     		sub	sp, sp, #8
+ 334              		.cfi_def_cfa_offset 16
+ 194:i2c.c         **** 	uint8 status, dato[4],i;
+ 195:i2c.c         **** 	dato[0]=4;
+ 335              		.loc 1 195 0
+ 336 0004 0423     		movs	r3, #4
+ 337 0006 8DF80430 		strb	r3, [sp, #4]
+ 196:i2c.c         **** 	dato[1]=fecha[0];
+ 338              		.loc 1 196 0
+ 339 000a 134B     		ldr	r3, .L37
+ 340 000c 1A78     		ldrb	r2, [r3]	@ zero_extendqisi2
+ 341 000e 8DF80520 		strb	r2, [sp, #5]
+ 197:i2c.c         **** 	dato[2]=fecha[1];
+ 342              		.loc 1 197 0
+ 343 0012 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 344 0014 8DF80620 		strb	r2, [sp, #6]
+ 198:i2c.c         **** 	dato[3]=fecha[2];
+ 345              		.loc 1 198 0
+ 346 0018 9B78     		ldrb	r3, [r3, #2]	@ zero_extendqisi2
+ 347 001a 8DF80730 		strb	r3, [sp, #7]
+ 199:i2c.c         **** 	I2C_1_MasterClearStatus();
+ 348              		.loc 1 199 0
+ 349 001e FFF7FEFF 		bl	I2C_1_MasterClearStatus
+ 350              	.LVL53:
+ 200:i2c.c         ****     status = I2C_1_MasterSendStart(0x68, I2C_1_WRITE_XFER_MODE);
+ 351              		.loc 1 200 0
+ 352 0022 0021     		movs	r1, #0
+ 353 0024 6820     		movs	r0, #104
+ 354 0026 FFF7FEFF 		bl	I2C_1_MasterSendStart
+ 355              	.LVL54:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 11
+
+
+ 201:i2c.c         ****     if(I2C_1_MSTR_NO_ERROR == status) 
+ 356              		.loc 1 201 0
+ 357 002a 58B1     		cbz	r0, .L34
+ 202:i2c.c         ****     {
+ 203:i2c.c         ****         for(i=0; i<4; i++)
+ 204:i2c.c         ****         {
+ 205:i2c.c         ****             status = I2C_1_MasterWriteByte(dato[i]);
+ 206:i2c.c         ****             if(status != I2C_1_MSTR_NO_ERROR)
+ 207:i2c.c         ****             {
+ 208:i2c.c         ****                 return 0;
+ 209:i2c.c         ****             }
+ 210:i2c.c         ****         }
+ 211:i2c.c         ****     }
+ 212:i2c.c         ****     else{
+ 213:i2c.c         **** 		return 0;
+ 358              		.loc 1 213 0
+ 359 002c 0020     		movs	r0, #0
+ 360              	.LVL55:
+ 361 002e 11E0     		b	.L32
+ 362              	.LVL56:
+ 363              	.L33:
+ 205:i2c.c         ****             if(status != I2C_1_MSTR_NO_ERROR)
+ 364              		.loc 1 205 0
+ 365 0030 02AB     		add	r3, sp, #8
+ 366 0032 2344     		add	r3, r3, r4
+ 367 0034 13F8040C 		ldrb	r0, [r3, #-4]	@ zero_extendqisi2
+ 368              	.LVL57:
+ 369 0038 FFF7FEFF 		bl	I2C_1_MasterWriteByte
+ 370              	.LVL58:
+ 206:i2c.c         ****             {
+ 371              		.loc 1 206 0
+ 372 003c 48B9     		cbnz	r0, .L35
+ 203:i2c.c         ****         {
+ 373              		.loc 1 203 0 discriminator 2
+ 374 003e 0134     		adds	r4, r4, #1
+ 375              	.LVL59:
+ 376 0040 E4B2     		uxtb	r4, r4
+ 377              	.LVL60:
+ 378 0042 00E0     		b	.L31
+ 379              	.LVL61:
+ 380              	.L34:
+ 381 0044 0024     		movs	r4, #0
+ 382              	.L31:
+ 383              	.LVL62:
+ 203:i2c.c         ****         {
+ 384              		.loc 1 203 0 is_stmt 0 discriminator 1
+ 385 0046 032C     		cmp	r4, #3
+ 386 0048 F2D9     		bls	.L33
+ 214:i2c.c         ****     }
+ 215:i2c.c         ****     I2C_1_MasterSendStop();	
+ 387              		.loc 1 215 0 is_stmt 1
+ 388 004a FFF7FEFF 		bl	I2C_1_MasterSendStop
+ 389              	.LVL63:
+ 216:i2c.c         **** 	return 1;
+ 390              		.loc 1 216 0
+ 391 004e 0120     		movs	r0, #1
+ 392 0050 00E0     		b	.L32
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 12
+
+
+ 393              	.LVL64:
+ 394              	.L35:
+ 208:i2c.c         ****             }
+ 395              		.loc 1 208 0
+ 396 0052 0020     		movs	r0, #0
+ 397              	.LVL65:
+ 398              	.L32:
+ 217:i2c.c         **** }
+ 399              		.loc 1 217 0
+ 400 0054 02B0     		add	sp, sp, #8
+ 401              		.cfi_def_cfa_offset 8
+ 402              		@ sp needed
+ 403 0056 10BD     		pop	{r4, pc}
+ 404              	.L38:
+ 405              		.align	2
+ 406              	.L37:
+ 407 0058 00000000 		.word	fecha
+ 408              		.cfi_endproc
+ 409              	.LFE66:
+ 410              		.size	write_fecha, .-write_fecha
+ 411              		.comm	print2,2,4
+ 412              		.comm	print1,2,4
+ 413              		.comm	rventa2,99,4
+ 414              		.comm	rventa1,99,4
+ 415              		.comm	hora,2,4
+ 416              		.comm	fecha,3,4
+ 417              		.comm	km,2,4
+ 418              		.comm	id_logo,2,4
+ 419              		.comm	lema2,32,4
+ 420              		.comm	lema1,32,4
+ 421              		.comm	direccion,33,4
+ 422              		.comm	telefono,20,4
+ 423              		.comm	nit,15,4
+ 424              		.comm	nombre,33,4
+ 425              		.comm	lado2,92,4
+ 426              		.comm	lado1,92,4
+ 427              		.comm	version,1,1
+ 428              		.comm	nombre_pro3,17,4
+ 429              		.comm	nombre_pro2,17,4
+ 430              		.comm	nombre_pro1,17,4
+ 431              		.comm	ppux10,1,1
+ 432              		.text
+ 433              	.Letext0:
+ 434              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 435              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 436              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 437              		.file 5 "VariablesG.h"
+ 438              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 439              		.file 7 "Generated_Source\\PSoC5/I2C_1.h"
+ 440              		.file 8 "Generated_Source\\PSoC5/CyLib.h"
+ 441              		.section	.debug_info,"",%progbits
+ 442              	.Ldebug_info0:
+ 443 0000 77070000 		.4byte	0x777
+ 444 0004 0400     		.2byte	0x4
+ 445 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 446 000a 04       		.byte	0x4
+ 447 000b 01       		.uleb128 0x1
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 13
+
+
+ 448 000c FE020000 		.4byte	.LASF68
+ 449 0010 0C       		.byte	0xc
+ 450 0011 14000000 		.4byte	.LASF69
+ 451 0015 16020000 		.4byte	.LASF70
+ 452 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 453 001d 00000000 		.4byte	0
+ 454 0021 00000000 		.4byte	.Ldebug_line0
+ 455 0025 02       		.uleb128 0x2
+ 456 0026 01       		.byte	0x1
+ 457 0027 06       		.byte	0x6
+ 458 0028 2F010000 		.4byte	.LASF0
+ 459 002c 02       		.uleb128 0x2
+ 460 002d 01       		.byte	0x1
+ 461 002e 08       		.byte	0x8
+ 462 002f 18010000 		.4byte	.LASF1
+ 463 0033 02       		.uleb128 0x2
+ 464 0034 02       		.byte	0x2
+ 465 0035 05       		.byte	0x5
+ 466 0036 23000000 		.4byte	.LASF2
+ 467 003a 02       		.uleb128 0x2
+ 468 003b 02       		.byte	0x2
+ 469 003c 07       		.byte	0x7
+ 470 003d 8B010000 		.4byte	.LASF3
+ 471 0041 03       		.uleb128 0x3
+ 472 0042 A2020000 		.4byte	.LASF9
+ 473 0046 02       		.byte	0x2
+ 474 0047 3F       		.byte	0x3f
+ 475 0048 4C000000 		.4byte	0x4c
+ 476 004c 02       		.uleb128 0x2
+ 477 004d 04       		.byte	0x4
+ 478 004e 05       		.byte	0x5
+ 479 004f F1000000 		.4byte	.LASF4
+ 480 0053 02       		.uleb128 0x2
+ 481 0054 04       		.byte	0x4
+ 482 0055 07       		.byte	0x7
+ 483 0056 F8010000 		.4byte	.LASF5
+ 484 005a 02       		.uleb128 0x2
+ 485 005b 08       		.byte	0x8
+ 486 005c 05       		.byte	0x5
+ 487 005d E3000000 		.4byte	.LASF6
+ 488 0061 02       		.uleb128 0x2
+ 489 0062 08       		.byte	0x8
+ 490 0063 07       		.byte	0x7
+ 491 0064 3B010000 		.4byte	.LASF7
+ 492 0068 04       		.uleb128 0x4
+ 493 0069 04       		.byte	0x4
+ 494 006a 05       		.byte	0x5
+ 495 006b 696E7400 		.ascii	"int\000"
+ 496 006f 02       		.uleb128 0x2
+ 497 0070 04       		.byte	0x4
+ 498 0071 07       		.byte	0x7
+ 499 0072 64010000 		.4byte	.LASF8
+ 500 0076 03       		.uleb128 0x3
+ 501 0077 C8010000 		.4byte	.LASF10
+ 502 007b 03       		.byte	0x3
+ 503 007c 2C       		.byte	0x2c
+ 504 007d 41000000 		.4byte	0x41
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 14
+
+
+ 505 0081 05       		.uleb128 0x5
+ 506 0082 BC000000 		.4byte	.LASF11
+ 507 0086 04       		.byte	0x4
+ 508 0087 E401     		.2byte	0x1e4
+ 509 0089 2C000000 		.4byte	0x2c
+ 510 008d 02       		.uleb128 0x2
+ 511 008e 04       		.byte	0x4
+ 512 008f 04       		.byte	0x4
+ 513 0090 DD000000 		.4byte	.LASF12
+ 514 0094 02       		.uleb128 0x2
+ 515 0095 08       		.byte	0x8
+ 516 0096 04       		.byte	0x4
+ 517 0097 E1020000 		.4byte	.LASF13
+ 518 009b 02       		.uleb128 0x2
+ 519 009c 01       		.byte	0x1
+ 520 009d 08       		.byte	0x8
+ 521 009e B3010000 		.4byte	.LASF14
+ 522 00a2 06       		.uleb128 0x6
+ 523 00a3 81000000 		.4byte	0x81
+ 524 00a7 02       		.uleb128 0x2
+ 525 00a8 08       		.byte	0x8
+ 526 00a9 04       		.byte	0x4
+ 527 00aa 02010000 		.4byte	.LASF15
+ 528 00ae 02       		.uleb128 0x2
+ 529 00af 04       		.byte	0x4
+ 530 00b0 07       		.byte	0x7
+ 531 00b1 2D000000 		.4byte	.LASF16
+ 532 00b5 07       		.uleb128 0x7
+ 533 00b6 81000000 		.4byte	0x81
+ 534 00ba C5000000 		.4byte	0xc5
+ 535 00be 08       		.uleb128 0x8
+ 536 00bf AE000000 		.4byte	0xae
+ 537 00c3 07       		.byte	0x7
+ 538 00c4 00       		.byte	0
+ 539 00c5 07       		.uleb128 0x7
+ 540 00c6 81000000 		.4byte	0x81
+ 541 00ca D5000000 		.4byte	0xd5
+ 542 00ce 08       		.uleb128 0x8
+ 543 00cf AE000000 		.4byte	0xae
+ 544 00d3 03       		.byte	0x3
+ 545 00d4 00       		.byte	0
+ 546 00d5 09       		.uleb128 0x9
+ 547 00d6 CE000000 		.4byte	.LASF20
+ 548 00da 5C       		.byte	0x5c
+ 549 00db 05       		.byte	0x5
+ 550 00dc 2F       		.byte	0x2f
+ 551 00dd 1E010000 		.4byte	0x11e
+ 552 00e1 0A       		.uleb128 0xa
+ 553 00e2 64697200 		.ascii	"dir\000"
+ 554 00e6 05       		.byte	0x5
+ 555 00e7 30       		.byte	0x30
+ 556 00e8 A2000000 		.4byte	0xa2
+ 557 00ec 00       		.byte	0
+ 558 00ed 0B       		.uleb128 0xb
+ 559 00ee FA000000 		.4byte	.LASF17
+ 560 00f2 05       		.byte	0x5
+ 561 00f3 31       		.byte	0x31
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 15
+
+
+ 562 00f4 34010000 		.4byte	0x134
+ 563 00f8 01       		.byte	0x1
+ 564 00f9 0A       		.uleb128 0xa
+ 565 00fa 70707500 		.ascii	"ppu\000"
+ 566 00fe 05       		.byte	0x5
+ 567 00ff 32       		.byte	0x32
+ 568 0100 4F010000 		.4byte	0x14f
+ 569 0104 49       		.byte	0x49
+ 570 0105 0B       		.uleb128 0xb
+ 571 0106 9E010000 		.4byte	.LASF18
+ 572 010a 05       		.byte	0x5
+ 573 010b 33       		.byte	0x33
+ 574 010c 6A010000 		.4byte	0x16a
+ 575 0110 58       		.byte	0x58
+ 576 0111 0B       		.uleb128 0xb
+ 577 0112 E4010000 		.4byte	.LASF19
+ 578 0116 05       		.byte	0x5
+ 579 0117 34       		.byte	0x34
+ 580 0118 A2000000 		.4byte	0xa2
+ 581 011c 5B       		.byte	0x5b
+ 582 011d 00       		.byte	0
+ 583 011e 07       		.uleb128 0x7
+ 584 011f A2000000 		.4byte	0xa2
+ 585 0123 34010000 		.4byte	0x134
+ 586 0127 08       		.uleb128 0x8
+ 587 0128 AE000000 		.4byte	0xae
+ 588 012c 02       		.byte	0x2
+ 589 012d 08       		.uleb128 0x8
+ 590 012e AE000000 		.4byte	0xae
+ 591 0132 17       		.byte	0x17
+ 592 0133 00       		.byte	0
+ 593 0134 06       		.uleb128 0x6
+ 594 0135 1E010000 		.4byte	0x11e
+ 595 0139 07       		.uleb128 0x7
+ 596 013a A2000000 		.4byte	0xa2
+ 597 013e 4F010000 		.4byte	0x14f
+ 598 0142 08       		.uleb128 0x8
+ 599 0143 AE000000 		.4byte	0xae
+ 600 0147 02       		.byte	0x2
+ 601 0148 08       		.uleb128 0x8
+ 602 0149 AE000000 		.4byte	0xae
+ 603 014d 04       		.byte	0x4
+ 604 014e 00       		.byte	0
+ 605 014f 06       		.uleb128 0x6
+ 606 0150 39010000 		.4byte	0x139
+ 607 0154 07       		.uleb128 0x7
+ 608 0155 A2000000 		.4byte	0xa2
+ 609 0159 6A010000 		.4byte	0x16a
+ 610 015d 08       		.uleb128 0x8
+ 611 015e AE000000 		.4byte	0xae
+ 612 0162 02       		.byte	0x2
+ 613 0163 08       		.uleb128 0x8
+ 614 0164 AE000000 		.4byte	0xae
+ 615 0168 00       		.byte	0
+ 616 0169 00       		.byte	0
+ 617 016a 06       		.uleb128 0x6
+ 618 016b 54010000 		.4byte	0x154
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 16
+
+
+ 619 016f 09       		.uleb128 0x9
+ 620 0170 0A020000 		.4byte	.LASF21
+ 621 0174 63       		.byte	0x63
+ 622 0175 05       		.byte	0x5
+ 623 0176 45       		.byte	0x45
+ 624 0177 52020000 		.4byte	0x252
+ 625 017b 0B       		.uleb128 0xb
+ 626 017c C2000000 		.4byte	.LASF22
+ 627 0180 05       		.byte	0x5
+ 628 0181 46       		.byte	0x46
+ 629 0182 81000000 		.4byte	0x81
+ 630 0186 00       		.byte	0
+ 631 0187 0B       		.uleb128 0xb
+ 632 0188 26010000 		.4byte	.LASF23
+ 633 018c 05       		.byte	0x5
+ 634 018d 47       		.byte	0x47
+ 635 018e 81000000 		.4byte	0x81
+ 636 0192 01       		.byte	0x1
+ 637 0193 0B       		.uleb128 0xb
+ 638 0194 9E010000 		.4byte	.LASF18
+ 639 0198 05       		.byte	0x5
+ 640 0199 48       		.byte	0x48
+ 641 019a 81000000 		.4byte	0x81
+ 642 019e 02       		.byte	0x2
+ 643 019f 0A       		.uleb128 0xa
+ 644 01a0 70707500 		.ascii	"ppu\000"
+ 645 01a4 05       		.byte	0x5
+ 646 01a5 49       		.byte	0x49
+ 647 01a6 52020000 		.4byte	0x252
+ 648 01aa 03       		.byte	0x3
+ 649 01ab 0B       		.uleb128 0xb
+ 650 01ac 36000000 		.4byte	.LASF24
+ 651 01b0 05       		.byte	0x5
+ 652 01b1 4A       		.byte	0x4a
+ 653 01b2 62020000 		.4byte	0x262
+ 654 01b6 09       		.byte	0x9
+ 655 01b7 0B       		.uleb128 0xb
+ 656 01b8 AB010000 		.4byte	.LASF25
+ 657 01bc 05       		.byte	0x5
+ 658 01bd 4B       		.byte	0x4b
+ 659 01be 62020000 		.4byte	0x262
+ 660 01c2 12       		.byte	0x12
+ 661 01c3 0B       		.uleb128 0xb
+ 662 01c4 82010000 		.4byte	.LASF26
+ 663 01c8 05       		.byte	0x5
+ 664 01c9 4C       		.byte	0x4c
+ 665 01ca 81000000 		.4byte	0x81
+ 666 01ce 1B       		.byte	0x1b
+ 667 01cf 0B       		.uleb128 0xb
+ 668 01d0 1A000000 		.4byte	.LASF27
+ 669 01d4 05       		.byte	0x5
+ 670 01d5 4D       		.byte	0x4d
+ 671 01d6 81000000 		.4byte	0x81
+ 672 01da 1C       		.byte	0x1c
+ 673 01db 0B       		.uleb128 0xb
+ 674 01dc 9B020000 		.4byte	.LASF28
+ 675 01e0 05       		.byte	0x5
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 17
+
+
+ 676 01e1 4E       		.byte	0x4e
+ 677 01e2 B5000000 		.4byte	0xb5
+ 678 01e6 1D       		.byte	0x1d
+ 679 01e7 0A       		.uleb128 0xa
+ 680 01e8 696400   		.ascii	"id\000"
+ 681 01eb 05       		.byte	0x5
+ 682 01ec 4F       		.byte	0x4f
+ 683 01ed 72020000 		.4byte	0x272
+ 684 01f1 25       		.byte	0x25
+ 685 01f2 0A       		.uleb128 0xa
+ 686 01f3 6B6D00   		.ascii	"km\000"
+ 687 01f6 05       		.byte	0x5
+ 688 01f7 50       		.byte	0x50
+ 689 01f8 82020000 		.4byte	0x282
+ 690 01fc 35       		.byte	0x35
+ 691 01fd 0B       		.uleb128 0xb
+ 692 01fe DB020000 		.4byte	.LASF29
+ 693 0202 05       		.byte	0x5
+ 694 0203 51       		.byte	0x51
+ 695 0204 62020000 		.4byte	0x262
+ 696 0208 40       		.byte	0x40
+ 697 0209 0B       		.uleb128 0xb
+ 698 020a 97000000 		.4byte	.LASF30
+ 699 020e 05       		.byte	0x5
+ 700 020f 52       		.byte	0x52
+ 701 0210 81000000 		.4byte	0x81
+ 702 0214 49       		.byte	0x49
+ 703 0215 0B       		.uleb128 0xb
+ 704 0216 B8020000 		.4byte	.LASF31
+ 705 021a 05       		.byte	0x5
+ 706 021b 53       		.byte	0x53
+ 707 021c 81000000 		.4byte	0x81
+ 708 0220 4A       		.byte	0x4a
+ 709 0221 0B       		.uleb128 0xb
+ 710 0222 52000000 		.4byte	.LASF32
+ 711 0226 05       		.byte	0x5
+ 712 0227 54       		.byte	0x54
+ 713 0228 82020000 		.4byte	0x282
+ 714 022c 4B       		.byte	0x4b
+ 715 022d 0B       		.uleb128 0xb
+ 716 022e 59000000 		.4byte	.LASF33
+ 717 0232 05       		.byte	0x5
+ 718 0233 55       		.byte	0x55
+ 719 0234 82020000 		.4byte	0x282
+ 720 0238 56       		.byte	0x56
+ 721 0239 0B       		.uleb128 0xb
+ 722 023a 62000000 		.4byte	.LASF34
+ 723 023e 05       		.byte	0x5
+ 724 023f 56       		.byte	0x56
+ 725 0240 81000000 		.4byte	0x81
+ 726 0244 61       		.byte	0x61
+ 727 0245 0B       		.uleb128 0xb
+ 728 0246 59010000 		.4byte	.LASF35
+ 729 024a 05       		.byte	0x5
+ 730 024b 57       		.byte	0x57
+ 731 024c 81000000 		.4byte	0x81
+ 732 0250 62       		.byte	0x62
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 18
+
+
+ 733 0251 00       		.byte	0
+ 734 0252 07       		.uleb128 0x7
+ 735 0253 81000000 		.4byte	0x81
+ 736 0257 62020000 		.4byte	0x262
+ 737 025b 08       		.uleb128 0x8
+ 738 025c AE000000 		.4byte	0xae
+ 739 0260 05       		.byte	0x5
+ 740 0261 00       		.byte	0
+ 741 0262 07       		.uleb128 0x7
+ 742 0263 81000000 		.4byte	0x81
+ 743 0267 72020000 		.4byte	0x272
+ 744 026b 08       		.uleb128 0x8
+ 745 026c AE000000 		.4byte	0xae
+ 746 0270 08       		.byte	0x8
+ 747 0271 00       		.byte	0
+ 748 0272 07       		.uleb128 0x7
+ 749 0273 81000000 		.4byte	0x81
+ 750 0277 82020000 		.4byte	0x282
+ 751 027b 08       		.uleb128 0x8
+ 752 027c AE000000 		.4byte	0xae
+ 753 0280 0F       		.byte	0xf
+ 754 0281 00       		.byte	0
+ 755 0282 07       		.uleb128 0x7
+ 756 0283 81000000 		.4byte	0x81
+ 757 0287 92020000 		.4byte	0x292
+ 758 028b 08       		.uleb128 0x8
+ 759 028c AE000000 		.4byte	0xae
+ 760 0290 0A       		.byte	0xa
+ 761 0291 00       		.byte	0
+ 762 0292 0C       		.uleb128 0xc
+ 763 0293 0E010000 		.4byte	.LASF37
+ 764 0297 01       		.byte	0x1
+ 765 0298 36       		.byte	0x36
+ 766 0299 81000000 		.4byte	0x81
+ 767 029d 00000000 		.4byte	.LFB63
+ 768 02a1 5C000000 		.4byte	.LFE63-.LFB63
+ 769 02a5 01       		.uleb128 0x1
+ 770 02a6 9C       		.byte	0x9c
+ 771 02a7 45030000 		.4byte	0x345
+ 772 02ab 0D       		.uleb128 0xd
+ 773 02ac A4010000 		.4byte	.LASF36
+ 774 02b0 01       		.byte	0x1
+ 775 02b1 37       		.byte	0x37
+ 776 02b2 81000000 		.4byte	0x81
+ 777 02b6 00000000 		.4byte	.LLST0
+ 778 02ba 0E       		.uleb128 0xe
+ 779 02bb 6900     		.ascii	"i\000"
+ 780 02bd 01       		.byte	0x1
+ 781 02be 37       		.byte	0x37
+ 782 02bf 81000000 		.4byte	0x81
+ 783 02c3 4A000000 		.4byte	.LLST1
+ 784 02c7 0F       		.uleb128 0xf
+ 785 02c8 0A000000 		.4byte	.LVL2
+ 786 02cc 38070000 		.4byte	0x738
+ 787 02d0 10       		.uleb128 0x10
+ 788 02d1 12000000 		.4byte	.LVL3
+ 789 02d5 43070000 		.4byte	0x743
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 19
+
+
+ 790 02d9 E9020000 		.4byte	0x2e9
+ 791 02dd 11       		.uleb128 0x11
+ 792 02de 01       		.uleb128 0x1
+ 793 02df 50       		.byte	0x50
+ 794 02e0 02       		.uleb128 0x2
+ 795 02e1 08       		.byte	0x8
+ 796 02e2 68       		.byte	0x68
+ 797 02e3 11       		.uleb128 0x11
+ 798 02e4 01       		.uleb128 0x1
+ 799 02e5 51       		.byte	0x51
+ 800 02e6 01       		.uleb128 0x1
+ 801 02e7 30       		.byte	0x30
+ 802 02e8 00       		.byte	0
+ 803 02e9 10       		.uleb128 0x10
+ 804 02ea 1A000000 		.4byte	.LVL5
+ 805 02ee 4E070000 		.4byte	0x74e
+ 806 02f2 FD020000 		.4byte	0x2fd
+ 807 02f6 11       		.uleb128 0x11
+ 808 02f7 01       		.uleb128 0x1
+ 809 02f8 50       		.byte	0x50
+ 810 02f9 02       		.uleb128 0x2
+ 811 02fa 74       		.byte	0x74
+ 812 02fb 00       		.sleb128 0
+ 813 02fc 00       		.byte	0
+ 814 02fd 0F       		.uleb128 0xf
+ 815 02fe 20000000 		.4byte	.LVL6
+ 816 0302 59070000 		.4byte	0x759
+ 817 0306 10       		.uleb128 0x10
+ 818 0307 26000000 		.4byte	.LVL7
+ 819 030b 64070000 		.4byte	0x764
+ 820 030f 19030000 		.4byte	0x319
+ 821 0313 11       		.uleb128 0x11
+ 822 0314 01       		.uleb128 0x1
+ 823 0315 50       		.byte	0x50
+ 824 0316 01       		.uleb128 0x1
+ 825 0317 3A       		.byte	0x3a
+ 826 0318 00       		.byte	0
+ 827 0319 10       		.uleb128 0x10
+ 828 031a 2E000000 		.4byte	.LVL8
+ 829 031e 43070000 		.4byte	0x743
+ 830 0322 32030000 		.4byte	0x332
+ 831 0326 11       		.uleb128 0x11
+ 832 0327 01       		.uleb128 0x1
+ 833 0328 50       		.byte	0x50
+ 834 0329 02       		.uleb128 0x2
+ 835 032a 08       		.byte	0x8
+ 836 032b 68       		.byte	0x68
+ 837 032c 11       		.uleb128 0x11
+ 838 032d 01       		.uleb128 0x1
+ 839 032e 51       		.byte	0x51
+ 840 032f 01       		.uleb128 0x1
+ 841 0330 31       		.byte	0x31
+ 842 0331 00       		.byte	0
+ 843 0332 0F       		.uleb128 0xf
+ 844 0333 36000000 		.4byte	.LVL9
+ 845 0337 6F070000 		.4byte	0x76f
+ 846 033b 0F       		.uleb128 0xf
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 20
+
+
+ 847 033c 3E000000 		.4byte	.LVL10
+ 848 0340 59070000 		.4byte	0x759
+ 849 0344 00       		.byte	0
+ 850 0345 0C       		.uleb128 0xc
+ 851 0346 7A020000 		.4byte	.LASF38
+ 852 034a 01       		.byte	0x1
+ 853 034b 66       		.byte	0x66
+ 854 034c 81000000 		.4byte	0x81
+ 855 0350 00000000 		.4byte	.LFB64
+ 856 0354 5C000000 		.4byte	.LFE64-.LFB64
+ 857 0358 01       		.uleb128 0x1
+ 858 0359 9C       		.byte	0x9c
+ 859 035a F8030000 		.4byte	0x3f8
+ 860 035e 0D       		.uleb128 0xd
+ 861 035f A4010000 		.4byte	.LASF36
+ 862 0363 01       		.byte	0x1
+ 863 0364 67       		.byte	0x67
+ 864 0365 81000000 		.4byte	0x81
+ 865 0369 74000000 		.4byte	.LLST2
+ 866 036d 0E       		.uleb128 0xe
+ 867 036e 6900     		.ascii	"i\000"
+ 868 0370 01       		.byte	0x1
+ 869 0371 67       		.byte	0x67
+ 870 0372 81000000 		.4byte	0x81
+ 871 0376 BE000000 		.4byte	.LLST3
+ 872 037a 0F       		.uleb128 0xf
+ 873 037b 0A000000 		.4byte	.LVL22
+ 874 037f 38070000 		.4byte	0x738
+ 875 0383 10       		.uleb128 0x10
+ 876 0384 12000000 		.4byte	.LVL23
+ 877 0388 43070000 		.4byte	0x743
+ 878 038c 9C030000 		.4byte	0x39c
+ 879 0390 11       		.uleb128 0x11
+ 880 0391 01       		.uleb128 0x1
+ 881 0392 50       		.byte	0x50
+ 882 0393 02       		.uleb128 0x2
+ 883 0394 08       		.byte	0x8
+ 884 0395 68       		.byte	0x68
+ 885 0396 11       		.uleb128 0x11
+ 886 0397 01       		.uleb128 0x1
+ 887 0398 51       		.byte	0x51
+ 888 0399 01       		.uleb128 0x1
+ 889 039a 30       		.byte	0x30
+ 890 039b 00       		.byte	0
+ 891 039c 10       		.uleb128 0x10
+ 892 039d 1A000000 		.4byte	.LVL25
+ 893 03a1 4E070000 		.4byte	0x74e
+ 894 03a5 B0030000 		.4byte	0x3b0
+ 895 03a9 11       		.uleb128 0x11
+ 896 03aa 01       		.uleb128 0x1
+ 897 03ab 50       		.byte	0x50
+ 898 03ac 02       		.uleb128 0x2
+ 899 03ad 74       		.byte	0x74
+ 900 03ae 00       		.sleb128 0
+ 901 03af 00       		.byte	0
+ 902 03b0 0F       		.uleb128 0xf
+ 903 03b1 20000000 		.4byte	.LVL26
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 21
+
+
+ 904 03b5 59070000 		.4byte	0x759
+ 905 03b9 10       		.uleb128 0x10
+ 906 03ba 26000000 		.4byte	.LVL27
+ 907 03be 64070000 		.4byte	0x764
+ 908 03c2 CC030000 		.4byte	0x3cc
+ 909 03c6 11       		.uleb128 0x11
+ 910 03c7 01       		.uleb128 0x1
+ 911 03c8 50       		.byte	0x50
+ 912 03c9 01       		.uleb128 0x1
+ 913 03ca 3A       		.byte	0x3a
+ 914 03cb 00       		.byte	0
+ 915 03cc 10       		.uleb128 0x10
+ 916 03cd 2E000000 		.4byte	.LVL28
+ 917 03d1 43070000 		.4byte	0x743
+ 918 03d5 E5030000 		.4byte	0x3e5
+ 919 03d9 11       		.uleb128 0x11
+ 920 03da 01       		.uleb128 0x1
+ 921 03db 50       		.byte	0x50
+ 922 03dc 02       		.uleb128 0x2
+ 923 03dd 08       		.byte	0x8
+ 924 03de 68       		.byte	0x68
+ 925 03df 11       		.uleb128 0x11
+ 926 03e0 01       		.uleb128 0x1
+ 927 03e1 51       		.byte	0x51
+ 928 03e2 01       		.uleb128 0x1
+ 929 03e3 31       		.byte	0x31
+ 930 03e4 00       		.byte	0
+ 931 03e5 0F       		.uleb128 0xf
+ 932 03e6 36000000 		.4byte	.LVL29
+ 933 03ea 6F070000 		.4byte	0x76f
+ 934 03ee 0F       		.uleb128 0xf
+ 935 03ef 3E000000 		.4byte	.LVL30
+ 936 03f3 59070000 		.4byte	0x759
+ 937 03f7 00       		.byte	0
+ 938 03f8 12       		.uleb128 0x12
+ 939 03f9 8C000000 		.4byte	.LASF40
+ 940 03fd 01       		.byte	0x1
+ 941 03fe 97       		.byte	0x97
+ 942 03ff 81000000 		.4byte	0x81
+ 943 0403 00000000 		.4byte	.LFB65
+ 944 0407 58000000 		.4byte	.LFE65-.LFB65
+ 945 040b 01       		.uleb128 0x1
+ 946 040c 9C       		.byte	0x9c
+ 947 040d 82040000 		.4byte	0x482
+ 948 0411 0D       		.uleb128 0xd
+ 949 0412 A4010000 		.4byte	.LASF36
+ 950 0416 01       		.byte	0x1
+ 951 0417 98       		.byte	0x98
+ 952 0418 81000000 		.4byte	0x81
+ 953 041c E8000000 		.4byte	.LLST4
+ 954 0420 13       		.uleb128 0x13
+ 955 0421 11020000 		.4byte	.LASF39
+ 956 0425 01       		.byte	0x1
+ 957 0426 98       		.byte	0x98
+ 958 0427 82040000 		.4byte	0x482
+ 959 042b 02       		.uleb128 0x2
+ 960 042c 91       		.byte	0x91
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 22
+
+
+ 961 042d 74       		.sleb128 -12
+ 962 042e 0E       		.uleb128 0xe
+ 963 042f 6900     		.ascii	"i\000"
+ 964 0431 01       		.byte	0x1
+ 965 0432 98       		.byte	0x98
+ 966 0433 81000000 		.4byte	0x81
+ 967 0437 1C010000 		.4byte	.LLST5
+ 968 043b 0F       		.uleb128 0xf
+ 969 043c 1C000000 		.4byte	.LVL40
+ 970 0440 38070000 		.4byte	0x738
+ 971 0444 10       		.uleb128 0x10
+ 972 0445 24000000 		.4byte	.LVL41
+ 973 0449 43070000 		.4byte	0x743
+ 974 044d 5D040000 		.4byte	0x45d
+ 975 0451 11       		.uleb128 0x11
+ 976 0452 01       		.uleb128 0x1
+ 977 0453 50       		.byte	0x50
+ 978 0454 02       		.uleb128 0x2
+ 979 0455 08       		.byte	0x8
+ 980 0456 68       		.byte	0x68
+ 981 0457 11       		.uleb128 0x11
+ 982 0458 01       		.uleb128 0x1
+ 983 0459 51       		.byte	0x51
+ 984 045a 01       		.uleb128 0x1
+ 985 045b 30       		.byte	0x30
+ 986 045c 00       		.byte	0
+ 987 045d 10       		.uleb128 0x10
+ 988 045e 36000000 		.4byte	.LVL45
+ 989 0462 4E070000 		.4byte	0x74e
+ 990 0466 78040000 		.4byte	0x478
+ 991 046a 11       		.uleb128 0x11
+ 992 046b 01       		.uleb128 0x1
+ 993 046c 50       		.byte	0x50
+ 994 046d 09       		.uleb128 0x9
+ 995 046e 91       		.byte	0x91
+ 996 046f 00       		.sleb128 0
+ 997 0470 74       		.byte	0x74
+ 998 0471 00       		.sleb128 0
+ 999 0472 22       		.byte	0x22
+ 1000 0473 3C       		.byte	0x3c
+ 1001 0474 1C       		.byte	0x1c
+ 1002 0475 94       		.byte	0x94
+ 1003 0476 01       		.byte	0x1
+ 1004 0477 00       		.byte	0
+ 1005 0478 0F       		.uleb128 0xf
+ 1006 0479 48000000 		.4byte	.LVL50
+ 1007 047d 59070000 		.4byte	0x759
+ 1008 0481 00       		.byte	0
+ 1009 0482 07       		.uleb128 0x7
+ 1010 0483 81000000 		.4byte	0x81
+ 1011 0487 92040000 		.4byte	0x492
+ 1012 048b 08       		.uleb128 0x8
+ 1013 048c AE000000 		.4byte	0xae
+ 1014 0490 02       		.byte	0x2
+ 1015 0491 00       		.byte	0
+ 1016 0492 12       		.uleb128 0x12
+ 1017 0493 CF020000 		.4byte	.LASF41
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 23
+
+
+ 1018 0497 01       		.byte	0x1
+ 1019 0498 C1       		.byte	0xc1
+ 1020 0499 81000000 		.4byte	0x81
+ 1021 049d 00000000 		.4byte	.LFB66
+ 1022 04a1 5C000000 		.4byte	.LFE66-.LFB66
+ 1023 04a5 01       		.uleb128 0x1
+ 1024 04a6 9C       		.byte	0x9c
+ 1025 04a7 1C050000 		.4byte	0x51c
+ 1026 04ab 0D       		.uleb128 0xd
+ 1027 04ac A4010000 		.4byte	.LASF36
+ 1028 04b0 01       		.byte	0x1
+ 1029 04b1 C2       		.byte	0xc2
+ 1030 04b2 81000000 		.4byte	0x81
+ 1031 04b6 45010000 		.4byte	.LLST6
+ 1032 04ba 13       		.uleb128 0x13
+ 1033 04bb 11020000 		.4byte	.LASF39
+ 1034 04bf 01       		.byte	0x1
+ 1035 04c0 C2       		.byte	0xc2
+ 1036 04c1 C5000000 		.4byte	0xc5
+ 1037 04c5 02       		.uleb128 0x2
+ 1038 04c6 91       		.byte	0x91
+ 1039 04c7 74       		.sleb128 -12
+ 1040 04c8 0E       		.uleb128 0xe
+ 1041 04c9 6900     		.ascii	"i\000"
+ 1042 04cb 01       		.byte	0x1
+ 1043 04cc C2       		.byte	0xc2
+ 1044 04cd 81000000 		.4byte	0x81
+ 1045 04d1 79010000 		.4byte	.LLST7
+ 1046 04d5 0F       		.uleb128 0xf
+ 1047 04d6 22000000 		.4byte	.LVL53
+ 1048 04da 38070000 		.4byte	0x738
+ 1049 04de 10       		.uleb128 0x10
+ 1050 04df 2A000000 		.4byte	.LVL54
+ 1051 04e3 43070000 		.4byte	0x743
+ 1052 04e7 F7040000 		.4byte	0x4f7
+ 1053 04eb 11       		.uleb128 0x11
+ 1054 04ec 01       		.uleb128 0x1
+ 1055 04ed 50       		.byte	0x50
+ 1056 04ee 02       		.uleb128 0x2
+ 1057 04ef 08       		.byte	0x8
+ 1058 04f0 68       		.byte	0x68
+ 1059 04f1 11       		.uleb128 0x11
+ 1060 04f2 01       		.uleb128 0x1
+ 1061 04f3 51       		.byte	0x51
+ 1062 04f4 01       		.uleb128 0x1
+ 1063 04f5 30       		.byte	0x30
+ 1064 04f6 00       		.byte	0
+ 1065 04f7 10       		.uleb128 0x10
+ 1066 04f8 3C000000 		.4byte	.LVL58
+ 1067 04fc 4E070000 		.4byte	0x74e
+ 1068 0500 12050000 		.4byte	0x512
+ 1069 0504 11       		.uleb128 0x11
+ 1070 0505 01       		.uleb128 0x1
+ 1071 0506 50       		.byte	0x50
+ 1072 0507 09       		.uleb128 0x9
+ 1073 0508 91       		.byte	0x91
+ 1074 0509 00       		.sleb128 0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 24
+
+
+ 1075 050a 74       		.byte	0x74
+ 1076 050b 00       		.sleb128 0
+ 1077 050c 22       		.byte	0x22
+ 1078 050d 3C       		.byte	0x3c
+ 1079 050e 1C       		.byte	0x1c
+ 1080 050f 94       		.byte	0x94
+ 1081 0510 01       		.byte	0x1
+ 1082 0511 00       		.byte	0
+ 1083 0512 0F       		.uleb128 0xf
+ 1084 0513 4E000000 		.4byte	.LVL63
+ 1085 0517 59070000 		.4byte	0x759
+ 1086 051b 00       		.byte	0
+ 1087 051c 14       		.uleb128 0x14
+ 1088 051d F1020000 		.4byte	.LASF42
+ 1089 0521 06       		.byte	0x6
+ 1090 0522 1207     		.2byte	0x712
+ 1091 0524 28050000 		.4byte	0x528
+ 1092 0528 06       		.uleb128 0x6
+ 1093 0529 76000000 		.4byte	0x76
+ 1094 052d 15       		.uleb128 0x15
+ 1095 052e 52010000 		.4byte	.LASF43
+ 1096 0532 05       		.byte	0x5
+ 1097 0533 2B       		.byte	0x2b
+ 1098 0534 A2000000 		.4byte	0xa2
+ 1099 0538 05       		.uleb128 0x5
+ 1100 0539 03       		.byte	0x3
+ 1101 053a 00000000 		.4byte	ppux10
+ 1102 053e 07       		.uleb128 0x7
+ 1103 053f A2000000 		.4byte	0xa2
+ 1104 0543 4E050000 		.4byte	0x54e
+ 1105 0547 08       		.uleb128 0x8
+ 1106 0548 AE000000 		.4byte	0xae
+ 1107 054c 10       		.byte	0x10
+ 1108 054d 00       		.byte	0
+ 1109 054e 15       		.uleb128 0x15
+ 1110 054f AC020000 		.4byte	.LASF44
+ 1111 0553 05       		.byte	0x5
+ 1112 0554 2C       		.byte	0x2c
+ 1113 0555 5F050000 		.4byte	0x55f
+ 1114 0559 05       		.uleb128 0x5
+ 1115 055a 03       		.byte	0x3
+ 1116 055b 00000000 		.4byte	nombre_pro1
+ 1117 055f 06       		.uleb128 0x6
+ 1118 0560 3E050000 		.4byte	0x53e
+ 1119 0564 15       		.uleb128 0x15
+ 1120 0565 00000000 		.4byte	.LASF45
+ 1121 0569 05       		.byte	0x5
+ 1122 056a 2C       		.byte	0x2c
+ 1123 056b 75050000 		.4byte	0x575
+ 1124 056f 05       		.uleb128 0x5
+ 1125 0570 03       		.byte	0x3
+ 1126 0571 00000000 		.4byte	nombre_pro2
+ 1127 0575 06       		.uleb128 0x6
+ 1128 0576 3E050000 		.4byte	0x53e
+ 1129 057a 15       		.uleb128 0x15
+ 1130 057b C3020000 		.4byte	.LASF46
+ 1131 057f 05       		.byte	0x5
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 25
+
+
+ 1132 0580 2C       		.byte	0x2c
+ 1133 0581 8B050000 		.4byte	0x58b
+ 1134 0585 05       		.uleb128 0x5
+ 1135 0586 03       		.byte	0x3
+ 1136 0587 00000000 		.4byte	nombre_pro3
+ 1137 058b 06       		.uleb128 0x6
+ 1138 058c 3E050000 		.4byte	0x53e
+ 1139 0590 15       		.uleb128 0x15
+ 1140 0591 0C000000 		.4byte	.LASF47
+ 1141 0595 05       		.byte	0x5
+ 1142 0596 2D       		.byte	0x2d
+ 1143 0597 A2000000 		.4byte	0xa2
+ 1144 059b 05       		.uleb128 0x5
+ 1145 059c 03       		.byte	0x3
+ 1146 059d 00000000 		.4byte	version
+ 1147 05a1 15       		.uleb128 0x15
+ 1148 05a2 D7000000 		.4byte	.LASF48
+ 1149 05a6 05       		.byte	0x5
+ 1150 05a7 36       		.byte	0x36
+ 1151 05a8 D5000000 		.4byte	0xd5
+ 1152 05ac 05       		.uleb128 0x5
+ 1153 05ad 03       		.byte	0x3
+ 1154 05ae 00000000 		.4byte	lado1
+ 1155 05b2 15       		.uleb128 0x15
+ 1156 05b3 D6010000 		.4byte	.LASF49
+ 1157 05b7 05       		.byte	0x5
+ 1158 05b8 37       		.byte	0x37
+ 1159 05b9 D5000000 		.4byte	0xd5
+ 1160 05bd 05       		.uleb128 0x5
+ 1161 05be 03       		.byte	0x3
+ 1162 05bf 00000000 		.4byte	lado2
+ 1163 05c3 07       		.uleb128 0x7
+ 1164 05c4 A2000000 		.4byte	0xa2
+ 1165 05c8 D3050000 		.4byte	0x5d3
+ 1166 05cc 08       		.uleb128 0x8
+ 1167 05cd AE000000 		.4byte	0xae
+ 1168 05d1 20       		.byte	0x20
+ 1169 05d2 00       		.byte	0
+ 1170 05d3 15       		.uleb128 0x15
+ 1171 05d4 B5000000 		.4byte	.LASF50
+ 1172 05d8 05       		.byte	0x5
+ 1173 05d9 3B       		.byte	0x3b
+ 1174 05da E4050000 		.4byte	0x5e4
+ 1175 05de 05       		.uleb128 0x5
+ 1176 05df 03       		.byte	0x3
+ 1177 05e0 00000000 		.4byte	nombre
+ 1178 05e4 06       		.uleb128 0x6
+ 1179 05e5 C3050000 		.4byte	0x5c3
+ 1180 05e9 07       		.uleb128 0x7
+ 1181 05ea A2000000 		.4byte	0xa2
+ 1182 05ee F9050000 		.4byte	0x5f9
+ 1183 05f2 08       		.uleb128 0x8
+ 1184 05f3 AE000000 		.4byte	0xae
+ 1185 05f7 0E       		.byte	0xe
+ 1186 05f8 00       		.byte	0
+ 1187 05f9 16       		.uleb128 0x16
+ 1188 05fa 6E697400 		.ascii	"nit\000"
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 26
+
+
+ 1189 05fe 05       		.byte	0x5
+ 1190 05ff 3C       		.byte	0x3c
+ 1191 0600 0A060000 		.4byte	0x60a
+ 1192 0604 05       		.uleb128 0x5
+ 1193 0605 03       		.byte	0x3
+ 1194 0606 00000000 		.4byte	nit
+ 1195 060a 06       		.uleb128 0x6
+ 1196 060b E9050000 		.4byte	0x5e9
+ 1197 060f 07       		.uleb128 0x7
+ 1198 0610 A2000000 		.4byte	0xa2
+ 1199 0614 1F060000 		.4byte	0x61f
+ 1200 0618 08       		.uleb128 0x8
+ 1201 0619 AE000000 		.4byte	0xae
+ 1202 061d 13       		.byte	0x13
+ 1203 061e 00       		.byte	0
+ 1204 061f 15       		.uleb128 0x15
+ 1205 0620 E8020000 		.4byte	.LASF51
+ 1206 0624 05       		.byte	0x5
+ 1207 0625 3D       		.byte	0x3d
+ 1208 0626 30060000 		.4byte	0x630
+ 1209 062a 05       		.uleb128 0x5
+ 1210 062b 03       		.byte	0x3
+ 1211 062c 00000000 		.4byte	telefono
+ 1212 0630 06       		.uleb128 0x6
+ 1213 0631 0F060000 		.4byte	0x60f
+ 1214 0635 15       		.uleb128 0x15
+ 1215 0636 EE010000 		.4byte	.LASF52
+ 1216 063a 05       		.byte	0x5
+ 1217 063b 3E       		.byte	0x3e
+ 1218 063c 46060000 		.4byte	0x646
+ 1219 0640 05       		.uleb128 0x5
+ 1220 0641 03       		.byte	0x3
+ 1221 0642 00000000 		.4byte	direccion
+ 1222 0646 06       		.uleb128 0x6
+ 1223 0647 C3050000 		.4byte	0x5c3
+ 1224 064b 07       		.uleb128 0x7
+ 1225 064c A2000000 		.4byte	0xa2
+ 1226 0650 5B060000 		.4byte	0x65b
+ 1227 0654 08       		.uleb128 0x8
+ 1228 0655 AE000000 		.4byte	0xae
+ 1229 0659 1F       		.byte	0x1f
+ 1230 065a 00       		.byte	0
+ 1231 065b 15       		.uleb128 0x15
+ 1232 065c 71010000 		.4byte	.LASF53
+ 1233 0660 05       		.byte	0x5
+ 1234 0661 3F       		.byte	0x3f
+ 1235 0662 6C060000 		.4byte	0x66c
+ 1236 0666 05       		.uleb128 0x5
+ 1237 0667 03       		.byte	0x3
+ 1238 0668 00000000 		.4byte	lema1
+ 1239 066c 06       		.uleb128 0x6
+ 1240 066d 4B060000 		.4byte	0x64b
+ 1241 0671 15       		.uleb128 0x15
+ 1242 0672 77010000 		.4byte	.LASF54
+ 1243 0676 05       		.byte	0x5
+ 1244 0677 40       		.byte	0x40
+ 1245 0678 82060000 		.4byte	0x682
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 27
+
+
+ 1246 067c 05       		.uleb128 0x5
+ 1247 067d 03       		.byte	0x3
+ 1248 067e 00000000 		.4byte	lema2
+ 1249 0682 06       		.uleb128 0x6
+ 1250 0683 4B060000 		.4byte	0x64b
+ 1251 0687 07       		.uleb128 0x7
+ 1252 0688 A2000000 		.4byte	0xa2
+ 1253 068c 97060000 		.4byte	0x697
+ 1254 0690 08       		.uleb128 0x8
+ 1255 0691 AE000000 		.4byte	0xae
+ 1256 0695 01       		.byte	0x1
+ 1257 0696 00       		.byte	0
+ 1258 0697 15       		.uleb128 0x15
+ 1259 0698 DC010000 		.4byte	.LASF55
+ 1260 069c 05       		.byte	0x5
+ 1261 069d 41       		.byte	0x41
+ 1262 069e A8060000 		.4byte	0x6a8
+ 1263 06a2 05       		.uleb128 0x5
+ 1264 06a3 03       		.byte	0x3
+ 1265 06a4 00000000 		.4byte	id_logo
+ 1266 06a8 06       		.uleb128 0x6
+ 1267 06a9 87060000 		.4byte	0x687
+ 1268 06ad 16       		.uleb128 0x16
+ 1269 06ae 6B6D00   		.ascii	"km\000"
+ 1270 06b1 05       		.byte	0x5
+ 1271 06b2 42       		.byte	0x42
+ 1272 06b3 BD060000 		.4byte	0x6bd
+ 1273 06b7 05       		.uleb128 0x5
+ 1274 06b8 03       		.byte	0x3
+ 1275 06b9 00000000 		.4byte	km
+ 1276 06bd 06       		.uleb128 0x6
+ 1277 06be 87060000 		.4byte	0x687
+ 1278 06c2 15       		.uleb128 0x15
+ 1279 06c3 D0010000 		.4byte	.LASF56
+ 1280 06c7 05       		.byte	0x5
+ 1281 06c8 43       		.byte	0x43
+ 1282 06c9 82040000 		.4byte	0x482
+ 1283 06cd 05       		.uleb128 0x5
+ 1284 06ce 03       		.byte	0x3
+ 1285 06cf 00000000 		.4byte	fecha
+ 1286 06d3 07       		.uleb128 0x7
+ 1287 06d4 81000000 		.4byte	0x81
+ 1288 06d8 E3060000 		.4byte	0x6e3
+ 1289 06dc 08       		.uleb128 0x8
+ 1290 06dd AE000000 		.4byte	0xae
+ 1291 06e1 01       		.byte	0x1
+ 1292 06e2 00       		.byte	0
+ 1293 06e3 15       		.uleb128 0x15
+ 1294 06e4 7D010000 		.4byte	.LASF57
+ 1295 06e8 05       		.byte	0x5
+ 1296 06e9 44       		.byte	0x44
+ 1297 06ea D3060000 		.4byte	0x6d3
+ 1298 06ee 05       		.uleb128 0x5
+ 1299 06ef 03       		.byte	0x3
+ 1300 06f0 00000000 		.4byte	hora
+ 1301 06f4 15       		.uleb128 0x15
+ 1302 06f5 B8010000 		.4byte	.LASF58
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 28
+
+
+ 1303 06f9 05       		.byte	0x5
+ 1304 06fa 59       		.byte	0x59
+ 1305 06fb 6F010000 		.4byte	0x16f
+ 1306 06ff 05       		.uleb128 0x5
+ 1307 0700 03       		.byte	0x3
+ 1308 0701 00000000 		.4byte	rventa1
+ 1309 0705 15       		.uleb128 0x15
+ 1310 0706 C0010000 		.4byte	.LASF59
+ 1311 070a 05       		.byte	0x5
+ 1312 070b 5A       		.byte	0x5a
+ 1313 070c 6F010000 		.4byte	0x16f
+ 1314 0710 05       		.uleb128 0x5
+ 1315 0711 03       		.byte	0x3
+ 1316 0712 00000000 		.4byte	rventa2
+ 1317 0716 15       		.uleb128 0x15
+ 1318 0717 68000000 		.4byte	.LASF60
+ 1319 071b 05       		.byte	0x5
+ 1320 071c 5F       		.byte	0x5f
+ 1321 071d D3060000 		.4byte	0x6d3
+ 1322 0721 05       		.uleb128 0x5
+ 1323 0722 03       		.byte	0x3
+ 1324 0723 00000000 		.4byte	print1
+ 1325 0727 15       		.uleb128 0x15
+ 1326 0728 6F000000 		.4byte	.LASF61
+ 1327 072c 05       		.byte	0x5
+ 1328 072d 60       		.byte	0x60
+ 1329 072e D3060000 		.4byte	0x6d3
+ 1330 0732 05       		.uleb128 0x5
+ 1331 0733 03       		.byte	0x3
+ 1332 0734 00000000 		.4byte	print2
+ 1333 0738 17       		.uleb128 0x17
+ 1334 0739 94030000 		.4byte	.LASF62
+ 1335 073d 94030000 		.4byte	.LASF62
+ 1336 0741 07       		.byte	0x7
+ 1337 0742 A4       		.byte	0xa4
+ 1338 0743 17       		.uleb128 0x17
+ 1339 0744 85020000 		.4byte	.LASF63
+ 1340 0748 85020000 		.4byte	.LASF63
+ 1341 074c 07       		.byte	0x7
+ 1342 074d B1       		.byte	0xb1
+ 1343 074e 17       		.uleb128 0x17
+ 1344 074f 76000000 		.4byte	.LASF64
+ 1345 0753 76000000 		.4byte	.LASF64
+ 1346 0757 07       		.byte	0x7
+ 1347 0758 B6       		.byte	0xb6
+ 1348 0759 17       		.uleb128 0x17
+ 1349 075a 3D000000 		.4byte	.LASF65
+ 1350 075e 3D000000 		.4byte	.LASF65
+ 1351 0762 07       		.byte	0x7
+ 1352 0763 B5       		.byte	0xb5
+ 1353 0764 17       		.uleb128 0x17
+ 1354 0765 8C030000 		.4byte	.LASF66
+ 1355 0769 8C030000 		.4byte	.LASF66
+ 1356 076d 08       		.byte	0x8
+ 1357 076e 76       		.byte	0x76
+ 1358 076f 17       		.uleb128 0x17
+ 1359 0770 A0000000 		.4byte	.LASF67
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 29
+
+
+ 1360 0774 A0000000 		.4byte	.LASF67
+ 1361 0778 07       		.byte	0x7
+ 1362 0779 B7       		.byte	0xb7
+ 1363 077a 00       		.byte	0
+ 1364              		.section	.debug_abbrev,"",%progbits
+ 1365              	.Ldebug_abbrev0:
+ 1366 0000 01       		.uleb128 0x1
+ 1367 0001 11       		.uleb128 0x11
+ 1368 0002 01       		.byte	0x1
+ 1369 0003 25       		.uleb128 0x25
+ 1370 0004 0E       		.uleb128 0xe
+ 1371 0005 13       		.uleb128 0x13
+ 1372 0006 0B       		.uleb128 0xb
+ 1373 0007 03       		.uleb128 0x3
+ 1374 0008 0E       		.uleb128 0xe
+ 1375 0009 1B       		.uleb128 0x1b
+ 1376 000a 0E       		.uleb128 0xe
+ 1377 000b 55       		.uleb128 0x55
+ 1378 000c 17       		.uleb128 0x17
+ 1379 000d 11       		.uleb128 0x11
+ 1380 000e 01       		.uleb128 0x1
+ 1381 000f 10       		.uleb128 0x10
+ 1382 0010 17       		.uleb128 0x17
+ 1383 0011 00       		.byte	0
+ 1384 0012 00       		.byte	0
+ 1385 0013 02       		.uleb128 0x2
+ 1386 0014 24       		.uleb128 0x24
+ 1387 0015 00       		.byte	0
+ 1388 0016 0B       		.uleb128 0xb
+ 1389 0017 0B       		.uleb128 0xb
+ 1390 0018 3E       		.uleb128 0x3e
+ 1391 0019 0B       		.uleb128 0xb
+ 1392 001a 03       		.uleb128 0x3
+ 1393 001b 0E       		.uleb128 0xe
+ 1394 001c 00       		.byte	0
+ 1395 001d 00       		.byte	0
+ 1396 001e 03       		.uleb128 0x3
+ 1397 001f 16       		.uleb128 0x16
+ 1398 0020 00       		.byte	0
+ 1399 0021 03       		.uleb128 0x3
+ 1400 0022 0E       		.uleb128 0xe
+ 1401 0023 3A       		.uleb128 0x3a
+ 1402 0024 0B       		.uleb128 0xb
+ 1403 0025 3B       		.uleb128 0x3b
+ 1404 0026 0B       		.uleb128 0xb
+ 1405 0027 49       		.uleb128 0x49
+ 1406 0028 13       		.uleb128 0x13
+ 1407 0029 00       		.byte	0
+ 1408 002a 00       		.byte	0
+ 1409 002b 04       		.uleb128 0x4
+ 1410 002c 24       		.uleb128 0x24
+ 1411 002d 00       		.byte	0
+ 1412 002e 0B       		.uleb128 0xb
+ 1413 002f 0B       		.uleb128 0xb
+ 1414 0030 3E       		.uleb128 0x3e
+ 1415 0031 0B       		.uleb128 0xb
+ 1416 0032 03       		.uleb128 0x3
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 30
+
+
+ 1417 0033 08       		.uleb128 0x8
+ 1418 0034 00       		.byte	0
+ 1419 0035 00       		.byte	0
+ 1420 0036 05       		.uleb128 0x5
+ 1421 0037 16       		.uleb128 0x16
+ 1422 0038 00       		.byte	0
+ 1423 0039 03       		.uleb128 0x3
+ 1424 003a 0E       		.uleb128 0xe
+ 1425 003b 3A       		.uleb128 0x3a
+ 1426 003c 0B       		.uleb128 0xb
+ 1427 003d 3B       		.uleb128 0x3b
+ 1428 003e 05       		.uleb128 0x5
+ 1429 003f 49       		.uleb128 0x49
+ 1430 0040 13       		.uleb128 0x13
+ 1431 0041 00       		.byte	0
+ 1432 0042 00       		.byte	0
+ 1433 0043 06       		.uleb128 0x6
+ 1434 0044 35       		.uleb128 0x35
+ 1435 0045 00       		.byte	0
+ 1436 0046 49       		.uleb128 0x49
+ 1437 0047 13       		.uleb128 0x13
+ 1438 0048 00       		.byte	0
+ 1439 0049 00       		.byte	0
+ 1440 004a 07       		.uleb128 0x7
+ 1441 004b 01       		.uleb128 0x1
+ 1442 004c 01       		.byte	0x1
+ 1443 004d 49       		.uleb128 0x49
+ 1444 004e 13       		.uleb128 0x13
+ 1445 004f 01       		.uleb128 0x1
+ 1446 0050 13       		.uleb128 0x13
+ 1447 0051 00       		.byte	0
+ 1448 0052 00       		.byte	0
+ 1449 0053 08       		.uleb128 0x8
+ 1450 0054 21       		.uleb128 0x21
+ 1451 0055 00       		.byte	0
+ 1452 0056 49       		.uleb128 0x49
+ 1453 0057 13       		.uleb128 0x13
+ 1454 0058 2F       		.uleb128 0x2f
+ 1455 0059 0B       		.uleb128 0xb
+ 1456 005a 00       		.byte	0
+ 1457 005b 00       		.byte	0
+ 1458 005c 09       		.uleb128 0x9
+ 1459 005d 13       		.uleb128 0x13
+ 1460 005e 01       		.byte	0x1
+ 1461 005f 03       		.uleb128 0x3
+ 1462 0060 0E       		.uleb128 0xe
+ 1463 0061 0B       		.uleb128 0xb
+ 1464 0062 0B       		.uleb128 0xb
+ 1465 0063 3A       		.uleb128 0x3a
+ 1466 0064 0B       		.uleb128 0xb
+ 1467 0065 3B       		.uleb128 0x3b
+ 1468 0066 0B       		.uleb128 0xb
+ 1469 0067 01       		.uleb128 0x1
+ 1470 0068 13       		.uleb128 0x13
+ 1471 0069 00       		.byte	0
+ 1472 006a 00       		.byte	0
+ 1473 006b 0A       		.uleb128 0xa
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 31
+
+
+ 1474 006c 0D       		.uleb128 0xd
+ 1475 006d 00       		.byte	0
+ 1476 006e 03       		.uleb128 0x3
+ 1477 006f 08       		.uleb128 0x8
+ 1478 0070 3A       		.uleb128 0x3a
+ 1479 0071 0B       		.uleb128 0xb
+ 1480 0072 3B       		.uleb128 0x3b
+ 1481 0073 0B       		.uleb128 0xb
+ 1482 0074 49       		.uleb128 0x49
+ 1483 0075 13       		.uleb128 0x13
+ 1484 0076 38       		.uleb128 0x38
+ 1485 0077 0B       		.uleb128 0xb
+ 1486 0078 00       		.byte	0
+ 1487 0079 00       		.byte	0
+ 1488 007a 0B       		.uleb128 0xb
+ 1489 007b 0D       		.uleb128 0xd
+ 1490 007c 00       		.byte	0
+ 1491 007d 03       		.uleb128 0x3
+ 1492 007e 0E       		.uleb128 0xe
+ 1493 007f 3A       		.uleb128 0x3a
+ 1494 0080 0B       		.uleb128 0xb
+ 1495 0081 3B       		.uleb128 0x3b
+ 1496 0082 0B       		.uleb128 0xb
+ 1497 0083 49       		.uleb128 0x49
+ 1498 0084 13       		.uleb128 0x13
+ 1499 0085 38       		.uleb128 0x38
+ 1500 0086 0B       		.uleb128 0xb
+ 1501 0087 00       		.byte	0
+ 1502 0088 00       		.byte	0
+ 1503 0089 0C       		.uleb128 0xc
+ 1504 008a 2E       		.uleb128 0x2e
+ 1505 008b 01       		.byte	0x1
+ 1506 008c 3F       		.uleb128 0x3f
+ 1507 008d 19       		.uleb128 0x19
+ 1508 008e 03       		.uleb128 0x3
+ 1509 008f 0E       		.uleb128 0xe
+ 1510 0090 3A       		.uleb128 0x3a
+ 1511 0091 0B       		.uleb128 0xb
+ 1512 0092 3B       		.uleb128 0x3b
+ 1513 0093 0B       		.uleb128 0xb
+ 1514 0094 49       		.uleb128 0x49
+ 1515 0095 13       		.uleb128 0x13
+ 1516 0096 11       		.uleb128 0x11
+ 1517 0097 01       		.uleb128 0x1
+ 1518 0098 12       		.uleb128 0x12
+ 1519 0099 06       		.uleb128 0x6
+ 1520 009a 40       		.uleb128 0x40
+ 1521 009b 18       		.uleb128 0x18
+ 1522 009c 9742     		.uleb128 0x2117
+ 1523 009e 19       		.uleb128 0x19
+ 1524 009f 01       		.uleb128 0x1
+ 1525 00a0 13       		.uleb128 0x13
+ 1526 00a1 00       		.byte	0
+ 1527 00a2 00       		.byte	0
+ 1528 00a3 0D       		.uleb128 0xd
+ 1529 00a4 34       		.uleb128 0x34
+ 1530 00a5 00       		.byte	0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 32
+
+
+ 1531 00a6 03       		.uleb128 0x3
+ 1532 00a7 0E       		.uleb128 0xe
+ 1533 00a8 3A       		.uleb128 0x3a
+ 1534 00a9 0B       		.uleb128 0xb
+ 1535 00aa 3B       		.uleb128 0x3b
+ 1536 00ab 0B       		.uleb128 0xb
+ 1537 00ac 49       		.uleb128 0x49
+ 1538 00ad 13       		.uleb128 0x13
+ 1539 00ae 02       		.uleb128 0x2
+ 1540 00af 17       		.uleb128 0x17
+ 1541 00b0 00       		.byte	0
+ 1542 00b1 00       		.byte	0
+ 1543 00b2 0E       		.uleb128 0xe
+ 1544 00b3 34       		.uleb128 0x34
+ 1545 00b4 00       		.byte	0
+ 1546 00b5 03       		.uleb128 0x3
+ 1547 00b6 08       		.uleb128 0x8
+ 1548 00b7 3A       		.uleb128 0x3a
+ 1549 00b8 0B       		.uleb128 0xb
+ 1550 00b9 3B       		.uleb128 0x3b
+ 1551 00ba 0B       		.uleb128 0xb
+ 1552 00bb 49       		.uleb128 0x49
+ 1553 00bc 13       		.uleb128 0x13
+ 1554 00bd 02       		.uleb128 0x2
+ 1555 00be 17       		.uleb128 0x17
+ 1556 00bf 00       		.byte	0
+ 1557 00c0 00       		.byte	0
+ 1558 00c1 0F       		.uleb128 0xf
+ 1559 00c2 898201   		.uleb128 0x4109
+ 1560 00c5 00       		.byte	0
+ 1561 00c6 11       		.uleb128 0x11
+ 1562 00c7 01       		.uleb128 0x1
+ 1563 00c8 31       		.uleb128 0x31
+ 1564 00c9 13       		.uleb128 0x13
+ 1565 00ca 00       		.byte	0
+ 1566 00cb 00       		.byte	0
+ 1567 00cc 10       		.uleb128 0x10
+ 1568 00cd 898201   		.uleb128 0x4109
+ 1569 00d0 01       		.byte	0x1
+ 1570 00d1 11       		.uleb128 0x11
+ 1571 00d2 01       		.uleb128 0x1
+ 1572 00d3 31       		.uleb128 0x31
+ 1573 00d4 13       		.uleb128 0x13
+ 1574 00d5 01       		.uleb128 0x1
+ 1575 00d6 13       		.uleb128 0x13
+ 1576 00d7 00       		.byte	0
+ 1577 00d8 00       		.byte	0
+ 1578 00d9 11       		.uleb128 0x11
+ 1579 00da 8A8201   		.uleb128 0x410a
+ 1580 00dd 00       		.byte	0
+ 1581 00de 02       		.uleb128 0x2
+ 1582 00df 18       		.uleb128 0x18
+ 1583 00e0 9142     		.uleb128 0x2111
+ 1584 00e2 18       		.uleb128 0x18
+ 1585 00e3 00       		.byte	0
+ 1586 00e4 00       		.byte	0
+ 1587 00e5 12       		.uleb128 0x12
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 33
+
+
+ 1588 00e6 2E       		.uleb128 0x2e
+ 1589 00e7 01       		.byte	0x1
+ 1590 00e8 3F       		.uleb128 0x3f
+ 1591 00e9 19       		.uleb128 0x19
+ 1592 00ea 03       		.uleb128 0x3
+ 1593 00eb 0E       		.uleb128 0xe
+ 1594 00ec 3A       		.uleb128 0x3a
+ 1595 00ed 0B       		.uleb128 0xb
+ 1596 00ee 3B       		.uleb128 0x3b
+ 1597 00ef 0B       		.uleb128 0xb
+ 1598 00f0 27       		.uleb128 0x27
+ 1599 00f1 19       		.uleb128 0x19
+ 1600 00f2 49       		.uleb128 0x49
+ 1601 00f3 13       		.uleb128 0x13
+ 1602 00f4 11       		.uleb128 0x11
+ 1603 00f5 01       		.uleb128 0x1
+ 1604 00f6 12       		.uleb128 0x12
+ 1605 00f7 06       		.uleb128 0x6
+ 1606 00f8 40       		.uleb128 0x40
+ 1607 00f9 18       		.uleb128 0x18
+ 1608 00fa 9742     		.uleb128 0x2117
+ 1609 00fc 19       		.uleb128 0x19
+ 1610 00fd 01       		.uleb128 0x1
+ 1611 00fe 13       		.uleb128 0x13
+ 1612 00ff 00       		.byte	0
+ 1613 0100 00       		.byte	0
+ 1614 0101 13       		.uleb128 0x13
+ 1615 0102 34       		.uleb128 0x34
+ 1616 0103 00       		.byte	0
+ 1617 0104 03       		.uleb128 0x3
+ 1618 0105 0E       		.uleb128 0xe
+ 1619 0106 3A       		.uleb128 0x3a
+ 1620 0107 0B       		.uleb128 0xb
+ 1621 0108 3B       		.uleb128 0x3b
+ 1622 0109 0B       		.uleb128 0xb
+ 1623 010a 49       		.uleb128 0x49
+ 1624 010b 13       		.uleb128 0x13
+ 1625 010c 02       		.uleb128 0x2
+ 1626 010d 18       		.uleb128 0x18
+ 1627 010e 00       		.byte	0
+ 1628 010f 00       		.byte	0
+ 1629 0110 14       		.uleb128 0x14
+ 1630 0111 34       		.uleb128 0x34
+ 1631 0112 00       		.byte	0
+ 1632 0113 03       		.uleb128 0x3
+ 1633 0114 0E       		.uleb128 0xe
+ 1634 0115 3A       		.uleb128 0x3a
+ 1635 0116 0B       		.uleb128 0xb
+ 1636 0117 3B       		.uleb128 0x3b
+ 1637 0118 05       		.uleb128 0x5
+ 1638 0119 49       		.uleb128 0x49
+ 1639 011a 13       		.uleb128 0x13
+ 1640 011b 3F       		.uleb128 0x3f
+ 1641 011c 19       		.uleb128 0x19
+ 1642 011d 3C       		.uleb128 0x3c
+ 1643 011e 19       		.uleb128 0x19
+ 1644 011f 00       		.byte	0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 34
+
+
+ 1645 0120 00       		.byte	0
+ 1646 0121 15       		.uleb128 0x15
+ 1647 0122 34       		.uleb128 0x34
+ 1648 0123 00       		.byte	0
+ 1649 0124 03       		.uleb128 0x3
+ 1650 0125 0E       		.uleb128 0xe
+ 1651 0126 3A       		.uleb128 0x3a
+ 1652 0127 0B       		.uleb128 0xb
+ 1653 0128 3B       		.uleb128 0x3b
+ 1654 0129 0B       		.uleb128 0xb
+ 1655 012a 49       		.uleb128 0x49
+ 1656 012b 13       		.uleb128 0x13
+ 1657 012c 3F       		.uleb128 0x3f
+ 1658 012d 19       		.uleb128 0x19
+ 1659 012e 02       		.uleb128 0x2
+ 1660 012f 18       		.uleb128 0x18
+ 1661 0130 00       		.byte	0
+ 1662 0131 00       		.byte	0
+ 1663 0132 16       		.uleb128 0x16
+ 1664 0133 34       		.uleb128 0x34
+ 1665 0134 00       		.byte	0
+ 1666 0135 03       		.uleb128 0x3
+ 1667 0136 08       		.uleb128 0x8
+ 1668 0137 3A       		.uleb128 0x3a
+ 1669 0138 0B       		.uleb128 0xb
+ 1670 0139 3B       		.uleb128 0x3b
+ 1671 013a 0B       		.uleb128 0xb
+ 1672 013b 49       		.uleb128 0x49
+ 1673 013c 13       		.uleb128 0x13
+ 1674 013d 3F       		.uleb128 0x3f
+ 1675 013e 19       		.uleb128 0x19
+ 1676 013f 02       		.uleb128 0x2
+ 1677 0140 18       		.uleb128 0x18
+ 1678 0141 00       		.byte	0
+ 1679 0142 00       		.byte	0
+ 1680 0143 17       		.uleb128 0x17
+ 1681 0144 2E       		.uleb128 0x2e
+ 1682 0145 00       		.byte	0
+ 1683 0146 3F       		.uleb128 0x3f
+ 1684 0147 19       		.uleb128 0x19
+ 1685 0148 3C       		.uleb128 0x3c
+ 1686 0149 19       		.uleb128 0x19
+ 1687 014a 6E       		.uleb128 0x6e
+ 1688 014b 0E       		.uleb128 0xe
+ 1689 014c 03       		.uleb128 0x3
+ 1690 014d 0E       		.uleb128 0xe
+ 1691 014e 3A       		.uleb128 0x3a
+ 1692 014f 0B       		.uleb128 0xb
+ 1693 0150 3B       		.uleb128 0x3b
+ 1694 0151 0B       		.uleb128 0xb
+ 1695 0152 00       		.byte	0
+ 1696 0153 00       		.byte	0
+ 1697 0154 00       		.byte	0
+ 1698              		.section	.debug_loc,"",%progbits
+ 1699              	.Ldebug_loc0:
+ 1700              	.LLST0:
+ 1701 0000 12000000 		.4byte	.LVL3
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 35
+
+
+ 1702 0004 16000000 		.4byte	.LVL4
+ 1703 0008 0100     		.2byte	0x1
+ 1704 000a 50       		.byte	0x50
+ 1705 000b 1A000000 		.4byte	.LVL5
+ 1706 000f 1F000000 		.4byte	.LVL6-1
+ 1707 0013 0100     		.2byte	0x1
+ 1708 0015 50       		.byte	0x50
+ 1709 0016 2E000000 		.4byte	.LVL8
+ 1710 001a 35000000 		.4byte	.LVL9-1
+ 1711 001e 0100     		.2byte	0x1
+ 1712 0020 50       		.byte	0x50
+ 1713 0021 4A000000 		.4byte	.LVL13
+ 1714 0025 4C000000 		.4byte	.LVL14
+ 1715 0029 0100     		.2byte	0x1
+ 1716 002b 50       		.byte	0x50
+ 1717 002c 4E000000 		.4byte	.LVL15
+ 1718 0030 50000000 		.4byte	.LVL16
+ 1719 0034 0100     		.2byte	0x1
+ 1720 0036 50       		.byte	0x50
+ 1721 0037 52000000 		.4byte	.LVL17
+ 1722 003b 54000000 		.4byte	.LVL18
+ 1723 003f 0100     		.2byte	0x1
+ 1724 0041 50       		.byte	0x50
+ 1725 0042 00000000 		.4byte	0
+ 1726 0046 00000000 		.4byte	0
+ 1727              	.LLST1:
+ 1728 004a 02000000 		.4byte	.LVL0
+ 1729 004e 06000000 		.4byte	.LVL1
+ 1730 0052 0200     		.2byte	0x2
+ 1731 0054 31       		.byte	0x31
+ 1732 0055 9F       		.byte	0x9f
+ 1733 0056 06000000 		.4byte	.LVL1
+ 1734 005a 40000000 		.4byte	.LVL11
+ 1735 005e 0100     		.2byte	0x1
+ 1736 0060 54       		.byte	0x54
+ 1737 0061 42000000 		.4byte	.LVL12
+ 1738 0065 56000000 		.4byte	.LVL19
+ 1739 0069 0100     		.2byte	0x1
+ 1740 006b 54       		.byte	0x54
+ 1741 006c 00000000 		.4byte	0
+ 1742 0070 00000000 		.4byte	0
+ 1743              	.LLST2:
+ 1744 0074 12000000 		.4byte	.LVL23
+ 1745 0078 16000000 		.4byte	.LVL24
+ 1746 007c 0100     		.2byte	0x1
+ 1747 007e 50       		.byte	0x50
+ 1748 007f 1A000000 		.4byte	.LVL25
+ 1749 0083 1F000000 		.4byte	.LVL26-1
+ 1750 0087 0100     		.2byte	0x1
+ 1751 0089 50       		.byte	0x50
+ 1752 008a 2E000000 		.4byte	.LVL28
+ 1753 008e 35000000 		.4byte	.LVL29-1
+ 1754 0092 0100     		.2byte	0x1
+ 1755 0094 50       		.byte	0x50
+ 1756 0095 4A000000 		.4byte	.LVL33
+ 1757 0099 4C000000 		.4byte	.LVL34
+ 1758 009d 0100     		.2byte	0x1
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 36
+
+
+ 1759 009f 50       		.byte	0x50
+ 1760 00a0 4E000000 		.4byte	.LVL35
+ 1761 00a4 50000000 		.4byte	.LVL36
+ 1762 00a8 0100     		.2byte	0x1
+ 1763 00aa 50       		.byte	0x50
+ 1764 00ab 52000000 		.4byte	.LVL37
+ 1765 00af 54000000 		.4byte	.LVL38
+ 1766 00b3 0100     		.2byte	0x1
+ 1767 00b5 50       		.byte	0x50
+ 1768 00b6 00000000 		.4byte	0
+ 1769 00ba 00000000 		.4byte	0
+ 1770              	.LLST3:
+ 1771 00be 02000000 		.4byte	.LVL20
+ 1772 00c2 06000000 		.4byte	.LVL21
+ 1773 00c6 0200     		.2byte	0x2
+ 1774 00c8 34       		.byte	0x34
+ 1775 00c9 9F       		.byte	0x9f
+ 1776 00ca 06000000 		.4byte	.LVL21
+ 1777 00ce 40000000 		.4byte	.LVL31
+ 1778 00d2 0100     		.2byte	0x1
+ 1779 00d4 54       		.byte	0x54
+ 1780 00d5 42000000 		.4byte	.LVL32
+ 1781 00d9 56000000 		.4byte	.LVL39
+ 1782 00dd 0100     		.2byte	0x1
+ 1783 00df 54       		.byte	0x54
+ 1784 00e0 00000000 		.4byte	0
+ 1785 00e4 00000000 		.4byte	0
+ 1786              	.LLST4:
+ 1787 00e8 24000000 		.4byte	.LVL41
+ 1788 00ec 28000000 		.4byte	.LVL42
+ 1789 00f0 0100     		.2byte	0x1
+ 1790 00f2 50       		.byte	0x50
+ 1791 00f3 2A000000 		.4byte	.LVL43
+ 1792 00f7 32000000 		.4byte	.LVL44
+ 1793 00fb 0100     		.2byte	0x1
+ 1794 00fd 50       		.byte	0x50
+ 1795 00fe 36000000 		.4byte	.LVL45
+ 1796 0102 47000000 		.4byte	.LVL50-1
+ 1797 0106 0100     		.2byte	0x1
+ 1798 0108 50       		.byte	0x50
+ 1799 0109 4C000000 		.4byte	.LVL51
+ 1800 010d 4E000000 		.4byte	.LVL52
+ 1801 0111 0100     		.2byte	0x1
+ 1802 0113 50       		.byte	0x50
+ 1803 0114 00000000 		.4byte	0
+ 1804 0118 00000000 		.4byte	0
+ 1805              	.LLST5:
+ 1806 011c 2A000000 		.4byte	.LVL43
+ 1807 0120 3A000000 		.4byte	.LVL46
+ 1808 0124 0100     		.2byte	0x1
+ 1809 0126 54       		.byte	0x54
+ 1810 0127 3C000000 		.4byte	.LVL47
+ 1811 012b 3E000000 		.4byte	.LVL48
+ 1812 012f 0100     		.2byte	0x1
+ 1813 0131 54       		.byte	0x54
+ 1814 0132 40000000 		.4byte	.LVL49
+ 1815 0136 4E000000 		.4byte	.LVL52
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 37
+
+
+ 1816 013a 0100     		.2byte	0x1
+ 1817 013c 54       		.byte	0x54
+ 1818 013d 00000000 		.4byte	0
+ 1819 0141 00000000 		.4byte	0
+ 1820              	.LLST6:
+ 1821 0145 2A000000 		.4byte	.LVL54
+ 1822 0149 2E000000 		.4byte	.LVL55
+ 1823 014d 0100     		.2byte	0x1
+ 1824 014f 50       		.byte	0x50
+ 1825 0150 30000000 		.4byte	.LVL56
+ 1826 0154 38000000 		.4byte	.LVL57
+ 1827 0158 0100     		.2byte	0x1
+ 1828 015a 50       		.byte	0x50
+ 1829 015b 3C000000 		.4byte	.LVL58
+ 1830 015f 4D000000 		.4byte	.LVL63-1
+ 1831 0163 0100     		.2byte	0x1
+ 1832 0165 50       		.byte	0x50
+ 1833 0166 52000000 		.4byte	.LVL64
+ 1834 016a 54000000 		.4byte	.LVL65
+ 1835 016e 0100     		.2byte	0x1
+ 1836 0170 50       		.byte	0x50
+ 1837 0171 00000000 		.4byte	0
+ 1838 0175 00000000 		.4byte	0
+ 1839              	.LLST7:
+ 1840 0179 30000000 		.4byte	.LVL56
+ 1841 017d 40000000 		.4byte	.LVL59
+ 1842 0181 0100     		.2byte	0x1
+ 1843 0183 54       		.byte	0x54
+ 1844 0184 42000000 		.4byte	.LVL60
+ 1845 0188 44000000 		.4byte	.LVL61
+ 1846 018c 0100     		.2byte	0x1
+ 1847 018e 54       		.byte	0x54
+ 1848 018f 46000000 		.4byte	.LVL62
+ 1849 0193 54000000 		.4byte	.LVL65
+ 1850 0197 0100     		.2byte	0x1
+ 1851 0199 54       		.byte	0x54
+ 1852 019a 00000000 		.4byte	0
+ 1853 019e 00000000 		.4byte	0
+ 1854              		.section	.debug_aranges,"",%progbits
+ 1855 0000 34000000 		.4byte	0x34
+ 1856 0004 0200     		.2byte	0x2
+ 1857 0006 00000000 		.4byte	.Ldebug_info0
+ 1858 000a 04       		.byte	0x4
+ 1859 000b 00       		.byte	0
+ 1860 000c 0000     		.2byte	0
+ 1861 000e 0000     		.2byte	0
+ 1862 0010 00000000 		.4byte	.LFB63
+ 1863 0014 5C000000 		.4byte	.LFE63-.LFB63
+ 1864 0018 00000000 		.4byte	.LFB64
+ 1865 001c 5C000000 		.4byte	.LFE64-.LFB64
+ 1866 0020 00000000 		.4byte	.LFB65
+ 1867 0024 58000000 		.4byte	.LFE65-.LFB65
+ 1868 0028 00000000 		.4byte	.LFB66
+ 1869 002c 5C000000 		.4byte	.LFE66-.LFB66
+ 1870 0030 00000000 		.4byte	0
+ 1871 0034 00000000 		.4byte	0
+ 1872              		.section	.debug_ranges,"",%progbits
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 38
+
+
+ 1873              	.Ldebug_ranges0:
+ 1874 0000 00000000 		.4byte	.LFB63
+ 1875 0004 5C000000 		.4byte	.LFE63
+ 1876 0008 00000000 		.4byte	.LFB64
+ 1877 000c 5C000000 		.4byte	.LFE64
+ 1878 0010 00000000 		.4byte	.LFB65
+ 1879 0014 58000000 		.4byte	.LFE65
+ 1880 0018 00000000 		.4byte	.LFB66
+ 1881 001c 5C000000 		.4byte	.LFE66
+ 1882 0020 00000000 		.4byte	0
+ 1883 0024 00000000 		.4byte	0
+ 1884              		.section	.debug_line,"",%progbits
+ 1885              	.Ldebug_line0:
+ 1886 0000 43020000 		.section	.debug_str,"MS",%progbits,1
+ 1886      02007101 
+ 1886      00000201 
+ 1886      FB0E0D00 
+ 1886      01010101 
+ 1887              	.LASF45:
+ 1888 0000 6E6F6D62 		.ascii	"nombre_pro2\000"
+ 1888      72655F70 
+ 1888      726F3200 
+ 1889              	.LASF47:
+ 1890 000c 76657273 		.ascii	"version\000"
+ 1890      696F6E00 
+ 1891              	.LASF69:
+ 1892 0014 6932632E 		.ascii	"i2c.c\000"
+ 1892      6300
+ 1893              	.LASF27:
+ 1894 001a 6D616E67 		.ascii	"manguera\000"
+ 1894      75657261 
+ 1894      00
+ 1895              	.LASF2:
+ 1896 0023 73686F72 		.ascii	"short int\000"
+ 1896      7420696E 
+ 1896      7400
+ 1897              	.LASF16:
+ 1898 002d 73697A65 		.ascii	"sizetype\000"
+ 1898      74797065 
+ 1898      00
+ 1899              	.LASF24:
+ 1900 0036 64696E65 		.ascii	"dinero\000"
+ 1900      726F00
+ 1901              	.LASF65:
+ 1902 003d 4932435F 		.ascii	"I2C_1_MasterSendStop\000"
+ 1902      315F4D61 
+ 1902      73746572 
+ 1902      53656E64 
+ 1902      53746F70 
+ 1903              	.LASF32:
+ 1904 0052 63656475 		.ascii	"cedula\000"
+ 1904      6C6100
+ 1905              	.LASF33:
+ 1906 0059 70617373 		.ascii	"password\000"
+ 1906      776F7264 
+ 1906      00
+ 1907              	.LASF34:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 39
+
+
+ 1908 0062 7475726E 		.ascii	"turno\000"
+ 1908      6F00
+ 1909              	.LASF60:
+ 1910 0068 7072696E 		.ascii	"print1\000"
+ 1910      743100
+ 1911              	.LASF61:
+ 1912 006f 7072696E 		.ascii	"print2\000"
+ 1912      743200
+ 1913              	.LASF64:
+ 1914 0076 4932435F 		.ascii	"I2C_1_MasterWriteByte\000"
+ 1914      315F4D61 
+ 1914      73746572 
+ 1914      57726974 
+ 1914      65427974 
+ 1915              	.LASF40:
+ 1916 008c 77726974 		.ascii	"write_hora\000"
+ 1916      655F686F 
+ 1916      726100
+ 1917              	.LASF30:
+ 1918 0097 696D7072 		.ascii	"imprimir\000"
+ 1918      696D6972 
+ 1918      00
+ 1919              	.LASF67:
+ 1920 00a0 4932435F 		.ascii	"I2C_1_MasterReadByte\000"
+ 1920      315F4D61 
+ 1920      73746572 
+ 1920      52656164 
+ 1920      42797465 
+ 1921              	.LASF50:
+ 1922 00b5 6E6F6D62 		.ascii	"nombre\000"
+ 1922      726500
+ 1923              	.LASF11:
+ 1924 00bc 75696E74 		.ascii	"uint8\000"
+ 1924      3800
+ 1925              	.LASF22:
+ 1926 00c2 696D7072 		.ascii	"impresiones\000"
+ 1926      6573696F 
+ 1926      6E657300 
+ 1927              	.LASF20:
+ 1928 00ce 73757274 		.ascii	"surtidor\000"
+ 1928      69646F72 
+ 1928      00
+ 1929              	.LASF48:
+ 1930 00d7 6C61646F 		.ascii	"lado1\000"
+ 1930      3100
+ 1931              	.LASF12:
+ 1932 00dd 666C6F61 		.ascii	"float\000"
+ 1932      7400
+ 1933              	.LASF6:
+ 1934 00e3 6C6F6E67 		.ascii	"long long int\000"
+ 1934      206C6F6E 
+ 1934      6720696E 
+ 1934      7400
+ 1935              	.LASF4:
+ 1936 00f1 6C6F6E67 		.ascii	"long int\000"
+ 1936      20696E74 
+ 1936      00
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 40
+
+
+ 1937              	.LASF17:
+ 1938 00fa 746F7461 		.ascii	"totales\000"
+ 1938      6C657300 
+ 1939              	.LASF15:
+ 1940 0102 6C6F6E67 		.ascii	"long double\000"
+ 1940      20646F75 
+ 1940      626C6500 
+ 1941              	.LASF37:
+ 1942 010e 6C656572 		.ascii	"leer_hora\000"
+ 1942      5F686F72 
+ 1942      6100
+ 1943              	.LASF1:
+ 1944 0118 756E7369 		.ascii	"unsigned char\000"
+ 1944      676E6564 
+ 1944      20636861 
+ 1944      7200
+ 1945              	.LASF23:
+ 1946 0126 706F7369 		.ascii	"posicion\000"
+ 1946      63696F6E 
+ 1946      00
+ 1947              	.LASF0:
+ 1948 012f 7369676E 		.ascii	"signed char\000"
+ 1948      65642063 
+ 1948      68617200 
+ 1949              	.LASF7:
+ 1950 013b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1950      206C6F6E 
+ 1950      6720756E 
+ 1950      7369676E 
+ 1950      65642069 
+ 1951              	.LASF43:
+ 1952 0152 70707578 		.ascii	"ppux10\000"
+ 1952      313000
+ 1953              	.LASF35:
+ 1954 0159 6175746F 		.ascii	"autorizado\000"
+ 1954      72697A61 
+ 1954      646F00
+ 1955              	.LASF8:
+ 1956 0164 756E7369 		.ascii	"unsigned int\000"
+ 1956      676E6564 
+ 1956      20696E74 
+ 1956      00
+ 1957              	.LASF53:
+ 1958 0171 6C656D61 		.ascii	"lema1\000"
+ 1958      3100
+ 1959              	.LASF54:
+ 1960 0177 6C656D61 		.ascii	"lema2\000"
+ 1960      3200
+ 1961              	.LASF57:
+ 1962 017d 686F7261 		.ascii	"hora\000"
+ 1962      00
+ 1963              	.LASF26:
+ 1964 0182 70726F64 		.ascii	"producto\000"
+ 1964      7563746F 
+ 1964      00
+ 1965              	.LASF3:
+ 1966 018b 73686F72 		.ascii	"short unsigned int\000"
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 41
+
+
+ 1966      7420756E 
+ 1966      7369676E 
+ 1966      65642069 
+ 1966      6E7400
+ 1967              	.LASF18:
+ 1968 019e 67726164 		.ascii	"grado\000"
+ 1968      6F00
+ 1969              	.LASF36:
+ 1970 01a4 73746174 		.ascii	"status\000"
+ 1970      757300
+ 1971              	.LASF25:
+ 1972 01ab 766F6C75 		.ascii	"volumen\000"
+ 1972      6D656E00 
+ 1973              	.LASF14:
+ 1974 01b3 63686172 		.ascii	"char\000"
+ 1974      00
+ 1975              	.LASF58:
+ 1976 01b8 7276656E 		.ascii	"rventa1\000"
+ 1976      74613100 
+ 1977              	.LASF59:
+ 1978 01c0 7276656E 		.ascii	"rventa2\000"
+ 1978      74613200 
+ 1979              	.LASF10:
+ 1980 01c8 696E7433 		.ascii	"int32_t\000"
+ 1980      325F7400 
+ 1981              	.LASF56:
+ 1982 01d0 66656368 		.ascii	"fecha\000"
+ 1982      6100
+ 1983              	.LASF49:
+ 1984 01d6 6C61646F 		.ascii	"lado2\000"
+ 1984      3200
+ 1985              	.LASF55:
+ 1986 01dc 69645F6C 		.ascii	"id_logo\000"
+ 1986      6F676F00 
+ 1987              	.LASF19:
+ 1988 01e4 6D616E67 		.ascii	"mangueras\000"
+ 1988      75657261 
+ 1988      7300
+ 1989              	.LASF52:
+ 1990 01ee 64697265 		.ascii	"direccion\000"
+ 1990      6363696F 
+ 1990      6E00
+ 1991              	.LASF5:
+ 1992 01f8 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1992      20756E73 
+ 1992      69676E65 
+ 1992      6420696E 
+ 1992      7400
+ 1993              	.LASF21:
+ 1994 020a 72656369 		.ascii	"recibo\000"
+ 1994      626F00
+ 1995              	.LASF39:
+ 1996 0211 6461746F 		.ascii	"dato\000"
+ 1996      00
+ 1997              	.LASF70:
+ 1998 0216 433A5C55 		.ascii	"C:\\Users\\leo40\\OneDrive\\Empresa\\Proyectos\\Ora"
+ 1998      73657273 
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 42
+
+
+ 1998      5C6C656F 
+ 1998      34305C4F 
+ 1998      6E654472 
+ 1999 0243 6E67655F 		.ascii	"nge_Pi\\Carro_Taller\\Prueba_USB\\V1.0\\FC_Impresio"
+ 1999      50695C43 
+ 1999      6172726F 
+ 1999      5F54616C 
+ 1999      6C65725C 
+ 2000 0272 6E2E6379 		.ascii	"n.cydsn\000"
+ 2000      64736E00 
+ 2001              	.LASF38:
+ 2002 027a 6C656572 		.ascii	"leer_fecha\000"
+ 2002      5F666563 
+ 2002      686100
+ 2003              	.LASF63:
+ 2004 0285 4932435F 		.ascii	"I2C_1_MasterSendStart\000"
+ 2004      315F4D61 
+ 2004      73746572 
+ 2004      53656E64 
+ 2004      53746172 
+ 2005              	.LASF28:
+ 2006 029b 70726573 		.ascii	"preset\000"
+ 2006      657400
+ 2007              	.LASF9:
+ 2008 02a2 5F5F696E 		.ascii	"__int32_t\000"
+ 2008      7433325F 
+ 2008      7400
+ 2009              	.LASF44:
+ 2010 02ac 6E6F6D62 		.ascii	"nombre_pro1\000"
+ 2010      72655F70 
+ 2010      726F3100 
+ 2011              	.LASF31:
+ 2012 02b8 7469706F 		.ascii	"tipo_venta\000"
+ 2012      5F76656E 
+ 2012      746100
+ 2013              	.LASF46:
+ 2014 02c3 6E6F6D62 		.ascii	"nombre_pro3\000"
+ 2014      72655F70 
+ 2014      726F3300 
+ 2015              	.LASF41:
+ 2016 02cf 77726974 		.ascii	"write_fecha\000"
+ 2016      655F6665 
+ 2016      63686100 
+ 2017              	.LASF29:
+ 2018 02db 706C6163 		.ascii	"placa\000"
+ 2018      6100
+ 2019              	.LASF13:
+ 2020 02e1 646F7562 		.ascii	"double\000"
+ 2020      6C6500
+ 2021              	.LASF51:
+ 2022 02e8 74656C65 		.ascii	"telefono\000"
+ 2022      666F6E6F 
+ 2022      00
+ 2023              	.LASF42:
+ 2024 02f1 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2024      52784275 
+ 2024      66666572 
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccwjTVzJ.s 			page 43
+
+
+ 2024      00
+ 2025              	.LASF68:
+ 2026 02fe 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2026      43313120 
+ 2026      352E342E 
+ 2026      31203230 
+ 2026      31363036 
+ 2027 0331 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2027      20726576 
+ 2027      6973696F 
+ 2027      6E203233 
+ 2027      37373135 
+ 2028 0364 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2028      66756E63 
+ 2028      74696F6E 
+ 2028      2D736563 
+ 2028      74696F6E 
+ 2029              	.LASF66:
+ 2030 038c 43794465 		.ascii	"CyDelay\000"
+ 2030      6C617900 
+ 2031              	.LASF62:
+ 2032 0394 4932435F 		.ascii	"I2C_1_MasterClearStatus\000"
+ 2032      315F4D61 
+ 2032      73746572 
+ 2032      436C6561 
+ 2032      72537461 
+ 2033              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

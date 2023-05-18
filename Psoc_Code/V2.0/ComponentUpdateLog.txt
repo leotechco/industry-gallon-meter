@@ -1,0 +1,43 @@
+Last Modified Date & Time: 07/01/2016 16:15:35
+
+FC_Impresion: TopDesign.cysch
+	Rx_RS232 [v2.20] to [v2.20]
+	Tx_RS232 [v2.20] to [v2.20]
+	Rx_RFID [v2.20] to [v2.20]
+	Tx_RFID [v2.20] to [v2.20]
+	Rx_PSOC [v2.20] to [v2.20]
+	Tx_PSOC [v2.20] to [v2.20]
+	Rx_Blue [v2.20] to [v2.20]
+	Tx_Blue [v2.20] to [v2.20]
+	Rx_Surt [v2.20] to [v2.20]
+	Tx_Surt [v2.20] to [v2.20]
+	Select1_RFID [v2.20] to [v2.20]
+	Enable_RFid [v2.20] to [v2.20]
+	SCL_1 [v2.20] to [v2.20]
+	SDA_1 [v2.20] to [v2.20]
+	Select1_RS232 [v2.20] to [v2.20]
+	Select0_RFID [v2.20] to [v2.20]
+	Select0_RS232 [v2.20] to [v2.20]
+	Botones [v2.20] to [v2.20]
+	Psoc_status [v2.20] to [v2.20]
+	IB2 [v2.20] to [v2.20]
+	IB1 [v2.20] to [v2.20]
+	Led [v2.20] to [v2.20]
+	USBUART [v3.0] to [v3.0]
+
+FC_Impresion: FC_Impresion.cydwr
+	cy_boot [v5.20] to [v5.40]
+	LIN_Dynamic [v3.20] to [v3.40]
+
+
+Last Modified Date & Time: 08/08/2018 10:55:15
+
+FC_Impresion: FC_Impresion.cydwr
+	cy_boot [v5.40] to [v5.70]
+	Em_EEPROM_Dynamic [v2.0] to [v2.20]
+	LIN_Dynamic [v3.40] to [v4.0]
+
+FC_Impresion: TopDesign.cysch
+	USBUART [v3.0] to [v3.20]
+
+

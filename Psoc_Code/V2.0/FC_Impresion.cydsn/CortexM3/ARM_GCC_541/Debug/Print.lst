@@ -1,0 +1,3427 @@
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Print.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.imprimir,"ax",%progbits
+  20              		.align	2
+  21              		.global	imprimir
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	imprimir, %function
+  25              	imprimir:
+  26              	.LFB63:
+  27              		.file 1 "Print.c"
+   1:Print.c       **** /*
+   2:Print.c       **** ***************************************************************************************************
+   3:Print.c       **** *                                         FC_Impresion CODE
+   4:Print.c       **** *
+   5:Print.c       **** *                             (c) Copyright 2016; Distracom S.A
+   6:Print.c       **** *
+   7:Print.c       **** *               All rights reserved.  Protected by international copyright laws.
+   8:Print.c       **** *               Knowledge of the source code may NOT be used to develop a similar product.
+   9:Print.c       **** *               Please help us continue to provide the Embedded community with the finest
+  10:Print.c       **** *               software available.  Your honesty is greatly appreciated.
+  11:Print.c       **** ***************************************************************************************************
+  12:Print.c       **** */
+  13:Print.c       **** 
+  14:Print.c       **** /*
+  15:Print.c       **** ***************************************************************************************************
+  16:Print.c       **** *
+  17:Print.c       **** *                                            FC_Impresion CODE
+  18:Print.c       **** *
+  19:Print.c       **** *                                             CYPRESS PSoC5LP
+  20:Print.c       **** *                                                with the
+  21:Print.c       **** *                                            CY8C5888LTI-LP097
+  22:Print.c       **** *
+  23:Print.c       **** * Filename      : Print.h
+  24:Print.c       **** * Version       : V1.00
+  25:Print.c       **** * Programmer(s) : Leonardo Orjuela   
+  26:Print.c       ****                   
+  27:Print.c       **** ***************************************************************************************************
+  28:Print.c       **** */
+  29:Print.c       **** 
+  30:Print.c       **** /*
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 2
+
+
+  31:Print.c       **** ***************************************************************************************************
+  32:Print.c       **** *                                             INCLUDE FILES
+  33:Print.c       **** ***************************************************************************************************
+  34:Print.c       **** */
+  35:Print.c       **** #include <project.h>
+  36:Print.c       **** #include "VariablesG.h"
+  37:Print.c       **** #include "i2c.h"
+  38:Print.c       **** 
+  39:Print.c       **** void imprimir(uint8 pos, uint8 prod, uint8 *ppu, uint8 *volumen, uint8 *dinero){
+  28              		.loc 1 39 0
+  29              		.cfi_startproc
+  30              		@ args = 4, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 2DE9F843 		push	{r3, r4, r5, r6, r7, r8, r9, lr}
+  34              		.cfi_def_cfa_offset 32
+  35              		.cfi_offset 3, -32
+  36              		.cfi_offset 4, -28
+  37              		.cfi_offset 5, -24
+  38              		.cfi_offset 6, -20
+  39              		.cfi_offset 7, -16
+  40              		.cfi_offset 8, -12
+  41              		.cfi_offset 9, -8
+  42              		.cfi_offset 14, -4
+  43 0004 0746     		mov	r7, r0
+  44 0006 8946     		mov	r9, r1
+  45 0008 9046     		mov	r8, r2
+  46 000a 1D46     		mov	r5, r3
+  47 000c 089E     		ldr	r6, [sp, #32]
+  40:Print.c       ****     uint8 x, digito;
+  41:Print.c       ****     
+  42:Print.c       **** 	RS232_PutString("      ESTACION DE SERVICIO\n");	
+  48              		.loc 1 42 0
+  49 000e A948     		ldr	r0, .L54
+  50              	.LVL1:
+  51 0010 FFF7FEFF 		bl	RS232_PutString
+  52              	.LVL2:
+  43:Print.c       ****     //RS232_PutString("        TEXACO CALIFORNIA\n");
+  44:Print.c       **** 	for(x=0;x<=((31-nombre[0])/2);x++){						//NOMBRE
+  53              		.loc 1 44 0
+  54 0014 0024     		movs	r4, #0
+  55 0016 04E0     		b	.L2
+  56              	.LVL3:
+  57              	.L3:
+  45:Print.c       **** 		RS232_PutChar(0x20);
+  58              		.loc 1 45 0 discriminator 3
+  59 0018 2020     		movs	r0, #32
+  60 001a FFF7FEFF 		bl	RS232_PutChar
+  61              	.LVL4:
+  44:Print.c       **** 		RS232_PutChar(0x20);
+  62              		.loc 1 44 0 discriminator 3
+  63 001e 0134     		adds	r4, r4, #1
+  64              	.LVL5:
+  65 0020 E4B2     		uxtb	r4, r4
+  66              	.LVL6:
+  67              	.L2:
+  44:Print.c       **** 		RS232_PutChar(0x20);
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 3
+
+
+  68              		.loc 1 44 0 is_stmt 0 discriminator 1
+  69 0022 A54B     		ldr	r3, .L54+4
+  70 0024 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  71 0026 C3F11F03 		rsb	r3, r3, #31
+  72 002a 03EBD373 		add	r3, r3, r3, lsr #31
+  73 002e B4EB630F 		cmp	r4, r3, asr #1
+  74 0032 F1DD     		ble	.L3
+  75 0034 0124     		movs	r4, #1
+  76              	.LVL7:
+  77 0036 05E0     		b	.L4
+  78              	.LVL8:
+  79              	.L5:
+  46:Print.c       **** 	}
+  47:Print.c       **** 	for(x=1;x<=nombre[0];x++){
+  48:Print.c       **** 		RS232_PutChar(nombre[x]);			
+  80              		.loc 1 48 0 is_stmt 1 discriminator 3
+  81 0038 9F4B     		ldr	r3, .L54+4
+  82 003a 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+  83 003c FFF7FEFF 		bl	RS232_PutChar
+  84              	.LVL9:
+  47:Print.c       **** 		RS232_PutChar(nombre[x]);			
+  85              		.loc 1 47 0 discriminator 3
+  86 0040 0134     		adds	r4, r4, #1
+  87              	.LVL10:
+  88 0042 E4B2     		uxtb	r4, r4
+  89              	.LVL11:
+  90              	.L4:
+  47:Print.c       **** 		RS232_PutChar(nombre[x]);			
+  91              		.loc 1 47 0 is_stmt 0 discriminator 1
+  92 0044 9C4B     		ldr	r3, .L54+4
+  93 0046 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  94 0048 DBB2     		uxtb	r3, r3
+  95 004a 9C42     		cmp	r4, r3
+  96 004c F4D9     		bls	.L5
+  49:Print.c       **** 	}
+  50:Print.c       ****     RS232_PutChar(10);
+  97              		.loc 1 50 0 is_stmt 1
+  98 004e 0A20     		movs	r0, #10
+  99 0050 FFF7FEFF 		bl	RS232_PutChar
+ 100              	.LVL12:
+  51:Print.c       **** 	if(nit[0]>=1){
+ 101              		.loc 1 51 0
+ 102 0054 994B     		ldr	r3, .L54+8
+ 103 0056 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 104 0058 13F0FF0F 		tst	r3, #255
+ 105 005c 06D1     		bne	.L46
+ 106 005e 22E0     		b	.L7
+ 107              	.L8:
+  52:Print.c       **** 		for(x=0;x<=((31-(nit[0]+4))/2);x++){				//NIT
+  53:Print.c       **** 			RS232_PutChar(0x20);			
+ 108              		.loc 1 53 0 discriminator 3
+ 109 0060 2020     		movs	r0, #32
+ 110 0062 FFF7FEFF 		bl	RS232_PutChar
+ 111              	.LVL13:
+  52:Print.c       **** 		for(x=0;x<=((31-(nit[0]+4))/2);x++){				//NIT
+ 112              		.loc 1 52 0 discriminator 3
+ 113 0066 0134     		adds	r4, r4, #1
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 4
+
+
+ 114              	.LVL14:
+ 115 0068 E4B2     		uxtb	r4, r4
+ 116              	.LVL15:
+ 117 006a 00E0     		b	.L6
+ 118              	.L46:
+ 119 006c 0024     		movs	r4, #0
+ 120              	.LVL16:
+ 121              	.L6:
+  52:Print.c       **** 		for(x=0;x<=((31-(nit[0]+4))/2);x++){				//NIT
+ 122              		.loc 1 52 0 is_stmt 0 discriminator 1
+ 123 006e 934B     		ldr	r3, .L54+8
+ 124 0070 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 125 0072 C3F11B03 		rsb	r3, r3, #27
+ 126 0076 03EBD373 		add	r3, r3, r3, lsr #31
+ 127 007a B4EB630F 		cmp	r4, r3, asr #1
+ 128 007e EFDD     		ble	.L8
+  54:Print.c       **** 		}											
+  55:Print.c       **** 		RS232_PutString("NIT ");
+ 129              		.loc 1 55 0 is_stmt 1
+ 130 0080 8F48     		ldr	r0, .L54+12
+ 131 0082 FFF7FEFF 		bl	RS232_PutString
+ 132              	.LVL17:
+  56:Print.c       **** 		for(x=1;x<=nit[0];x++){
+ 133              		.loc 1 56 0
+ 134 0086 0124     		movs	r4, #1
+ 135 0088 05E0     		b	.L9
+ 136              	.LVL18:
+ 137              	.L10:
+  57:Print.c       **** 			RS232_PutChar(nit[x]);			
+ 138              		.loc 1 57 0 discriminator 3
+ 139 008a 8C4B     		ldr	r3, .L54+8
+ 140 008c 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 141 008e FFF7FEFF 		bl	RS232_PutChar
+ 142              	.LVL19:
+  56:Print.c       **** 		for(x=1;x<=nit[0];x++){
+ 143              		.loc 1 56 0 discriminator 3
+ 144 0092 0134     		adds	r4, r4, #1
+ 145              	.LVL20:
+ 146 0094 E4B2     		uxtb	r4, r4
+ 147              	.LVL21:
+ 148              	.L9:
+  56:Print.c       **** 		for(x=1;x<=nit[0];x++){
+ 149              		.loc 1 56 0 is_stmt 0 discriminator 1
+ 150 0096 894B     		ldr	r3, .L54+8
+ 151 0098 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 152 009a DBB2     		uxtb	r3, r3
+ 153 009c 9C42     		cmp	r4, r3
+ 154 009e F4D9     		bls	.L10
+  58:Print.c       **** 		}
+  59:Print.c       **** 		RS232_PutChar(10);
+ 155              		.loc 1 59 0 is_stmt 1
+ 156 00a0 0A20     		movs	r0, #10
+ 157 00a2 FFF7FEFF 		bl	RS232_PutChar
+ 158              	.LVL22:
+ 159              	.L7:
+  60:Print.c       **** 	}
+  61:Print.c       **** 	if(telefono[0]>=1){
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 5
+
+
+ 160              		.loc 1 61 0
+ 161 00a6 874B     		ldr	r3, .L54+16
+ 162 00a8 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 163 00aa 13F0FF0F 		tst	r3, #255
+ 164 00ae 06D1     		bne	.L47
+ 165 00b0 25E0     		b	.L12
+ 166              	.L13:
+  62:Print.c       **** 		for(x=0;x<=((31-(telefono[0]+4))/2);x++){	        //TELEFONO
+  63:Print.c       **** 			RS232_PutChar(0x20);			
+ 167              		.loc 1 63 0 discriminator 3
+ 168 00b2 2020     		movs	r0, #32
+ 169 00b4 FFF7FEFF 		bl	RS232_PutChar
+ 170              	.LVL23:
+  62:Print.c       **** 		for(x=0;x<=((31-(telefono[0]+4))/2);x++){	        //TELEFONO
+ 171              		.loc 1 62 0 discriminator 3
+ 172 00b8 0134     		adds	r4, r4, #1
+ 173              	.LVL24:
+ 174 00ba E4B2     		uxtb	r4, r4
+ 175              	.LVL25:
+ 176 00bc 00E0     		b	.L11
+ 177              	.L47:
+ 178 00be 0024     		movs	r4, #0
+ 179              	.LVL26:
+ 180              	.L11:
+  62:Print.c       **** 		for(x=0;x<=((31-(telefono[0]+4))/2);x++){	        //TELEFONO
+ 181              		.loc 1 62 0 is_stmt 0 discriminator 1
+ 182 00c0 804B     		ldr	r3, .L54+16
+ 183 00c2 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 184 00c4 C3F11B03 		rsb	r3, r3, #27
+ 185 00c8 03EBD373 		add	r3, r3, r3, lsr #31
+ 186 00cc B4EB630F 		cmp	r4, r3, asr #1
+ 187 00d0 EFDD     		ble	.L13
+  64:Print.c       **** 		}											
+  65:Print.c       **** 		RS232_PutString("TEL:");
+ 188              		.loc 1 65 0 is_stmt 1
+ 189 00d2 7D48     		ldr	r0, .L54+20
+ 190 00d4 FFF7FEFF 		bl	RS232_PutString
+ 191              	.LVL27:
+  66:Print.c       **** 		for(x=1;x<=telefono[0];x++){
+ 192              		.loc 1 66 0
+ 193 00d8 0124     		movs	r4, #1
+ 194 00da 05E0     		b	.L14
+ 195              	.LVL28:
+ 196              	.L15:
+  67:Print.c       **** 			RS232_PutChar(telefono[x]);			
+ 197              		.loc 1 67 0 discriminator 3
+ 198 00dc 794B     		ldr	r3, .L54+16
+ 199 00de 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 200 00e0 FFF7FEFF 		bl	RS232_PutChar
+ 201              	.LVL29:
+  66:Print.c       **** 		for(x=1;x<=telefono[0];x++){
+ 202              		.loc 1 66 0 discriminator 3
+ 203 00e4 0134     		adds	r4, r4, #1
+ 204              	.LVL30:
+ 205 00e6 E4B2     		uxtb	r4, r4
+ 206              	.LVL31:
+ 207              	.L14:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 6
+
+
+  66:Print.c       **** 		for(x=1;x<=telefono[0];x++){
+ 208              		.loc 1 66 0 is_stmt 0 discriminator 1
+ 209 00e8 764B     		ldr	r3, .L54+16
+ 210 00ea 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 211 00ec DBB2     		uxtb	r3, r3
+ 212 00ee 9C42     		cmp	r4, r3
+ 213 00f0 F4D9     		bls	.L15
+  68:Print.c       **** 		}			
+  69:Print.c       **** 	    RS232_PutChar(10);
+ 214              		.loc 1 69 0 is_stmt 1
+ 215 00f2 0A20     		movs	r0, #10
+ 216 00f4 FFF7FEFF 		bl	RS232_PutChar
+ 217              	.LVL32:
+  70:Print.c       **** 	    RS232_PutChar(10);
+ 218              		.loc 1 70 0
+ 219 00f8 0A20     		movs	r0, #10
+ 220 00fa FFF7FEFF 		bl	RS232_PutChar
+ 221              	.LVL33:
+ 222              	.L12:
+  66:Print.c       **** 			RS232_PutChar(telefono[x]);			
+ 223              		.loc 1 66 0 discriminator 1
+ 224 00fe 0024     		movs	r4, #0
+ 225              	.LVL34:
+ 226 0100 04E0     		b	.L16
+ 227              	.LVL35:
+ 228              	.L17:
+  71:Print.c       **** 	}
+  72:Print.c       **** 	for(x=0;x<=((31-direccion[0])/2);x++){			        //DIRECCION
+  73:Print.c       **** 		RS232_PutChar(0x20);			
+ 229              		.loc 1 73 0 discriminator 3
+ 230 0102 2020     		movs	r0, #32
+ 231 0104 FFF7FEFF 		bl	RS232_PutChar
+ 232              	.LVL36:
+  72:Print.c       **** 		RS232_PutChar(0x20);			
+ 233              		.loc 1 72 0 discriminator 3
+ 234 0108 0134     		adds	r4, r4, #1
+ 235              	.LVL37:
+ 236 010a E4B2     		uxtb	r4, r4
+ 237              	.LVL38:
+ 238              	.L16:
+  72:Print.c       **** 		RS232_PutChar(0x20);			
+ 239              		.loc 1 72 0 is_stmt 0 discriminator 1
+ 240 010c 6F4B     		ldr	r3, .L54+24
+ 241 010e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 242 0110 C3F11F03 		rsb	r3, r3, #31
+ 243 0114 03EBD373 		add	r3, r3, r3, lsr #31
+ 244 0118 B4EB630F 		cmp	r4, r3, asr #1
+ 245 011c F1DD     		ble	.L17
+ 246 011e 0124     		movs	r4, #1
+ 247              	.LVL39:
+ 248 0120 05E0     		b	.L18
+ 249              	.LVL40:
+ 250              	.L19:
+  74:Print.c       **** 	}
+  75:Print.c       **** 	for(x=1;x<=direccion[0];x++){
+  76:Print.c       **** 		RS232_PutChar(direccion[x]);			
+ 251              		.loc 1 76 0 is_stmt 1 discriminator 3
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 7
+
+
+ 252 0122 6A4B     		ldr	r3, .L54+24
+ 253 0124 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 254 0126 FFF7FEFF 		bl	RS232_PutChar
+ 255              	.LVL41:
+  75:Print.c       **** 		RS232_PutChar(direccion[x]);			
+ 256              		.loc 1 75 0 discriminator 3
+ 257 012a 0134     		adds	r4, r4, #1
+ 258              	.LVL42:
+ 259 012c E4B2     		uxtb	r4, r4
+ 260              	.LVL43:
+ 261              	.L18:
+  75:Print.c       **** 		RS232_PutChar(direccion[x]);			
+ 262              		.loc 1 75 0 is_stmt 0 discriminator 1
+ 263 012e 674B     		ldr	r3, .L54+24
+ 264 0130 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 265 0132 DBB2     		uxtb	r3, r3
+ 266 0134 9C42     		cmp	r4, r3
+ 267 0136 F4D9     		bls	.L19
+  77:Print.c       **** 	}
+  78:Print.c       ****     RS232_PutChar(10);
+ 268              		.loc 1 78 0 is_stmt 1
+ 269 0138 0A20     		movs	r0, #10
+ 270 013a FFF7FEFF 		bl	RS232_PutChar
+ 271              	.LVL44:
+  79:Print.c       ****     RS232_PutChar(10);
+ 272              		.loc 1 79 0
+ 273 013e 0A20     		movs	r0, #10
+ 274 0140 FFF7FEFF 		bl	RS232_PutChar
+ 275              	.LVL45:
+  80:Print.c       ****     RS232_PutChar(10);    																	
+ 276              		.loc 1 80 0
+ 277 0144 0A20     		movs	r0, #10
+ 278 0146 FFF7FEFF 		bl	RS232_PutChar
+ 279              	.LVL46:
+  81:Print.c       **** 	RS232_PutString("FECHA: ");                             //FECHA	
+ 280              		.loc 1 81 0
+ 281 014a 6148     		ldr	r0, .L54+28
+ 282 014c FFF7FEFF 		bl	RS232_PutString
+ 283              	.LVL47:
+  82:Print.c       **** 	if(leer_fecha()==1){
+ 284              		.loc 1 82 0
+ 285 0150 FFF7FEFF 		bl	leer_fecha
+ 286              	.LVL48:
+ 287 0154 0128     		cmp	r0, #1
+ 288 0156 2AD1     		bne	.L20
+  83:Print.c       **** 		RS232_PutChar(((fecha[0]&0x30)>>4)+48);
+ 289              		.loc 1 83 0
+ 290 0158 5E4C     		ldr	r4, .L54+32
+ 291              	.LVL49:
+ 292 015a 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 293 015c C0F30110 		ubfx	r0, r0, #4, #2
+ 294 0160 3030     		adds	r0, r0, #48
+ 295 0162 FFF7FEFF 		bl	RS232_PutChar
+ 296              	.LVL50:
+  84:Print.c       **** 		RS232_PutChar((fecha[0]&0x0F)+48);
+ 297              		.loc 1 84 0
+ 298 0166 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 8
+
+
+ 299 0168 00F00F00 		and	r0, r0, #15
+ 300 016c 3030     		adds	r0, r0, #48
+ 301 016e FFF7FEFF 		bl	RS232_PutChar
+ 302              	.LVL51:
+  85:Print.c       **** 		RS232_PutChar('/');
+ 303              		.loc 1 85 0
+ 304 0172 2F20     		movs	r0, #47
+ 305 0174 FFF7FEFF 		bl	RS232_PutChar
+ 306              	.LVL52:
+  86:Print.c       **** 		RS232_PutChar(((fecha[1]&0x10)>>4)+48);
+ 307              		.loc 1 86 0
+ 308 0178 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 309 017a C0F30010 		ubfx	r0, r0, #4, #1
+ 310 017e 3030     		adds	r0, r0, #48
+ 311 0180 C0B2     		uxtb	r0, r0
+ 312 0182 FFF7FEFF 		bl	RS232_PutChar
+ 313              	.LVL53:
+  87:Print.c       **** 		RS232_PutChar((fecha[1]&0x0F)+48);	
+ 314              		.loc 1 87 0
+ 315 0186 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 316 0188 00F00F00 		and	r0, r0, #15
+ 317 018c 3030     		adds	r0, r0, #48
+ 318 018e FFF7FEFF 		bl	RS232_PutChar
+ 319              	.LVL54:
+  88:Print.c       **** 		RS232_PutChar('/');
+ 320              		.loc 1 88 0
+ 321 0192 2F20     		movs	r0, #47
+ 322 0194 FFF7FEFF 		bl	RS232_PutChar
+ 323              	.LVL55:
+  89:Print.c       **** 		RS232_PutChar(((fecha[2]&0xF0)>>4)+48);
+ 324              		.loc 1 89 0
+ 325 0198 A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
+ 326 019a 0009     		lsrs	r0, r0, #4
+ 327 019c 3030     		adds	r0, r0, #48
+ 328 019e FFF7FEFF 		bl	RS232_PutChar
+ 329              	.LVL56:
+  90:Print.c       **** 		RS232_PutChar((fecha[2]&0x0F)+48);			
+ 330              		.loc 1 90 0
+ 331 01a2 A078     		ldrb	r0, [r4, #2]	@ zero_extendqisi2
+ 332 01a4 00F00F00 		and	r0, r0, #15
+ 333 01a8 3030     		adds	r0, r0, #48
+ 334 01aa FFF7FEFF 		bl	RS232_PutChar
+ 335              	.LVL57:
+ 336              	.L20:
+  91:Print.c       **** 	}
+  92:Print.c       ****     RS232_PutChar(10);	                                							
+ 337              		.loc 1 92 0
+ 338 01ae 0A20     		movs	r0, #10
+ 339 01b0 FFF7FEFF 		bl	RS232_PutChar
+ 340              	.LVL58:
+  93:Print.c       **** 	RS232_PutString("HORA:  ");                             //HORA
+ 341              		.loc 1 93 0
+ 342 01b4 4848     		ldr	r0, .L54+36
+ 343 01b6 FFF7FEFF 		bl	RS232_PutString
+ 344              	.LVL59:
+  94:Print.c       **** 	if(leer_hora()==1){										
+ 345              		.loc 1 94 0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 9
+
+
+ 346 01ba FFF7FEFF 		bl	leer_hora
+ 347              	.LVL60:
+ 348 01be 0128     		cmp	r0, #1
+ 349 01c0 1AD1     		bne	.L21
+  95:Print.c       **** 		RS232_PutChar(((hora[1]&0x30)>>4)+48);
+ 350              		.loc 1 95 0
+ 351 01c2 464C     		ldr	r4, .L54+40
+ 352 01c4 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 353 01c6 C0F30110 		ubfx	r0, r0, #4, #2
+ 354 01ca 3030     		adds	r0, r0, #48
+ 355 01cc FFF7FEFF 		bl	RS232_PutChar
+ 356              	.LVL61:
+  96:Print.c       **** 		RS232_PutChar((hora[1]&0x0F)+48);
+ 357              		.loc 1 96 0
+ 358 01d0 6078     		ldrb	r0, [r4, #1]	@ zero_extendqisi2
+ 359 01d2 00F00F00 		and	r0, r0, #15
+ 360 01d6 3030     		adds	r0, r0, #48
+ 361 01d8 FFF7FEFF 		bl	RS232_PutChar
+ 362              	.LVL62:
+  97:Print.c       **** 		RS232_PutChar(':');
+ 363              		.loc 1 97 0
+ 364 01dc 3A20     		movs	r0, #58
+ 365 01de FFF7FEFF 		bl	RS232_PutChar
+ 366              	.LVL63:
+  98:Print.c       **** 		RS232_PutChar(((hora[0]&0xF0)>>4)+48);
+ 367              		.loc 1 98 0
+ 368 01e2 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 369 01e4 0009     		lsrs	r0, r0, #4
+ 370 01e6 3030     		adds	r0, r0, #48
+ 371 01e8 FFF7FEFF 		bl	RS232_PutChar
+ 372              	.LVL64:
+  99:Print.c       **** 		RS232_PutChar((hora[0]&0x0F)+48);
+ 373              		.loc 1 99 0
+ 374 01ec 2078     		ldrb	r0, [r4]	@ zero_extendqisi2
+ 375 01ee 00F00F00 		and	r0, r0, #15
+ 376 01f2 3030     		adds	r0, r0, #48
+ 377 01f4 FFF7FEFF 		bl	RS232_PutChar
+ 378              	.LVL65:
+ 379              	.L21:
+ 100:Print.c       **** 	}
+ 101:Print.c       ****     RS232_PutChar(10);
+ 380              		.loc 1 101 0
+ 381 01f8 0A20     		movs	r0, #10
+ 382 01fa FFF7FEFF 		bl	RS232_PutChar
+ 383              	.LVL66:
+ 102:Print.c       ****     RS232_PutChar(10);																	
+ 384              		.loc 1 102 0
+ 385 01fe 0A20     		movs	r0, #10
+ 386 0200 FFF7FEFF 		bl	RS232_PutChar
+ 387              	.LVL67:
+ 103:Print.c       ****     RS232_PutString("POSICION:  ");                         //POSICION
+ 388              		.loc 1 103 0
+ 389 0204 3648     		ldr	r0, .L54+44
+ 390 0206 FFF7FEFF 		bl	RS232_PutString
+ 391              	.LVL68:
+ 104:Print.c       ****     RS232_PutChar((pos/10)+48);
+ 392              		.loc 1 104 0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 10
+
+
+ 393 020a 364C     		ldr	r4, .L54+48
+ 394 020c A4FB0734 		umull	r3, r4, r4, r7
+ 395 0210 E408     		lsrs	r4, r4, #3
+ 396 0212 04F13000 		add	r0, r4, #48
+ 397 0216 FFF7FEFF 		bl	RS232_PutChar
+ 398              	.LVL69:
+ 105:Print.c       **** 	RS232_PutChar((pos%10)+48);
+ 399              		.loc 1 105 0
+ 400 021a 04EB8404 		add	r4, r4, r4, lsl #2
+ 401 021e 6000     		lsls	r0, r4, #1
+ 402 0220 381A     		subs	r0, r7, r0
+ 403 0222 3030     		adds	r0, r0, #48
+ 404 0224 C0B2     		uxtb	r0, r0
+ 405 0226 FFF7FEFF 		bl	RS232_PutChar
+ 406              	.LVL70:
+ 106:Print.c       ****     RS232_PutChar(10);    																		
+ 407              		.loc 1 106 0
+ 408 022a 0A20     		movs	r0, #10
+ 409 022c FFF7FEFF 		bl	RS232_PutChar
+ 410              	.LVL71:
+ 107:Print.c       **** 	RS232_PutString("PRODUCTO:  ");                         //PRODUCTO 
+ 411              		.loc 1 107 0
+ 412 0230 2D48     		ldr	r0, .L54+52
+ 413 0232 FFF7FEFF 		bl	RS232_PutString
+ 414              	.LVL72:
+ 108:Print.c       ****     if(prod=='1'){
+ 415              		.loc 1 108 0
+ 416 0236 B9F1310F 		cmp	r9, #49
+ 417 023a 0ED1     		bne	.L51
+ 418 023c 06E0     		b	.L48
+ 419              	.LVL73:
+ 420              	.L24:
+ 109:Print.c       **** 		for(x=1;x<=nombre_pro1[0];x++){
+ 110:Print.c       **** 			RS232_PutChar(nombre_pro1[x]);			
+ 421              		.loc 1 110 0 discriminator 3
+ 422 023e 2B4B     		ldr	r3, .L54+56
+ 423 0240 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 424 0242 FFF7FEFF 		bl	RS232_PutChar
+ 425              	.LVL74:
+ 109:Print.c       **** 		for(x=1;x<=nombre_pro1[0];x++){
+ 426              		.loc 1 109 0 discriminator 3
+ 427 0246 0134     		adds	r4, r4, #1
+ 428              	.LVL75:
+ 429 0248 E4B2     		uxtb	r4, r4
+ 430              	.LVL76:
+ 431 024a 00E0     		b	.L22
+ 432              	.LVL77:
+ 433              	.L48:
+ 434 024c 0124     		movs	r4, #1
+ 435              	.L22:
+ 436              	.LVL78:
+ 109:Print.c       **** 		for(x=1;x<=nombre_pro1[0];x++){
+ 437              		.loc 1 109 0 is_stmt 0 discriminator 1
+ 438 024e 274B     		ldr	r3, .L54+56
+ 439 0250 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 440 0252 DBB2     		uxtb	r3, r3
+ 441 0254 9C42     		cmp	r4, r3
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 11
+
+
+ 442 0256 F2D9     		bls	.L24
+ 443 0258 22E0     		b	.L25
+ 444              	.LVL79:
+ 445              	.L51:
+ 111:Print.c       **** 		}		
+ 112:Print.c       **** 	}
+ 113:Print.c       **** 	else if(prod=='2'){
+ 446              		.loc 1 113 0 is_stmt 1
+ 447 025a B9F1320F 		cmp	r9, #50
+ 448 025e 0ED1     		bne	.L52
+ 449 0260 06E0     		b	.L49
+ 450              	.LVL80:
+ 451              	.L28:
+ 114:Print.c       **** 		for(x=1;x<=nombre_pro2[0];x++){
+ 115:Print.c       **** 			RS232_PutChar(nombre_pro2[x]);			
+ 452              		.loc 1 115 0 discriminator 3
+ 453 0262 234B     		ldr	r3, .L54+60
+ 454 0264 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 455 0266 FFF7FEFF 		bl	RS232_PutChar
+ 456              	.LVL81:
+ 114:Print.c       **** 		for(x=1;x<=nombre_pro2[0];x++){
+ 457              		.loc 1 114 0 discriminator 3
+ 458 026a 0134     		adds	r4, r4, #1
+ 459              	.LVL82:
+ 460 026c E4B2     		uxtb	r4, r4
+ 461              	.LVL83:
+ 462 026e 00E0     		b	.L26
+ 463              	.LVL84:
+ 464              	.L49:
+ 465 0270 0124     		movs	r4, #1
+ 466              	.L26:
+ 467              	.LVL85:
+ 114:Print.c       **** 		for(x=1;x<=nombre_pro2[0];x++){
+ 468              		.loc 1 114 0 is_stmt 0 discriminator 1
+ 469 0272 1F4B     		ldr	r3, .L54+60
+ 470 0274 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 471 0276 DBB2     		uxtb	r3, r3
+ 472 0278 9C42     		cmp	r4, r3
+ 473 027a F2D9     		bls	.L28
+ 474 027c 10E0     		b	.L25
+ 475              	.LVL86:
+ 476              	.L52:
+ 116:Print.c       **** 		}	
+ 117:Print.c       **** 	}
+ 118:Print.c       **** 	else if(prod=='3'){
+ 477              		.loc 1 118 0 is_stmt 1
+ 478 027e B9F1330F 		cmp	r9, #51
+ 479 0282 0DD1     		bne	.L25
+ 480 0284 06E0     		b	.L50
+ 481              	.LVL87:
+ 482              	.L30:
+ 119:Print.c       **** 		for(x=1;x<=nombre_pro3[0];x++){
+ 120:Print.c       **** 			RS232_PutChar(nombre_pro3[x]);			
+ 483              		.loc 1 120 0 discriminator 3
+ 484 0286 1B4B     		ldr	r3, .L54+64
+ 485 0288 185D     		ldrb	r0, [r3, r4]	@ zero_extendqisi2
+ 486 028a FFF7FEFF 		bl	RS232_PutChar
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 12
+
+
+ 487              	.LVL88:
+ 119:Print.c       **** 		for(x=1;x<=nombre_pro3[0];x++){
+ 488              		.loc 1 119 0 discriminator 3
+ 489 028e 0134     		adds	r4, r4, #1
+ 490              	.LVL89:
+ 491 0290 E4B2     		uxtb	r4, r4
+ 492              	.LVL90:
+ 493 0292 00E0     		b	.L29
+ 494              	.LVL91:
+ 495              	.L50:
+ 496 0294 0124     		movs	r4, #1
+ 497              	.L29:
+ 498              	.LVL92:
+ 119:Print.c       **** 		for(x=1;x<=nombre_pro3[0];x++){
+ 499              		.loc 1 119 0 is_stmt 0 discriminator 1
+ 500 0296 174B     		ldr	r3, .L54+64
+ 501 0298 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 502 029a DBB2     		uxtb	r3, r3
+ 503 029c 9C42     		cmp	r4, r3
+ 504 029e F2D9     		bls	.L30
+ 505              	.LVL93:
+ 506              	.L25:
+ 121:Print.c       **** 		}	
+ 122:Print.c       **** 	}	
+ 123:Print.c       **** 	RS232_PutChar(10);																		
+ 507              		.loc 1 123 0 is_stmt 1
+ 508 02a0 0A20     		movs	r0, #10
+ 509 02a2 FFF7FEFF 		bl	RS232_PutChar
+ 510              	.LVL94:
+ 124:Print.c       **** 	RS232_PutString("PPU:       $/G ");                      //PPU
+ 511              		.loc 1 124 0
+ 512 02a6 1448     		ldr	r0, .L54+68
+ 513 02a8 FFF7FEFF 		bl	RS232_PutString
+ 514              	.LVL95:
+ 125:Print.c       **** 	digito=0;
+ 515              		.loc 1 125 0
+ 516 02ac 0023     		movs	r3, #0
+ 126:Print.c       **** 	for(x=4;x>=1;x--){
+ 517              		.loc 1 126 0
+ 518 02ae 0424     		movs	r4, #4
+ 519 02b0 2FE0     		b	.L31
+ 520              	.L55:
+ 521 02b2 00BF     		.align	2
+ 522              	.L54:
+ 523 02b4 00000000 		.word	.LC0
+ 524 02b8 00000000 		.word	nombre
+ 525 02bc 00000000 		.word	nit
+ 526 02c0 1C000000 		.word	.LC1
+ 527 02c4 00000000 		.word	telefono
+ 528 02c8 24000000 		.word	.LC2
+ 529 02cc 00000000 		.word	direccion
+ 530 02d0 2C000000 		.word	.LC3
+ 531 02d4 00000000 		.word	fecha
+ 532 02d8 34000000 		.word	.LC4
+ 533 02dc 00000000 		.word	hora
+ 534 02e0 3C000000 		.word	.LC5
+ 535 02e4 CDCCCCCC 		.word	-858993459
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 13
+
+
+ 536 02e8 48000000 		.word	.LC6
+ 537 02ec 00000000 		.word	nombre_pro1
+ 538 02f0 00000000 		.word	nombre_pro2
+ 539 02f4 00000000 		.word	nombre_pro3
+ 540 02f8 54000000 		.word	.LC7
+ 541              	.LVL96:
+ 542              	.L34:
+ 127:Print.c       ****         if((ppu[x]==0)&&(digito==0)){
+ 543              		.loc 1 127 0
+ 544 02fc 18F80400 		ldrb	r0, [r8, r4]	@ zero_extendqisi2
+ 545 0300 00B9     		cbnz	r0, .L32
+ 546              		.loc 1 127 0 is_stmt 0 discriminator 1
+ 547 0302 23B1     		cbz	r3, .L33
+ 548              	.L32:
+ 549              	.LVL97:
+ 128:Print.c       ****             
+ 129:Print.c       ****         }
+ 130:Print.c       ****         else{			
+ 131:Print.c       ****             digito=1;
+ 132:Print.c       ****             RS232_PutChar(ppu[x]+48);
+ 550              		.loc 1 132 0 is_stmt 1
+ 551 0304 3030     		adds	r0, r0, #48
+ 552 0306 C0B2     		uxtb	r0, r0
+ 553 0308 FFF7FEFF 		bl	RS232_PutChar
+ 554              	.LVL98:
+ 131:Print.c       ****             RS232_PutChar(ppu[x]+48);
+ 555              		.loc 1 131 0
+ 556 030c 0123     		movs	r3, #1
+ 557              	.LVL99:
+ 558              	.L33:
+ 126:Print.c       ****         if((ppu[x]==0)&&(digito==0)){
+ 559              		.loc 1 126 0 discriminator 2
+ 560 030e 013C     		subs	r4, r4, #1
+ 561              	.LVL100:
+ 562 0310 E4B2     		uxtb	r4, r4
+ 563              	.LVL101:
+ 564              	.L31:
+ 126:Print.c       ****         if((ppu[x]==0)&&(digito==0)){
+ 565              		.loc 1 126 0 is_stmt 0 discriminator 1
+ 566 0312 002C     		cmp	r4, #0
+ 567 0314 F2D1     		bne	.L34
+ 133:Print.c       ****         }	
+ 134:Print.c       **** 	}
+ 135:Print.c       **** 	RS232_PutChar(ppu[0]+48);
+ 568              		.loc 1 135 0 is_stmt 1
+ 569 0316 98F80000 		ldrb	r0, [r8]	@ zero_extendqisi2
+ 570 031a 3030     		adds	r0, r0, #48
+ 571 031c C0B2     		uxtb	r0, r0
+ 572 031e FFF7FEFF 		bl	RS232_PutChar
+ 573              	.LVL102:
+ 136:Print.c       **** 	if(ppux10=='1'){
+ 574              		.loc 1 136 0
+ 575 0322 3D4B     		ldr	r3, .L56
+ 576 0324 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 577 0326 DBB2     		uxtb	r3, r3
+ 578 0328 312B     		cmp	r3, #49
+ 579 032a 02D1     		bne	.L35
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 14
+
+
+ 137:Print.c       **** 		RS232_PutChar(48);	
+ 580              		.loc 1 137 0
+ 581 032c 3020     		movs	r0, #48
+ 582 032e FFF7FEFF 		bl	RS232_PutChar
+ 583              	.LVL103:
+ 584              	.L35:
+ 138:Print.c       **** 	}
+ 139:Print.c       **** 	RS232_PutChar(10);    																		
+ 585              		.loc 1 139 0
+ 586 0332 0A20     		movs	r0, #10
+ 587 0334 FFF7FEFF 		bl	RS232_PutChar
+ 588              	.LVL104:
+ 140:Print.c       **** 	RS232_PutString("VOLUMEN:   G ");                      //VOLUMEN
+ 589              		.loc 1 140 0
+ 590 0338 3848     		ldr	r0, .L56+4
+ 591 033a FFF7FEFF 		bl	RS232_PutString
+ 592              	.LVL105:
+ 141:Print.c       **** 	digito=0;
+ 593              		.loc 1 141 0
+ 594 033e 0022     		movs	r2, #0
+ 142:Print.c       **** 	for(x=6;x>=1;x--){
+ 595              		.loc 1 142 0
+ 596 0340 0624     		movs	r4, #6
+ 597 0342 17E0     		b	.L36
+ 598              	.LVL106:
+ 599              	.L40:
+ 143:Print.c       ****         if((volumen[x]==0)&&(digito==0)){
+ 600              		.loc 1 143 0
+ 601 0344 2F19     		adds	r7, r5, r4
+ 602 0346 2B5D     		ldrb	r3, [r5, r4]	@ zero_extendqisi2
+ 603 0348 3BB9     		cbnz	r3, .L37
+ 604              		.loc 1 143 0 is_stmt 0 discriminator 1
+ 605 034a 32B9     		cbnz	r2, .L37
+ 144:Print.c       **** 			if(x==3){
+ 606              		.loc 1 144 0 is_stmt 1
+ 607 034c 032C     		cmp	r4, #3
+ 608 034e 0FD1     		bne	.L38
+ 145:Print.c       **** 				RS232_PutChar('0');
+ 609              		.loc 1 145 0
+ 610 0350 3020     		movs	r0, #48
+ 611 0352 FFF7FEFF 		bl	RS232_PutChar
+ 612              	.LVL107:
+ 146:Print.c       **** 				digito=1;
+ 613              		.loc 1 146 0
+ 614 0356 0122     		movs	r2, #1
+ 615 0358 0AE0     		b	.L38
+ 616              	.LVL108:
+ 617              	.L37:
+ 147:Print.c       **** 			}      	    
+ 148:Print.c       ****         }
+ 149:Print.c       ****         else{
+ 150:Print.c       **** 			if(x==2){
+ 618              		.loc 1 150 0
+ 619 035a 022C     		cmp	r4, #2
+ 620 035c 02D1     		bne	.L39
+ 151:Print.c       **** 				RS232_PutChar(',');
+ 621              		.loc 1 151 0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 15
+
+
+ 622 035e 2C20     		movs	r0, #44
+ 623 0360 FFF7FEFF 		bl	RS232_PutChar
+ 624              	.LVL109:
+ 625              	.L39:
+ 152:Print.c       **** 			}
+ 153:Print.c       ****             digito=1;
+ 154:Print.c       ****             RS232_PutChar(volumen[x]+48);
+ 626              		.loc 1 154 0
+ 627 0364 3878     		ldrb	r0, [r7]	@ zero_extendqisi2
+ 628 0366 3030     		adds	r0, r0, #48
+ 629 0368 C0B2     		uxtb	r0, r0
+ 630 036a FFF7FEFF 		bl	RS232_PutChar
+ 631              	.LVL110:
+ 153:Print.c       ****             RS232_PutChar(volumen[x]+48);
+ 632              		.loc 1 153 0
+ 633 036e 0122     		movs	r2, #1
+ 634              	.LVL111:
+ 635              	.L38:
+ 142:Print.c       ****         if((volumen[x]==0)&&(digito==0)){
+ 636              		.loc 1 142 0 discriminator 2
+ 637 0370 013C     		subs	r4, r4, #1
+ 638              	.LVL112:
+ 639 0372 E4B2     		uxtb	r4, r4
+ 640              	.LVL113:
+ 641              	.L36:
+ 142:Print.c       ****         if((volumen[x]==0)&&(digito==0)){
+ 642              		.loc 1 142 0 is_stmt 0 discriminator 1
+ 643 0374 002C     		cmp	r4, #0
+ 644 0376 E5D1     		bne	.L40
+ 155:Print.c       ****         }	
+ 156:Print.c       **** 	}
+ 157:Print.c       **** 	RS232_PutChar(volumen[0]+48);
+ 645              		.loc 1 157 0 is_stmt 1
+ 646 0378 2878     		ldrb	r0, [r5]	@ zero_extendqisi2
+ 647 037a 3030     		adds	r0, r0, #48
+ 648 037c C0B2     		uxtb	r0, r0
+ 649 037e FFF7FEFF 		bl	RS232_PutChar
+ 650              	.LVL114:
+ 158:Print.c       ****     RS232_PutChar(10);										//DINERO							
+ 651              		.loc 1 158 0
+ 652 0382 0A20     		movs	r0, #10
+ 653 0384 FFF7FEFF 		bl	RS232_PutChar
+ 654              	.LVL115:
+ 159:Print.c       **** 	RS232_PutString("DINERO:    $ ");
+ 655              		.loc 1 159 0
+ 656 0388 2548     		ldr	r0, .L56+8
+ 657 038a FFF7FEFF 		bl	RS232_PutString
+ 658              	.LVL116:
+ 160:Print.c       ****     digito=0;	
+ 659              		.loc 1 160 0
+ 660 038e 0023     		movs	r3, #0
+ 161:Print.c       **** 	for(x=6;x>=1;x--){
+ 661              		.loc 1 161 0
+ 662 0390 0624     		movs	r4, #6
+ 663 0392 09E0     		b	.L41
+ 664              	.LVL117:
+ 665              	.L44:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 16
+
+
+ 162:Print.c       ****         if((dinero[x]==0)&&(digito==0)){
+ 666              		.loc 1 162 0
+ 667 0394 305D     		ldrb	r0, [r6, r4]	@ zero_extendqisi2
+ 668 0396 00B9     		cbnz	r0, .L42
+ 669              		.loc 1 162 0 is_stmt 0 discriminator 1
+ 670 0398 23B1     		cbz	r3, .L43
+ 671              	.L42:
+ 672              	.LVL118:
+ 163:Print.c       ****             
+ 164:Print.c       ****         }
+ 165:Print.c       ****         else{
+ 166:Print.c       ****             digito=1;
+ 167:Print.c       ****             RS232_PutChar(dinero[x]+48);
+ 673              		.loc 1 167 0 is_stmt 1
+ 674 039a 3030     		adds	r0, r0, #48
+ 675 039c C0B2     		uxtb	r0, r0
+ 676 039e FFF7FEFF 		bl	RS232_PutChar
+ 677              	.LVL119:
+ 166:Print.c       ****             RS232_PutChar(dinero[x]+48);
+ 678              		.loc 1 166 0
+ 679 03a2 0123     		movs	r3, #1
+ 680              	.LVL120:
+ 681              	.L43:
+ 161:Print.c       ****         if((dinero[x]==0)&&(digito==0)){
+ 682              		.loc 1 161 0 discriminator 2
+ 683 03a4 013C     		subs	r4, r4, #1
+ 684              	.LVL121:
+ 685 03a6 E4B2     		uxtb	r4, r4
+ 686              	.LVL122:
+ 687              	.L41:
+ 161:Print.c       ****         if((dinero[x]==0)&&(digito==0)){
+ 688              		.loc 1 161 0 is_stmt 0 discriminator 1
+ 689 03a8 002C     		cmp	r4, #0
+ 690 03aa F3D1     		bne	.L44
+ 168:Print.c       ****         }	
+ 169:Print.c       **** 	}
+ 170:Print.c       **** 	if(version == 6){
+ 691              		.loc 1 170 0 is_stmt 1
+ 692 03ac 1D4B     		ldr	r3, .L56+12
+ 693              	.LVL123:
+ 694 03ae 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 695 03b0 DBB2     		uxtb	r3, r3
+ 696 03b2 062B     		cmp	r3, #6
+ 697 03b4 04D1     		bne	.L45
+ 171:Print.c       **** 		RS232_PutChar(dinero[0]+48);
+ 698              		.loc 1 171 0
+ 699 03b6 3078     		ldrb	r0, [r6]	@ zero_extendqisi2
+ 700 03b8 3030     		adds	r0, r0, #48
+ 701 03ba C0B2     		uxtb	r0, r0
+ 702 03bc FFF7FEFF 		bl	RS232_PutChar
+ 703              	.LVL124:
+ 704              	.L45:
+ 172:Print.c       **** 	} 
+ 173:Print.c       ****     RS232_PutChar(10);
+ 705              		.loc 1 173 0
+ 706 03c0 0A20     		movs	r0, #10
+ 707 03c2 FFF7FEFF 		bl	RS232_PutChar
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 17
+
+
+ 708              	.LVL125:
+ 174:Print.c       ****     RS232_PutChar(10);
+ 709              		.loc 1 174 0
+ 710 03c6 0A20     		movs	r0, #10
+ 711 03c8 FFF7FEFF 		bl	RS232_PutChar
+ 712              	.LVL126:
+ 175:Print.c       **** 	RS232_PutChar(10);                																											
+ 713              		.loc 1 175 0
+ 714 03cc 0A20     		movs	r0, #10
+ 715 03ce FFF7FEFF 		bl	RS232_PutChar
+ 716              	.LVL127:
+ 176:Print.c       **** 	RS232_PutString("      GRACIAS POR SU COMPRA");                     //LEMA1
+ 717              		.loc 1 176 0
+ 718 03d2 1548     		ldr	r0, .L56+16
+ 719 03d4 FFF7FEFF 		bl	RS232_PutString
+ 720              	.LVL128:
+ 177:Print.c       **** 	RS232_PutChar(10); 																											
+ 721              		.loc 1 177 0
+ 722 03d8 0A20     		movs	r0, #10
+ 723 03da FFF7FEFF 		bl	RS232_PutChar
+ 724              	.LVL129:
+ 178:Print.c       **** 	RS232_PutString("          VUELVA PRONTO");                        //LEMA2
+ 725              		.loc 1 178 0
+ 726 03de 1348     		ldr	r0, .L56+20
+ 727 03e0 FFF7FEFF 		bl	RS232_PutString
+ 728              	.LVL130:
+ 179:Print.c       ****     RS232_PutChar(10); 
+ 729              		.loc 1 179 0
+ 730 03e4 0A20     		movs	r0, #10
+ 731 03e6 FFF7FEFF 		bl	RS232_PutChar
+ 732              	.LVL131:
+ 180:Print.c       ****     RS232_PutChar(10); 
+ 733              		.loc 1 180 0
+ 734 03ea 0A20     		movs	r0, #10
+ 735 03ec FFF7FEFF 		bl	RS232_PutChar
+ 736              	.LVL132:
+ 181:Print.c       ****     RS232_PutChar(10);
+ 737              		.loc 1 181 0
+ 738 03f0 0A20     		movs	r0, #10
+ 739 03f2 FFF7FEFF 		bl	RS232_PutChar
+ 740              	.LVL133:
+ 182:Print.c       ****     RS232_PutChar(10);
+ 741              		.loc 1 182 0
+ 742 03f6 0A20     		movs	r0, #10
+ 743 03f8 FFF7FEFF 		bl	RS232_PutChar
+ 744              	.LVL134:
+ 183:Print.c       **** 	RS232_PutChar(10); 
+ 745              		.loc 1 183 0
+ 746 03fc 0A20     		movs	r0, #10
+ 747 03fe FFF7FEFF 		bl	RS232_PutChar
+ 748              	.LVL135:
+ 184:Print.c       ****     RS232_PutChar(0x1D);
+ 749              		.loc 1 184 0
+ 750 0402 1D20     		movs	r0, #29
+ 751 0404 FFF7FEFF 		bl	RS232_PutChar
+ 752              	.LVL136:
+ 185:Print.c       ****     RS232_PutChar(0x56);
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 18
+
+
+ 753              		.loc 1 185 0
+ 754 0408 5620     		movs	r0, #86
+ 755 040a FFF7FEFF 		bl	RS232_PutChar
+ 756              	.LVL137:
+ 186:Print.c       **** 	RS232_PutChar(0x31);    
+ 757              		.loc 1 186 0
+ 758 040e 3120     		movs	r0, #49
+ 759 0410 FFF7FEFF 		bl	RS232_PutChar
+ 760              	.LVL138:
+ 761 0414 BDE8F883 		pop	{r3, r4, r5, r6, r7, r8, r9, pc}
+ 762              	.LVL139:
+ 763              	.L57:
+ 764              		.align	2
+ 765              	.L56:
+ 766 0418 00000000 		.word	ppux10
+ 767 041c 64000000 		.word	.LC8
+ 768 0420 74000000 		.word	.LC9
+ 769 0424 00000000 		.word	version
+ 770 0428 84000000 		.word	.LC10
+ 771 042c A0000000 		.word	.LC11
+ 772              		.cfi_endproc
+ 773              	.LFE63:
+ 774              		.size	imprimir, .-imprimir
+ 775              		.comm	print2,2,4
+ 776              		.comm	print1,2,4
+ 777              		.comm	rventa2,99,4
+ 778              		.comm	rventa1,99,4
+ 779              		.comm	hora,2,4
+ 780              		.comm	fecha,3,4
+ 781              		.comm	km,2,4
+ 782              		.comm	id_logo,2,4
+ 783              		.comm	lema2,32,4
+ 784              		.comm	lema1,32,4
+ 785              		.comm	direccion,33,4
+ 786              		.comm	telefono,20,4
+ 787              		.comm	nit,15,4
+ 788              		.comm	nombre,33,4
+ 789              		.comm	lado2,92,4
+ 790              		.comm	lado1,92,4
+ 791              		.comm	version,1,1
+ 792              		.comm	nombre_pro3,17,4
+ 793              		.comm	nombre_pro2,17,4
+ 794              		.comm	nombre_pro1,17,4
+ 795              		.comm	ppux10,1,1
+ 796              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 797              		.align	2
+ 798              	.LC0:
+ 799 0000 20202020 		.ascii	"      ESTACION DE SERVICIO\012\000"
+ 799      20204553 
+ 799      54414349 
+ 799      4F4E2044 
+ 799      45205345 
+ 800              	.LC1:
+ 801 001c 4E495420 		.ascii	"NIT \000"
+ 801      00
+ 802 0021 000000   		.space	3
+ 803              	.LC2:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 19
+
+
+ 804 0024 54454C3A 		.ascii	"TEL:\000"
+ 804      00
+ 805 0029 000000   		.space	3
+ 806              	.LC3:
+ 807 002c 46454348 		.ascii	"FECHA: \000"
+ 807      413A2000 
+ 808              	.LC4:
+ 809 0034 484F5241 		.ascii	"HORA:  \000"
+ 809      3A202000 
+ 810              	.LC5:
+ 811 003c 504F5349 		.ascii	"POSICION:  \000"
+ 811      43494F4E 
+ 811      3A202000 
+ 812              	.LC6:
+ 813 0048 50524F44 		.ascii	"PRODUCTO:  \000"
+ 813      5543544F 
+ 813      3A202000 
+ 814              	.LC7:
+ 815 0054 5050553A 		.ascii	"PPU:       $/G \000"
+ 815      20202020 
+ 815      20202024 
+ 815      2F472000 
+ 816              	.LC8:
+ 817 0064 564F4C55 		.ascii	"VOLUMEN:   G \000"
+ 817      4D454E3A 
+ 817      20202047 
+ 817      2000
+ 818 0072 0000     		.space	2
+ 819              	.LC9:
+ 820 0074 44494E45 		.ascii	"DINERO:    $ \000"
+ 820      524F3A20 
+ 820      20202024 
+ 820      2000
+ 821 0082 0000     		.space	2
+ 822              	.LC10:
+ 823 0084 20202020 		.ascii	"      GRACIAS POR SU COMPRA\000"
+ 823      20204752 
+ 823      41434941 
+ 823      5320504F 
+ 823      52205355 
+ 824              	.LC11:
+ 825 00a0 20202020 		.ascii	"          VUELVA PRONTO\000"
+ 825      20202020 
+ 825      20205655 
+ 825      454C5641 
+ 825      2050524F 
+ 826              		.text
+ 827              	.Letext0:
+ 828              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 829              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 830              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 831              		.file 5 "VariablesG.h"
+ 832              		.file 6 "Generated_Source\\PSoC5/core_cm3.h"
+ 833              		.file 7 "Generated_Source\\PSoC5/RS232.h"
+ 834              		.file 8 "i2c.h"
+ 835              		.section	.debug_info,"",%progbits
+ 836              	.Ldebug_info0:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 20
+
+
+ 837 0000 320A0000 		.4byte	0xa32
+ 838 0004 0400     		.2byte	0x4
+ 839 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 840 000a 04       		.byte	0x4
+ 841 000b 01       		.uleb128 0x1
+ 842 000c A3020000 		.4byte	.LASF62
+ 843 0010 0C       		.byte	0xc
+ 844 0011 AD010000 		.4byte	.LASF63
+ 845 0015 E4010000 		.4byte	.LASF64
+ 846 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 847 001d 00000000 		.4byte	0
+ 848 0021 00000000 		.4byte	.Ldebug_line0
+ 849 0025 02       		.uleb128 0x2
+ 850 0026 01       		.byte	0x1
+ 851 0027 06       		.byte	0x6
+ 852 0028 FB000000 		.4byte	.LASF0
+ 853 002c 02       		.uleb128 0x2
+ 854 002d 01       		.byte	0x1
+ 855 002e 08       		.byte	0x8
+ 856 002f E4000000 		.4byte	.LASF1
+ 857 0033 02       		.uleb128 0x2
+ 858 0034 02       		.byte	0x2
+ 859 0035 05       		.byte	0x5
+ 860 0036 0E000000 		.4byte	.LASF2
+ 861 003a 02       		.uleb128 0x2
+ 862 003b 02       		.byte	0x2
+ 863 003c 07       		.byte	0x7
+ 864 003d 57010000 		.4byte	.LASF3
+ 865 0041 03       		.uleb128 0x3
+ 866 0042 5A020000 		.4byte	.LASF9
+ 867 0046 02       		.byte	0x2
+ 868 0047 3F       		.byte	0x3f
+ 869 0048 4C000000 		.4byte	0x4c
+ 870 004c 02       		.uleb128 0x2
+ 871 004d 04       		.byte	0x4
+ 872 004e 05       		.byte	0x5
+ 873 004f A6000000 		.4byte	.LASF4
+ 874 0053 02       		.uleb128 0x2
+ 875 0054 04       		.byte	0x4
+ 876 0055 07       		.byte	0x7
+ 877 0056 C4010000 		.4byte	.LASF5
+ 878 005a 02       		.uleb128 0x2
+ 879 005b 08       		.byte	0x8
+ 880 005c 05       		.byte	0x5
+ 881 005d 98000000 		.4byte	.LASF6
+ 882 0061 02       		.uleb128 0x2
+ 883 0062 08       		.byte	0x8
+ 884 0063 07       		.byte	0x7
+ 885 0064 07010000 		.4byte	.LASF7
+ 886 0068 04       		.uleb128 0x4
+ 887 0069 04       		.byte	0x4
+ 888 006a 05       		.byte	0x5
+ 889 006b 696E7400 		.ascii	"int\000"
+ 890 006f 02       		.uleb128 0x2
+ 891 0070 04       		.byte	0x4
+ 892 0071 07       		.byte	0x7
+ 893 0072 30010000 		.4byte	.LASF8
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 21
+
+
+ 894 0076 03       		.uleb128 0x3
+ 895 0077 8D010000 		.4byte	.LASF10
+ 896 007b 03       		.byte	0x3
+ 897 007c 2C       		.byte	0x2c
+ 898 007d 41000000 		.4byte	0x41
+ 899 0081 05       		.uleb128 0x5
+ 900 0082 71000000 		.4byte	.LASF11
+ 901 0086 04       		.byte	0x4
+ 902 0087 E401     		.2byte	0x1e4
+ 903 0089 2C000000 		.4byte	0x2c
+ 904 008d 02       		.uleb128 0x2
+ 905 008e 04       		.byte	0x4
+ 906 008f 04       		.byte	0x4
+ 907 0090 92000000 		.4byte	.LASF12
+ 908 0094 02       		.uleb128 0x2
+ 909 0095 08       		.byte	0x8
+ 910 0096 04       		.byte	0x4
+ 911 0097 DD010000 		.4byte	.LASF13
+ 912 009b 02       		.uleb128 0x2
+ 913 009c 01       		.byte	0x1
+ 914 009d 08       		.byte	0x8
+ 915 009e 78010000 		.4byte	.LASF14
+ 916 00a2 06       		.uleb128 0x6
+ 917 00a3 81000000 		.4byte	0x81
+ 918 00a7 02       		.uleb128 0x2
+ 919 00a8 08       		.byte	0x8
+ 920 00a9 04       		.byte	0x4
+ 921 00aa BE000000 		.4byte	.LASF15
+ 922 00ae 02       		.uleb128 0x2
+ 923 00af 04       		.byte	0x4
+ 924 00b0 07       		.byte	0x7
+ 925 00b1 18000000 		.4byte	.LASF16
+ 926 00b5 07       		.uleb128 0x7
+ 927 00b6 81000000 		.4byte	0x81
+ 928 00ba C5000000 		.4byte	0xc5
+ 929 00be 08       		.uleb128 0x8
+ 930 00bf AE000000 		.4byte	0xae
+ 931 00c3 07       		.byte	0x7
+ 932 00c4 00       		.byte	0
+ 933 00c5 09       		.uleb128 0x9
+ 934 00c6 83000000 		.4byte	.LASF20
+ 935 00ca 5C       		.byte	0x5c
+ 936 00cb 05       		.byte	0x5
+ 937 00cc 2F       		.byte	0x2f
+ 938 00cd 0E010000 		.4byte	0x10e
+ 939 00d1 0A       		.uleb128 0xa
+ 940 00d2 64697200 		.ascii	"dir\000"
+ 941 00d6 05       		.byte	0x5
+ 942 00d7 30       		.byte	0x30
+ 943 00d8 A2000000 		.4byte	0xa2
+ 944 00dc 00       		.byte	0
+ 945 00dd 0B       		.uleb128 0xb
+ 946 00de B6000000 		.4byte	.LASF17
+ 947 00e2 05       		.byte	0x5
+ 948 00e3 31       		.byte	0x31
+ 949 00e4 24010000 		.4byte	0x124
+ 950 00e8 01       		.byte	0x1
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 22
+
+
+ 951 00e9 0A       		.uleb128 0xa
+ 952 00ea 70707500 		.ascii	"ppu\000"
+ 953 00ee 05       		.byte	0x5
+ 954 00ef 32       		.byte	0x32
+ 955 00f0 3F010000 		.4byte	0x13f
+ 956 00f4 49       		.byte	0x49
+ 957 00f5 0B       		.uleb128 0xb
+ 958 00f6 6A010000 		.4byte	.LASF18
+ 959 00fa 05       		.byte	0x5
+ 960 00fb 33       		.byte	0x33
+ 961 00fc 5A010000 		.4byte	0x15a
+ 962 0100 58       		.byte	0x58
+ 963 0101 0B       		.uleb128 0xb
+ 964 0102 A3010000 		.4byte	.LASF19
+ 965 0106 05       		.byte	0x5
+ 966 0107 34       		.byte	0x34
+ 967 0108 A2000000 		.4byte	0xa2
+ 968 010c 5B       		.byte	0x5b
+ 969 010d 00       		.byte	0
+ 970 010e 07       		.uleb128 0x7
+ 971 010f A2000000 		.4byte	0xa2
+ 972 0113 24010000 		.4byte	0x124
+ 973 0117 08       		.uleb128 0x8
+ 974 0118 AE000000 		.4byte	0xae
+ 975 011c 02       		.byte	0x2
+ 976 011d 08       		.uleb128 0x8
+ 977 011e AE000000 		.4byte	0xae
+ 978 0122 17       		.byte	0x17
+ 979 0123 00       		.byte	0
+ 980 0124 06       		.uleb128 0x6
+ 981 0125 0E010000 		.4byte	0x10e
+ 982 0129 07       		.uleb128 0x7
+ 983 012a A2000000 		.4byte	0xa2
+ 984 012e 3F010000 		.4byte	0x13f
+ 985 0132 08       		.uleb128 0x8
+ 986 0133 AE000000 		.4byte	0xae
+ 987 0137 02       		.byte	0x2
+ 988 0138 08       		.uleb128 0x8
+ 989 0139 AE000000 		.4byte	0xae
+ 990 013d 04       		.byte	0x4
+ 991 013e 00       		.byte	0
+ 992 013f 06       		.uleb128 0x6
+ 993 0140 29010000 		.4byte	0x129
+ 994 0144 07       		.uleb128 0x7
+ 995 0145 A2000000 		.4byte	0xa2
+ 996 0149 5A010000 		.4byte	0x15a
+ 997 014d 08       		.uleb128 0x8
+ 998 014e AE000000 		.4byte	0xae
+ 999 0152 02       		.byte	0x2
+ 1000 0153 08       		.uleb128 0x8
+ 1001 0154 AE000000 		.4byte	0xae
+ 1002 0158 00       		.byte	0
+ 1003 0159 00       		.byte	0
+ 1004 015a 06       		.uleb128 0x6
+ 1005 015b 44010000 		.4byte	0x144
+ 1006 015f 09       		.uleb128 0x9
+ 1007 0160 D6010000 		.4byte	.LASF21
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 23
+
+
+ 1008 0164 63       		.byte	0x63
+ 1009 0165 05       		.byte	0x5
+ 1010 0166 45       		.byte	0x45
+ 1011 0167 42020000 		.4byte	0x242
+ 1012 016b 0B       		.uleb128 0xb
+ 1013 016c 77000000 		.4byte	.LASF22
+ 1014 0170 05       		.byte	0x5
+ 1015 0171 46       		.byte	0x46
+ 1016 0172 81000000 		.4byte	0x81
+ 1017 0176 00       		.byte	0
+ 1018 0177 0B       		.uleb128 0xb
+ 1019 0178 F2000000 		.4byte	.LASF23
+ 1020 017c 05       		.byte	0x5
+ 1021 017d 47       		.byte	0x47
+ 1022 017e 81000000 		.4byte	0x81
+ 1023 0182 01       		.byte	0x1
+ 1024 0183 0B       		.uleb128 0xb
+ 1025 0184 6A010000 		.4byte	.LASF18
+ 1026 0188 05       		.byte	0x5
+ 1027 0189 48       		.byte	0x48
+ 1028 018a 81000000 		.4byte	0x81
+ 1029 018e 02       		.byte	0x2
+ 1030 018f 0A       		.uleb128 0xa
+ 1031 0190 70707500 		.ascii	"ppu\000"
+ 1032 0194 05       		.byte	0x5
+ 1033 0195 49       		.byte	0x49
+ 1034 0196 42020000 		.4byte	0x242
+ 1035 019a 03       		.byte	0x3
+ 1036 019b 0B       		.uleb128 0xb
+ 1037 019c 21000000 		.4byte	.LASF24
+ 1038 01a0 05       		.byte	0x5
+ 1039 01a1 4A       		.byte	0x4a
+ 1040 01a2 52020000 		.4byte	0x252
+ 1041 01a6 09       		.byte	0x9
+ 1042 01a7 0B       		.uleb128 0xb
+ 1043 01a8 70010000 		.4byte	.LASF25
+ 1044 01ac 05       		.byte	0x5
+ 1045 01ad 4B       		.byte	0x4b
+ 1046 01ae 52020000 		.4byte	0x252
+ 1047 01b2 12       		.byte	0x12
+ 1048 01b3 0B       		.uleb128 0xb
+ 1049 01b4 4E010000 		.4byte	.LASF26
+ 1050 01b8 05       		.byte	0x5
+ 1051 01b9 4C       		.byte	0x4c
+ 1052 01ba 81000000 		.4byte	0x81
+ 1053 01be 1B       		.byte	0x1b
+ 1054 01bf 0B       		.uleb128 0xb
+ 1055 01c0 68000000 		.4byte	.LASF27
+ 1056 01c4 05       		.byte	0x5
+ 1057 01c5 4D       		.byte	0x4d
+ 1058 01c6 81000000 		.4byte	0x81
+ 1059 01ca 1C       		.byte	0x1c
+ 1060 01cb 0B       		.uleb128 0xb
+ 1061 01cc 53020000 		.4byte	.LASF28
+ 1062 01d0 05       		.byte	0x5
+ 1063 01d1 4E       		.byte	0x4e
+ 1064 01d2 B5000000 		.4byte	0xb5
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 24
+
+
+ 1065 01d6 1D       		.byte	0x1d
+ 1066 01d7 0A       		.uleb128 0xa
+ 1067 01d8 696400   		.ascii	"id\000"
+ 1068 01db 05       		.byte	0x5
+ 1069 01dc 4F       		.byte	0x4f
+ 1070 01dd 62020000 		.4byte	0x262
+ 1071 01e1 25       		.byte	0x25
+ 1072 01e2 0A       		.uleb128 0xa
+ 1073 01e3 6B6D00   		.ascii	"km\000"
+ 1074 01e6 05       		.byte	0x5
+ 1075 01e7 50       		.byte	0x50
+ 1076 01e8 72020000 		.4byte	0x272
+ 1077 01ec 35       		.byte	0x35
+ 1078 01ed 0B       		.uleb128 0xb
+ 1079 01ee 87020000 		.4byte	.LASF29
+ 1080 01f2 05       		.byte	0x5
+ 1081 01f3 51       		.byte	0x51
+ 1082 01f4 52020000 		.4byte	0x252
+ 1083 01f8 40       		.byte	0x40
+ 1084 01f9 0B       		.uleb128 0xb
+ 1085 01fa 4C000000 		.4byte	.LASF30
+ 1086 01fe 05       		.byte	0x5
+ 1087 01ff 52       		.byte	0x52
+ 1088 0200 81000000 		.4byte	0x81
+ 1089 0204 49       		.byte	0x49
+ 1090 0205 0B       		.uleb128 0xb
+ 1091 0206 70020000 		.4byte	.LASF31
+ 1092 020a 05       		.byte	0x5
+ 1093 020b 53       		.byte	0x53
+ 1094 020c 81000000 		.4byte	0x81
+ 1095 0210 4A       		.byte	0x4a
+ 1096 0211 0B       		.uleb128 0xb
+ 1097 0212 28000000 		.4byte	.LASF32
+ 1098 0216 05       		.byte	0x5
+ 1099 0217 54       		.byte	0x54
+ 1100 0218 72020000 		.4byte	0x272
+ 1101 021c 4B       		.byte	0x4b
+ 1102 021d 0B       		.uleb128 0xb
+ 1103 021e 2F000000 		.4byte	.LASF33
+ 1104 0222 05       		.byte	0x5
+ 1105 0223 55       		.byte	0x55
+ 1106 0224 72020000 		.4byte	0x272
+ 1107 0228 56       		.byte	0x56
+ 1108 0229 0B       		.uleb128 0xb
+ 1109 022a 38000000 		.4byte	.LASF34
+ 1110 022e 05       		.byte	0x5
+ 1111 022f 56       		.byte	0x56
+ 1112 0230 81000000 		.4byte	0x81
+ 1113 0234 61       		.byte	0x61
+ 1114 0235 0B       		.uleb128 0xb
+ 1115 0236 25010000 		.4byte	.LASF35
+ 1116 023a 05       		.byte	0x5
+ 1117 023b 57       		.byte	0x57
+ 1118 023c 81000000 		.4byte	0x81
+ 1119 0240 62       		.byte	0x62
+ 1120 0241 00       		.byte	0
+ 1121 0242 07       		.uleb128 0x7
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 25
+
+
+ 1122 0243 81000000 		.4byte	0x81
+ 1123 0247 52020000 		.4byte	0x252
+ 1124 024b 08       		.uleb128 0x8
+ 1125 024c AE000000 		.4byte	0xae
+ 1126 0250 05       		.byte	0x5
+ 1127 0251 00       		.byte	0
+ 1128 0252 07       		.uleb128 0x7
+ 1129 0253 81000000 		.4byte	0x81
+ 1130 0257 62020000 		.4byte	0x262
+ 1131 025b 08       		.uleb128 0x8
+ 1132 025c AE000000 		.4byte	0xae
+ 1133 0260 08       		.byte	0x8
+ 1134 0261 00       		.byte	0
+ 1135 0262 07       		.uleb128 0x7
+ 1136 0263 81000000 		.4byte	0x81
+ 1137 0267 72020000 		.4byte	0x272
+ 1138 026b 08       		.uleb128 0x8
+ 1139 026c AE000000 		.4byte	0xae
+ 1140 0270 0F       		.byte	0xf
+ 1141 0271 00       		.byte	0
+ 1142 0272 07       		.uleb128 0x7
+ 1143 0273 81000000 		.4byte	0x81
+ 1144 0277 82020000 		.4byte	0x282
+ 1145 027b 08       		.uleb128 0x8
+ 1146 027c AE000000 		.4byte	0xae
+ 1147 0280 0A       		.byte	0xa
+ 1148 0281 00       		.byte	0
+ 1149 0282 0C       		.uleb128 0xc
+ 1150 0283 4C000000 		.4byte	.LASF30
+ 1151 0287 01       		.byte	0x1
+ 1152 0288 27       		.byte	0x27
+ 1153 0289 00000000 		.4byte	.LFB63
+ 1154 028d 30040000 		.4byte	.LFE63-.LFB63
+ 1155 0291 01       		.uleb128 0x1
+ 1156 0292 9C       		.byte	0x9c
+ 1157 0293 D7070000 		.4byte	0x7d7
+ 1158 0297 0D       		.uleb128 0xd
+ 1159 0298 706F7300 		.ascii	"pos\000"
+ 1160 029c 01       		.byte	0x1
+ 1161 029d 27       		.byte	0x27
+ 1162 029e 81000000 		.4byte	0x81
+ 1163 02a2 00000000 		.4byte	.LLST0
+ 1164 02a6 0E       		.uleb128 0xe
+ 1165 02a7 B5010000 		.4byte	.LASF36
+ 1166 02ab 01       		.byte	0x1
+ 1167 02ac 27       		.byte	0x27
+ 1168 02ad 81000000 		.4byte	0x81
+ 1169 02b1 21000000 		.4byte	.LLST1
+ 1170 02b5 0D       		.uleb128 0xd
+ 1171 02b6 70707500 		.ascii	"ppu\000"
+ 1172 02ba 01       		.byte	0x1
+ 1173 02bb 27       		.byte	0x27
+ 1174 02bc D7070000 		.4byte	0x7d7
+ 1175 02c0 42000000 		.4byte	.LLST2
+ 1176 02c4 0E       		.uleb128 0xe
+ 1177 02c5 70010000 		.4byte	.LASF25
+ 1178 02c9 01       		.byte	0x1
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 26
+
+
+ 1179 02ca 27       		.byte	0x27
+ 1180 02cb D7070000 		.4byte	0x7d7
+ 1181 02cf 6E000000 		.4byte	.LLST3
+ 1182 02d3 0E       		.uleb128 0xe
+ 1183 02d4 21000000 		.4byte	.LASF24
+ 1184 02d8 01       		.byte	0x1
+ 1185 02d9 27       		.byte	0x27
+ 1186 02da D7070000 		.4byte	0x7d7
+ 1187 02de 9A000000 		.4byte	.LLST4
+ 1188 02e2 0F       		.uleb128 0xf
+ 1189 02e3 7800     		.ascii	"x\000"
+ 1190 02e5 01       		.byte	0x1
+ 1191 02e6 28       		.byte	0x28
+ 1192 02e7 81000000 		.4byte	0x81
+ 1193 02eb BA000000 		.4byte	.LLST5
+ 1194 02ef 10       		.uleb128 0x10
+ 1195 02f0 AF000000 		.4byte	.LASF37
+ 1196 02f4 01       		.byte	0x1
+ 1197 02f5 28       		.byte	0x28
+ 1198 02f6 81000000 		.4byte	0x81
+ 1199 02fa 49020000 		.4byte	.LLST6
+ 1200 02fe 11       		.uleb128 0x11
+ 1201 02ff 14000000 		.4byte	.LVL2
+ 1202 0303 090A0000 		.4byte	0xa09
+ 1203 0307 15030000 		.4byte	0x315
+ 1204 030b 12       		.uleb128 0x12
+ 1205 030c 01       		.uleb128 0x1
+ 1206 030d 50       		.byte	0x50
+ 1207 030e 05       		.uleb128 0x5
+ 1208 030f 03       		.byte	0x3
+ 1209 0310 00000000 		.4byte	.LC0
+ 1210 0314 00       		.byte	0
+ 1211 0315 11       		.uleb128 0x11
+ 1212 0316 1E000000 		.4byte	.LVL4
+ 1213 031a 140A0000 		.4byte	0xa14
+ 1214 031e 29030000 		.4byte	0x329
+ 1215 0322 12       		.uleb128 0x12
+ 1216 0323 01       		.uleb128 0x1
+ 1217 0324 50       		.byte	0x50
+ 1218 0325 02       		.uleb128 0x2
+ 1219 0326 08       		.byte	0x8
+ 1220 0327 20       		.byte	0x20
+ 1221 0328 00       		.byte	0
+ 1222 0329 13       		.uleb128 0x13
+ 1223 032a 40000000 		.4byte	.LVL9
+ 1224 032e 140A0000 		.4byte	0xa14
+ 1225 0332 11       		.uleb128 0x11
+ 1226 0333 54000000 		.4byte	.LVL12
+ 1227 0337 140A0000 		.4byte	0xa14
+ 1228 033b 45030000 		.4byte	0x345
+ 1229 033f 12       		.uleb128 0x12
+ 1230 0340 01       		.uleb128 0x1
+ 1231 0341 50       		.byte	0x50
+ 1232 0342 01       		.uleb128 0x1
+ 1233 0343 3A       		.byte	0x3a
+ 1234 0344 00       		.byte	0
+ 1235 0345 11       		.uleb128 0x11
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 27
+
+
+ 1236 0346 66000000 		.4byte	.LVL13
+ 1237 034a 140A0000 		.4byte	0xa14
+ 1238 034e 59030000 		.4byte	0x359
+ 1239 0352 12       		.uleb128 0x12
+ 1240 0353 01       		.uleb128 0x1
+ 1241 0354 50       		.byte	0x50
+ 1242 0355 02       		.uleb128 0x2
+ 1243 0356 08       		.byte	0x8
+ 1244 0357 20       		.byte	0x20
+ 1245 0358 00       		.byte	0
+ 1246 0359 11       		.uleb128 0x11
+ 1247 035a 86000000 		.4byte	.LVL17
+ 1248 035e 090A0000 		.4byte	0xa09
+ 1249 0362 70030000 		.4byte	0x370
+ 1250 0366 12       		.uleb128 0x12
+ 1251 0367 01       		.uleb128 0x1
+ 1252 0368 50       		.byte	0x50
+ 1253 0369 05       		.uleb128 0x5
+ 1254 036a 03       		.byte	0x3
+ 1255 036b 1C000000 		.4byte	.LC1
+ 1256 036f 00       		.byte	0
+ 1257 0370 13       		.uleb128 0x13
+ 1258 0371 92000000 		.4byte	.LVL19
+ 1259 0375 140A0000 		.4byte	0xa14
+ 1260 0379 11       		.uleb128 0x11
+ 1261 037a A6000000 		.4byte	.LVL22
+ 1262 037e 140A0000 		.4byte	0xa14
+ 1263 0382 8C030000 		.4byte	0x38c
+ 1264 0386 12       		.uleb128 0x12
+ 1265 0387 01       		.uleb128 0x1
+ 1266 0388 50       		.byte	0x50
+ 1267 0389 01       		.uleb128 0x1
+ 1268 038a 3A       		.byte	0x3a
+ 1269 038b 00       		.byte	0
+ 1270 038c 11       		.uleb128 0x11
+ 1271 038d B8000000 		.4byte	.LVL23
+ 1272 0391 140A0000 		.4byte	0xa14
+ 1273 0395 A0030000 		.4byte	0x3a0
+ 1274 0399 12       		.uleb128 0x12
+ 1275 039a 01       		.uleb128 0x1
+ 1276 039b 50       		.byte	0x50
+ 1277 039c 02       		.uleb128 0x2
+ 1278 039d 08       		.byte	0x8
+ 1279 039e 20       		.byte	0x20
+ 1280 039f 00       		.byte	0
+ 1281 03a0 11       		.uleb128 0x11
+ 1282 03a1 D8000000 		.4byte	.LVL27
+ 1283 03a5 090A0000 		.4byte	0xa09
+ 1284 03a9 B7030000 		.4byte	0x3b7
+ 1285 03ad 12       		.uleb128 0x12
+ 1286 03ae 01       		.uleb128 0x1
+ 1287 03af 50       		.byte	0x50
+ 1288 03b0 05       		.uleb128 0x5
+ 1289 03b1 03       		.byte	0x3
+ 1290 03b2 24000000 		.4byte	.LC2
+ 1291 03b6 00       		.byte	0
+ 1292 03b7 13       		.uleb128 0x13
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 28
+
+
+ 1293 03b8 E4000000 		.4byte	.LVL29
+ 1294 03bc 140A0000 		.4byte	0xa14
+ 1295 03c0 11       		.uleb128 0x11
+ 1296 03c1 F8000000 		.4byte	.LVL32
+ 1297 03c5 140A0000 		.4byte	0xa14
+ 1298 03c9 D3030000 		.4byte	0x3d3
+ 1299 03cd 12       		.uleb128 0x12
+ 1300 03ce 01       		.uleb128 0x1
+ 1301 03cf 50       		.byte	0x50
+ 1302 03d0 01       		.uleb128 0x1
+ 1303 03d1 3A       		.byte	0x3a
+ 1304 03d2 00       		.byte	0
+ 1305 03d3 11       		.uleb128 0x11
+ 1306 03d4 FE000000 		.4byte	.LVL33
+ 1307 03d8 140A0000 		.4byte	0xa14
+ 1308 03dc E6030000 		.4byte	0x3e6
+ 1309 03e0 12       		.uleb128 0x12
+ 1310 03e1 01       		.uleb128 0x1
+ 1311 03e2 50       		.byte	0x50
+ 1312 03e3 01       		.uleb128 0x1
+ 1313 03e4 3A       		.byte	0x3a
+ 1314 03e5 00       		.byte	0
+ 1315 03e6 11       		.uleb128 0x11
+ 1316 03e7 08010000 		.4byte	.LVL36
+ 1317 03eb 140A0000 		.4byte	0xa14
+ 1318 03ef FA030000 		.4byte	0x3fa
+ 1319 03f3 12       		.uleb128 0x12
+ 1320 03f4 01       		.uleb128 0x1
+ 1321 03f5 50       		.byte	0x50
+ 1322 03f6 02       		.uleb128 0x2
+ 1323 03f7 08       		.byte	0x8
+ 1324 03f8 20       		.byte	0x20
+ 1325 03f9 00       		.byte	0
+ 1326 03fa 13       		.uleb128 0x13
+ 1327 03fb 2A010000 		.4byte	.LVL41
+ 1328 03ff 140A0000 		.4byte	0xa14
+ 1329 0403 11       		.uleb128 0x11
+ 1330 0404 3E010000 		.4byte	.LVL44
+ 1331 0408 140A0000 		.4byte	0xa14
+ 1332 040c 16040000 		.4byte	0x416
+ 1333 0410 12       		.uleb128 0x12
+ 1334 0411 01       		.uleb128 0x1
+ 1335 0412 50       		.byte	0x50
+ 1336 0413 01       		.uleb128 0x1
+ 1337 0414 3A       		.byte	0x3a
+ 1338 0415 00       		.byte	0
+ 1339 0416 11       		.uleb128 0x11
+ 1340 0417 44010000 		.4byte	.LVL45
+ 1341 041b 140A0000 		.4byte	0xa14
+ 1342 041f 29040000 		.4byte	0x429
+ 1343 0423 12       		.uleb128 0x12
+ 1344 0424 01       		.uleb128 0x1
+ 1345 0425 50       		.byte	0x50
+ 1346 0426 01       		.uleb128 0x1
+ 1347 0427 3A       		.byte	0x3a
+ 1348 0428 00       		.byte	0
+ 1349 0429 11       		.uleb128 0x11
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 29
+
+
+ 1350 042a 4A010000 		.4byte	.LVL46
+ 1351 042e 140A0000 		.4byte	0xa14
+ 1352 0432 3C040000 		.4byte	0x43c
+ 1353 0436 12       		.uleb128 0x12
+ 1354 0437 01       		.uleb128 0x1
+ 1355 0438 50       		.byte	0x50
+ 1356 0439 01       		.uleb128 0x1
+ 1357 043a 3A       		.byte	0x3a
+ 1358 043b 00       		.byte	0
+ 1359 043c 11       		.uleb128 0x11
+ 1360 043d 50010000 		.4byte	.LVL47
+ 1361 0441 090A0000 		.4byte	0xa09
+ 1362 0445 53040000 		.4byte	0x453
+ 1363 0449 12       		.uleb128 0x12
+ 1364 044a 01       		.uleb128 0x1
+ 1365 044b 50       		.byte	0x50
+ 1366 044c 05       		.uleb128 0x5
+ 1367 044d 03       		.byte	0x3
+ 1368 044e 2C000000 		.4byte	.LC3
+ 1369 0452 00       		.byte	0
+ 1370 0453 13       		.uleb128 0x13
+ 1371 0454 54010000 		.4byte	.LVL48
+ 1372 0458 1F0A0000 		.4byte	0xa1f
+ 1373 045c 13       		.uleb128 0x13
+ 1374 045d 66010000 		.4byte	.LVL50
+ 1375 0461 140A0000 		.4byte	0xa14
+ 1376 0465 13       		.uleb128 0x13
+ 1377 0466 72010000 		.4byte	.LVL51
+ 1378 046a 140A0000 		.4byte	0xa14
+ 1379 046e 11       		.uleb128 0x11
+ 1380 046f 78010000 		.4byte	.LVL52
+ 1381 0473 140A0000 		.4byte	0xa14
+ 1382 0477 82040000 		.4byte	0x482
+ 1383 047b 12       		.uleb128 0x12
+ 1384 047c 01       		.uleb128 0x1
+ 1385 047d 50       		.byte	0x50
+ 1386 047e 02       		.uleb128 0x2
+ 1387 047f 08       		.byte	0x8
+ 1388 0480 2F       		.byte	0x2f
+ 1389 0481 00       		.byte	0
+ 1390 0482 13       		.uleb128 0x13
+ 1391 0483 86010000 		.4byte	.LVL53
+ 1392 0487 140A0000 		.4byte	0xa14
+ 1393 048b 13       		.uleb128 0x13
+ 1394 048c 92010000 		.4byte	.LVL54
+ 1395 0490 140A0000 		.4byte	0xa14
+ 1396 0494 11       		.uleb128 0x11
+ 1397 0495 98010000 		.4byte	.LVL55
+ 1398 0499 140A0000 		.4byte	0xa14
+ 1399 049d A8040000 		.4byte	0x4a8
+ 1400 04a1 12       		.uleb128 0x12
+ 1401 04a2 01       		.uleb128 0x1
+ 1402 04a3 50       		.byte	0x50
+ 1403 04a4 02       		.uleb128 0x2
+ 1404 04a5 08       		.byte	0x8
+ 1405 04a6 2F       		.byte	0x2f
+ 1406 04a7 00       		.byte	0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 30
+
+
+ 1407 04a8 13       		.uleb128 0x13
+ 1408 04a9 A2010000 		.4byte	.LVL56
+ 1409 04ad 140A0000 		.4byte	0xa14
+ 1410 04b1 13       		.uleb128 0x13
+ 1411 04b2 AE010000 		.4byte	.LVL57
+ 1412 04b6 140A0000 		.4byte	0xa14
+ 1413 04ba 11       		.uleb128 0x11
+ 1414 04bb B4010000 		.4byte	.LVL58
+ 1415 04bf 140A0000 		.4byte	0xa14
+ 1416 04c3 CD040000 		.4byte	0x4cd
+ 1417 04c7 12       		.uleb128 0x12
+ 1418 04c8 01       		.uleb128 0x1
+ 1419 04c9 50       		.byte	0x50
+ 1420 04ca 01       		.uleb128 0x1
+ 1421 04cb 3A       		.byte	0x3a
+ 1422 04cc 00       		.byte	0
+ 1423 04cd 11       		.uleb128 0x11
+ 1424 04ce BA010000 		.4byte	.LVL59
+ 1425 04d2 090A0000 		.4byte	0xa09
+ 1426 04d6 E4040000 		.4byte	0x4e4
+ 1427 04da 12       		.uleb128 0x12
+ 1428 04db 01       		.uleb128 0x1
+ 1429 04dc 50       		.byte	0x50
+ 1430 04dd 05       		.uleb128 0x5
+ 1431 04de 03       		.byte	0x3
+ 1432 04df 34000000 		.4byte	.LC4
+ 1433 04e3 00       		.byte	0
+ 1434 04e4 13       		.uleb128 0x13
+ 1435 04e5 BE010000 		.4byte	.LVL60
+ 1436 04e9 2A0A0000 		.4byte	0xa2a
+ 1437 04ed 13       		.uleb128 0x13
+ 1438 04ee D0010000 		.4byte	.LVL61
+ 1439 04f2 140A0000 		.4byte	0xa14
+ 1440 04f6 13       		.uleb128 0x13
+ 1441 04f7 DC010000 		.4byte	.LVL62
+ 1442 04fb 140A0000 		.4byte	0xa14
+ 1443 04ff 11       		.uleb128 0x11
+ 1444 0500 E2010000 		.4byte	.LVL63
+ 1445 0504 140A0000 		.4byte	0xa14
+ 1446 0508 13050000 		.4byte	0x513
+ 1447 050c 12       		.uleb128 0x12
+ 1448 050d 01       		.uleb128 0x1
+ 1449 050e 50       		.byte	0x50
+ 1450 050f 02       		.uleb128 0x2
+ 1451 0510 08       		.byte	0x8
+ 1452 0511 3A       		.byte	0x3a
+ 1453 0512 00       		.byte	0
+ 1454 0513 13       		.uleb128 0x13
+ 1455 0514 EC010000 		.4byte	.LVL64
+ 1456 0518 140A0000 		.4byte	0xa14
+ 1457 051c 13       		.uleb128 0x13
+ 1458 051d F8010000 		.4byte	.LVL65
+ 1459 0521 140A0000 		.4byte	0xa14
+ 1460 0525 11       		.uleb128 0x11
+ 1461 0526 FE010000 		.4byte	.LVL66
+ 1462 052a 140A0000 		.4byte	0xa14
+ 1463 052e 38050000 		.4byte	0x538
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 31
+
+
+ 1464 0532 12       		.uleb128 0x12
+ 1465 0533 01       		.uleb128 0x1
+ 1466 0534 50       		.byte	0x50
+ 1467 0535 01       		.uleb128 0x1
+ 1468 0536 3A       		.byte	0x3a
+ 1469 0537 00       		.byte	0
+ 1470 0538 11       		.uleb128 0x11
+ 1471 0539 04020000 		.4byte	.LVL67
+ 1472 053d 140A0000 		.4byte	0xa14
+ 1473 0541 4B050000 		.4byte	0x54b
+ 1474 0545 12       		.uleb128 0x12
+ 1475 0546 01       		.uleb128 0x1
+ 1476 0547 50       		.byte	0x50
+ 1477 0548 01       		.uleb128 0x1
+ 1478 0549 3A       		.byte	0x3a
+ 1479 054a 00       		.byte	0
+ 1480 054b 11       		.uleb128 0x11
+ 1481 054c 0A020000 		.4byte	.LVL68
+ 1482 0550 090A0000 		.4byte	0xa09
+ 1483 0554 62050000 		.4byte	0x562
+ 1484 0558 12       		.uleb128 0x12
+ 1485 0559 01       		.uleb128 0x1
+ 1486 055a 50       		.byte	0x50
+ 1487 055b 05       		.uleb128 0x5
+ 1488 055c 03       		.byte	0x3
+ 1489 055d 3C000000 		.4byte	.LC5
+ 1490 0561 00       		.byte	0
+ 1491 0562 11       		.uleb128 0x11
+ 1492 0563 1A020000 		.4byte	.LVL69
+ 1493 0567 140A0000 		.4byte	0xa14
+ 1494 056b 76050000 		.4byte	0x576
+ 1495 056f 12       		.uleb128 0x12
+ 1496 0570 01       		.uleb128 0x1
+ 1497 0571 50       		.byte	0x50
+ 1498 0572 02       		.uleb128 0x2
+ 1499 0573 74       		.byte	0x74
+ 1500 0574 30       		.sleb128 48
+ 1501 0575 00       		.byte	0
+ 1502 0576 11       		.uleb128 0x11
+ 1503 0577 2A020000 		.4byte	.LVL70
+ 1504 057b 140A0000 		.4byte	0xa14
+ 1505 057f 91050000 		.4byte	0x591
+ 1506 0583 12       		.uleb128 0x12
+ 1507 0584 01       		.uleb128 0x1
+ 1508 0585 50       		.byte	0x50
+ 1509 0586 09       		.uleb128 0x9
+ 1510 0587 77       		.byte	0x77
+ 1511 0588 00       		.sleb128 0
+ 1512 0589 74       		.byte	0x74
+ 1513 058a 00       		.sleb128 0
+ 1514 058b 31       		.byte	0x31
+ 1515 058c 24       		.byte	0x24
+ 1516 058d 1C       		.byte	0x1c
+ 1517 058e 23       		.byte	0x23
+ 1518 058f 30       		.uleb128 0x30
+ 1519 0590 00       		.byte	0
+ 1520 0591 11       		.uleb128 0x11
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 32
+
+
+ 1521 0592 30020000 		.4byte	.LVL71
+ 1522 0596 140A0000 		.4byte	0xa14
+ 1523 059a A4050000 		.4byte	0x5a4
+ 1524 059e 12       		.uleb128 0x12
+ 1525 059f 01       		.uleb128 0x1
+ 1526 05a0 50       		.byte	0x50
+ 1527 05a1 01       		.uleb128 0x1
+ 1528 05a2 3A       		.byte	0x3a
+ 1529 05a3 00       		.byte	0
+ 1530 05a4 11       		.uleb128 0x11
+ 1531 05a5 36020000 		.4byte	.LVL72
+ 1532 05a9 090A0000 		.4byte	0xa09
+ 1533 05ad BB050000 		.4byte	0x5bb
+ 1534 05b1 12       		.uleb128 0x12
+ 1535 05b2 01       		.uleb128 0x1
+ 1536 05b3 50       		.byte	0x50
+ 1537 05b4 05       		.uleb128 0x5
+ 1538 05b5 03       		.byte	0x3
+ 1539 05b6 48000000 		.4byte	.LC6
+ 1540 05ba 00       		.byte	0
+ 1541 05bb 13       		.uleb128 0x13
+ 1542 05bc 46020000 		.4byte	.LVL74
+ 1543 05c0 140A0000 		.4byte	0xa14
+ 1544 05c4 13       		.uleb128 0x13
+ 1545 05c5 6A020000 		.4byte	.LVL81
+ 1546 05c9 140A0000 		.4byte	0xa14
+ 1547 05cd 13       		.uleb128 0x13
+ 1548 05ce 8E020000 		.4byte	.LVL88
+ 1549 05d2 140A0000 		.4byte	0xa14
+ 1550 05d6 11       		.uleb128 0x11
+ 1551 05d7 A6020000 		.4byte	.LVL94
+ 1552 05db 140A0000 		.4byte	0xa14
+ 1553 05df E9050000 		.4byte	0x5e9
+ 1554 05e3 12       		.uleb128 0x12
+ 1555 05e4 01       		.uleb128 0x1
+ 1556 05e5 50       		.byte	0x50
+ 1557 05e6 01       		.uleb128 0x1
+ 1558 05e7 3A       		.byte	0x3a
+ 1559 05e8 00       		.byte	0
+ 1560 05e9 11       		.uleb128 0x11
+ 1561 05ea AC020000 		.4byte	.LVL95
+ 1562 05ee 090A0000 		.4byte	0xa09
+ 1563 05f2 00060000 		.4byte	0x600
+ 1564 05f6 12       		.uleb128 0x12
+ 1565 05f7 01       		.uleb128 0x1
+ 1566 05f8 50       		.byte	0x50
+ 1567 05f9 05       		.uleb128 0x5
+ 1568 05fa 03       		.byte	0x3
+ 1569 05fb 54000000 		.4byte	.LC7
+ 1570 05ff 00       		.byte	0
+ 1571 0600 13       		.uleb128 0x13
+ 1572 0601 0C030000 		.4byte	.LVL98
+ 1573 0605 140A0000 		.4byte	0xa14
+ 1574 0609 13       		.uleb128 0x13
+ 1575 060a 22030000 		.4byte	.LVL102
+ 1576 060e 140A0000 		.4byte	0xa14
+ 1577 0612 11       		.uleb128 0x11
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 33
+
+
+ 1578 0613 32030000 		.4byte	.LVL103
+ 1579 0617 140A0000 		.4byte	0xa14
+ 1580 061b 26060000 		.4byte	0x626
+ 1581 061f 12       		.uleb128 0x12
+ 1582 0620 01       		.uleb128 0x1
+ 1583 0621 50       		.byte	0x50
+ 1584 0622 02       		.uleb128 0x2
+ 1585 0623 08       		.byte	0x8
+ 1586 0624 30       		.byte	0x30
+ 1587 0625 00       		.byte	0
+ 1588 0626 11       		.uleb128 0x11
+ 1589 0627 38030000 		.4byte	.LVL104
+ 1590 062b 140A0000 		.4byte	0xa14
+ 1591 062f 39060000 		.4byte	0x639
+ 1592 0633 12       		.uleb128 0x12
+ 1593 0634 01       		.uleb128 0x1
+ 1594 0635 50       		.byte	0x50
+ 1595 0636 01       		.uleb128 0x1
+ 1596 0637 3A       		.byte	0x3a
+ 1597 0638 00       		.byte	0
+ 1598 0639 11       		.uleb128 0x11
+ 1599 063a 3E030000 		.4byte	.LVL105
+ 1600 063e 090A0000 		.4byte	0xa09
+ 1601 0642 50060000 		.4byte	0x650
+ 1602 0646 12       		.uleb128 0x12
+ 1603 0647 01       		.uleb128 0x1
+ 1604 0648 50       		.byte	0x50
+ 1605 0649 05       		.uleb128 0x5
+ 1606 064a 03       		.byte	0x3
+ 1607 064b 64000000 		.4byte	.LC8
+ 1608 064f 00       		.byte	0
+ 1609 0650 11       		.uleb128 0x11
+ 1610 0651 56030000 		.4byte	.LVL107
+ 1611 0655 140A0000 		.4byte	0xa14
+ 1612 0659 64060000 		.4byte	0x664
+ 1613 065d 12       		.uleb128 0x12
+ 1614 065e 01       		.uleb128 0x1
+ 1615 065f 50       		.byte	0x50
+ 1616 0660 02       		.uleb128 0x2
+ 1617 0661 08       		.byte	0x8
+ 1618 0662 30       		.byte	0x30
+ 1619 0663 00       		.byte	0
+ 1620 0664 11       		.uleb128 0x11
+ 1621 0665 64030000 		.4byte	.LVL109
+ 1622 0669 140A0000 		.4byte	0xa14
+ 1623 066d 78060000 		.4byte	0x678
+ 1624 0671 12       		.uleb128 0x12
+ 1625 0672 01       		.uleb128 0x1
+ 1626 0673 50       		.byte	0x50
+ 1627 0674 02       		.uleb128 0x2
+ 1628 0675 08       		.byte	0x8
+ 1629 0676 2C       		.byte	0x2c
+ 1630 0677 00       		.byte	0
+ 1631 0678 13       		.uleb128 0x13
+ 1632 0679 6E030000 		.4byte	.LVL110
+ 1633 067d 140A0000 		.4byte	0xa14
+ 1634 0681 13       		.uleb128 0x13
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 34
+
+
+ 1635 0682 82030000 		.4byte	.LVL114
+ 1636 0686 140A0000 		.4byte	0xa14
+ 1637 068a 11       		.uleb128 0x11
+ 1638 068b 88030000 		.4byte	.LVL115
+ 1639 068f 140A0000 		.4byte	0xa14
+ 1640 0693 9D060000 		.4byte	0x69d
+ 1641 0697 12       		.uleb128 0x12
+ 1642 0698 01       		.uleb128 0x1
+ 1643 0699 50       		.byte	0x50
+ 1644 069a 01       		.uleb128 0x1
+ 1645 069b 3A       		.byte	0x3a
+ 1646 069c 00       		.byte	0
+ 1647 069d 11       		.uleb128 0x11
+ 1648 069e 8E030000 		.4byte	.LVL116
+ 1649 06a2 090A0000 		.4byte	0xa09
+ 1650 06a6 B4060000 		.4byte	0x6b4
+ 1651 06aa 12       		.uleb128 0x12
+ 1652 06ab 01       		.uleb128 0x1
+ 1653 06ac 50       		.byte	0x50
+ 1654 06ad 05       		.uleb128 0x5
+ 1655 06ae 03       		.byte	0x3
+ 1656 06af 74000000 		.4byte	.LC9
+ 1657 06b3 00       		.byte	0
+ 1658 06b4 13       		.uleb128 0x13
+ 1659 06b5 A2030000 		.4byte	.LVL119
+ 1660 06b9 140A0000 		.4byte	0xa14
+ 1661 06bd 13       		.uleb128 0x13
+ 1662 06be C0030000 		.4byte	.LVL124
+ 1663 06c2 140A0000 		.4byte	0xa14
+ 1664 06c6 11       		.uleb128 0x11
+ 1665 06c7 C6030000 		.4byte	.LVL125
+ 1666 06cb 140A0000 		.4byte	0xa14
+ 1667 06cf D9060000 		.4byte	0x6d9
+ 1668 06d3 12       		.uleb128 0x12
+ 1669 06d4 01       		.uleb128 0x1
+ 1670 06d5 50       		.byte	0x50
+ 1671 06d6 01       		.uleb128 0x1
+ 1672 06d7 3A       		.byte	0x3a
+ 1673 06d8 00       		.byte	0
+ 1674 06d9 11       		.uleb128 0x11
+ 1675 06da CC030000 		.4byte	.LVL126
+ 1676 06de 140A0000 		.4byte	0xa14
+ 1677 06e2 EC060000 		.4byte	0x6ec
+ 1678 06e6 12       		.uleb128 0x12
+ 1679 06e7 01       		.uleb128 0x1
+ 1680 06e8 50       		.byte	0x50
+ 1681 06e9 01       		.uleb128 0x1
+ 1682 06ea 3A       		.byte	0x3a
+ 1683 06eb 00       		.byte	0
+ 1684 06ec 11       		.uleb128 0x11
+ 1685 06ed D2030000 		.4byte	.LVL127
+ 1686 06f1 140A0000 		.4byte	0xa14
+ 1687 06f5 FF060000 		.4byte	0x6ff
+ 1688 06f9 12       		.uleb128 0x12
+ 1689 06fa 01       		.uleb128 0x1
+ 1690 06fb 50       		.byte	0x50
+ 1691 06fc 01       		.uleb128 0x1
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 35
+
+
+ 1692 06fd 3A       		.byte	0x3a
+ 1693 06fe 00       		.byte	0
+ 1694 06ff 11       		.uleb128 0x11
+ 1695 0700 D8030000 		.4byte	.LVL128
+ 1696 0704 090A0000 		.4byte	0xa09
+ 1697 0708 16070000 		.4byte	0x716
+ 1698 070c 12       		.uleb128 0x12
+ 1699 070d 01       		.uleb128 0x1
+ 1700 070e 50       		.byte	0x50
+ 1701 070f 05       		.uleb128 0x5
+ 1702 0710 03       		.byte	0x3
+ 1703 0711 84000000 		.4byte	.LC10
+ 1704 0715 00       		.byte	0
+ 1705 0716 11       		.uleb128 0x11
+ 1706 0717 DE030000 		.4byte	.LVL129
+ 1707 071b 140A0000 		.4byte	0xa14
+ 1708 071f 29070000 		.4byte	0x729
+ 1709 0723 12       		.uleb128 0x12
+ 1710 0724 01       		.uleb128 0x1
+ 1711 0725 50       		.byte	0x50
+ 1712 0726 01       		.uleb128 0x1
+ 1713 0727 3A       		.byte	0x3a
+ 1714 0728 00       		.byte	0
+ 1715 0729 11       		.uleb128 0x11
+ 1716 072a E4030000 		.4byte	.LVL130
+ 1717 072e 090A0000 		.4byte	0xa09
+ 1718 0732 40070000 		.4byte	0x740
+ 1719 0736 12       		.uleb128 0x12
+ 1720 0737 01       		.uleb128 0x1
+ 1721 0738 50       		.byte	0x50
+ 1722 0739 05       		.uleb128 0x5
+ 1723 073a 03       		.byte	0x3
+ 1724 073b A0000000 		.4byte	.LC11
+ 1725 073f 00       		.byte	0
+ 1726 0740 11       		.uleb128 0x11
+ 1727 0741 EA030000 		.4byte	.LVL131
+ 1728 0745 140A0000 		.4byte	0xa14
+ 1729 0749 53070000 		.4byte	0x753
+ 1730 074d 12       		.uleb128 0x12
+ 1731 074e 01       		.uleb128 0x1
+ 1732 074f 50       		.byte	0x50
+ 1733 0750 01       		.uleb128 0x1
+ 1734 0751 3A       		.byte	0x3a
+ 1735 0752 00       		.byte	0
+ 1736 0753 11       		.uleb128 0x11
+ 1737 0754 F0030000 		.4byte	.LVL132
+ 1738 0758 140A0000 		.4byte	0xa14
+ 1739 075c 66070000 		.4byte	0x766
+ 1740 0760 12       		.uleb128 0x12
+ 1741 0761 01       		.uleb128 0x1
+ 1742 0762 50       		.byte	0x50
+ 1743 0763 01       		.uleb128 0x1
+ 1744 0764 3A       		.byte	0x3a
+ 1745 0765 00       		.byte	0
+ 1746 0766 11       		.uleb128 0x11
+ 1747 0767 F6030000 		.4byte	.LVL133
+ 1748 076b 140A0000 		.4byte	0xa14
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 36
+
+
+ 1749 076f 79070000 		.4byte	0x779
+ 1750 0773 12       		.uleb128 0x12
+ 1751 0774 01       		.uleb128 0x1
+ 1752 0775 50       		.byte	0x50
+ 1753 0776 01       		.uleb128 0x1
+ 1754 0777 3A       		.byte	0x3a
+ 1755 0778 00       		.byte	0
+ 1756 0779 11       		.uleb128 0x11
+ 1757 077a FC030000 		.4byte	.LVL134
+ 1758 077e 140A0000 		.4byte	0xa14
+ 1759 0782 8C070000 		.4byte	0x78c
+ 1760 0786 12       		.uleb128 0x12
+ 1761 0787 01       		.uleb128 0x1
+ 1762 0788 50       		.byte	0x50
+ 1763 0789 01       		.uleb128 0x1
+ 1764 078a 3A       		.byte	0x3a
+ 1765 078b 00       		.byte	0
+ 1766 078c 11       		.uleb128 0x11
+ 1767 078d 02040000 		.4byte	.LVL135
+ 1768 0791 140A0000 		.4byte	0xa14
+ 1769 0795 9F070000 		.4byte	0x79f
+ 1770 0799 12       		.uleb128 0x12
+ 1771 079a 01       		.uleb128 0x1
+ 1772 079b 50       		.byte	0x50
+ 1773 079c 01       		.uleb128 0x1
+ 1774 079d 3A       		.byte	0x3a
+ 1775 079e 00       		.byte	0
+ 1776 079f 11       		.uleb128 0x11
+ 1777 07a0 08040000 		.4byte	.LVL136
+ 1778 07a4 140A0000 		.4byte	0xa14
+ 1779 07a8 B2070000 		.4byte	0x7b2
+ 1780 07ac 12       		.uleb128 0x12
+ 1781 07ad 01       		.uleb128 0x1
+ 1782 07ae 50       		.byte	0x50
+ 1783 07af 01       		.uleb128 0x1
+ 1784 07b0 4D       		.byte	0x4d
+ 1785 07b1 00       		.byte	0
+ 1786 07b2 11       		.uleb128 0x11
+ 1787 07b3 0E040000 		.4byte	.LVL137
+ 1788 07b7 140A0000 		.4byte	0xa14
+ 1789 07bb C6070000 		.4byte	0x7c6
+ 1790 07bf 12       		.uleb128 0x12
+ 1791 07c0 01       		.uleb128 0x1
+ 1792 07c1 50       		.byte	0x50
+ 1793 07c2 02       		.uleb128 0x2
+ 1794 07c3 08       		.byte	0x8
+ 1795 07c4 56       		.byte	0x56
+ 1796 07c5 00       		.byte	0
+ 1797 07c6 14       		.uleb128 0x14
+ 1798 07c7 14040000 		.4byte	.LVL138
+ 1799 07cb 140A0000 		.4byte	0xa14
+ 1800 07cf 12       		.uleb128 0x12
+ 1801 07d0 01       		.uleb128 0x1
+ 1802 07d1 50       		.byte	0x50
+ 1803 07d2 02       		.uleb128 0x2
+ 1804 07d3 08       		.byte	0x8
+ 1805 07d4 31       		.byte	0x31
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 37
+
+
+ 1806 07d5 00       		.byte	0
+ 1807 07d6 00       		.byte	0
+ 1808 07d7 15       		.uleb128 0x15
+ 1809 07d8 04       		.byte	0x4
+ 1810 07d9 81000000 		.4byte	0x81
+ 1811 07dd 16       		.uleb128 0x16
+ 1812 07de 96020000 		.4byte	.LASF38
+ 1813 07e2 06       		.byte	0x6
+ 1814 07e3 1207     		.2byte	0x712
+ 1815 07e5 E9070000 		.4byte	0x7e9
+ 1816 07e9 06       		.uleb128 0x6
+ 1817 07ea 76000000 		.4byte	0x76
+ 1818 07ee 17       		.uleb128 0x17
+ 1819 07ef 1E010000 		.4byte	.LASF39
+ 1820 07f3 05       		.byte	0x5
+ 1821 07f4 2B       		.byte	0x2b
+ 1822 07f5 A2000000 		.4byte	0xa2
+ 1823 07f9 05       		.uleb128 0x5
+ 1824 07fa 03       		.byte	0x3
+ 1825 07fb 00000000 		.4byte	ppux10
+ 1826 07ff 07       		.uleb128 0x7
+ 1827 0800 A2000000 		.4byte	0xa2
+ 1828 0804 0F080000 		.4byte	0x80f
+ 1829 0808 08       		.uleb128 0x8
+ 1830 0809 AE000000 		.4byte	0xae
+ 1831 080d 10       		.byte	0x10
+ 1832 080e 00       		.byte	0
+ 1833 080f 17       		.uleb128 0x17
+ 1834 0810 64020000 		.4byte	.LASF40
+ 1835 0814 05       		.byte	0x5
+ 1836 0815 2C       		.byte	0x2c
+ 1837 0816 20080000 		.4byte	0x820
+ 1838 081a 05       		.uleb128 0x5
+ 1839 081b 03       		.byte	0x3
+ 1840 081c 00000000 		.4byte	nombre_pro1
+ 1841 0820 06       		.uleb128 0x6
+ 1842 0821 FF070000 		.4byte	0x7ff
+ 1843 0825 17       		.uleb128 0x17
+ 1844 0826 55000000 		.4byte	.LASF41
+ 1845 082a 05       		.byte	0x5
+ 1846 082b 2C       		.byte	0x2c
+ 1847 082c 36080000 		.4byte	0x836
+ 1848 0830 05       		.uleb128 0x5
+ 1849 0831 03       		.byte	0x3
+ 1850 0832 00000000 		.4byte	nombre_pro2
+ 1851 0836 06       		.uleb128 0x6
+ 1852 0837 FF070000 		.4byte	0x7ff
+ 1853 083b 17       		.uleb128 0x17
+ 1854 083c 7B020000 		.4byte	.LASF42
+ 1855 0840 05       		.byte	0x5
+ 1856 0841 2C       		.byte	0x2c
+ 1857 0842 4C080000 		.4byte	0x84c
+ 1858 0846 05       		.uleb128 0x5
+ 1859 0847 03       		.byte	0x3
+ 1860 0848 00000000 		.4byte	nombre_pro3
+ 1861 084c 06       		.uleb128 0x6
+ 1862 084d FF070000 		.4byte	0x7ff
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 38
+
+
+ 1863 0851 17       		.uleb128 0x17
+ 1864 0852 00000000 		.4byte	.LASF43
+ 1865 0856 05       		.byte	0x5
+ 1866 0857 2D       		.byte	0x2d
+ 1867 0858 A2000000 		.4byte	0xa2
+ 1868 085c 05       		.uleb128 0x5
+ 1869 085d 03       		.byte	0x3
+ 1870 085e 00000000 		.4byte	version
+ 1871 0862 17       		.uleb128 0x17
+ 1872 0863 8C000000 		.4byte	.LASF44
+ 1873 0867 05       		.byte	0x5
+ 1874 0868 36       		.byte	0x36
+ 1875 0869 C5000000 		.4byte	0xc5
+ 1876 086d 05       		.uleb128 0x5
+ 1877 086e 03       		.byte	0x3
+ 1878 086f 00000000 		.4byte	lado1
+ 1879 0873 17       		.uleb128 0x17
+ 1880 0874 08000000 		.4byte	.LASF45
+ 1881 0878 05       		.byte	0x5
+ 1882 0879 37       		.byte	0x37
+ 1883 087a C5000000 		.4byte	0xc5
+ 1884 087e 05       		.uleb128 0x5
+ 1885 087f 03       		.byte	0x3
+ 1886 0880 00000000 		.4byte	lado2
+ 1887 0884 07       		.uleb128 0x7
+ 1888 0885 A2000000 		.4byte	0xa2
+ 1889 0889 94080000 		.4byte	0x894
+ 1890 088d 08       		.uleb128 0x8
+ 1891 088e AE000000 		.4byte	0xae
+ 1892 0892 20       		.byte	0x20
+ 1893 0893 00       		.byte	0
+ 1894 0894 17       		.uleb128 0x17
+ 1895 0895 61000000 		.4byte	.LASF46
+ 1896 0899 05       		.byte	0x5
+ 1897 089a 3B       		.byte	0x3b
+ 1898 089b A5080000 		.4byte	0x8a5
+ 1899 089f 05       		.uleb128 0x5
+ 1900 08a0 03       		.byte	0x3
+ 1901 08a1 00000000 		.4byte	nombre
+ 1902 08a5 06       		.uleb128 0x6
+ 1903 08a6 84080000 		.4byte	0x884
+ 1904 08aa 07       		.uleb128 0x7
+ 1905 08ab A2000000 		.4byte	0xa2
+ 1906 08af BA080000 		.4byte	0x8ba
+ 1907 08b3 08       		.uleb128 0x8
+ 1908 08b4 AE000000 		.4byte	0xae
+ 1909 08b8 0E       		.byte	0xe
+ 1910 08b9 00       		.byte	0
+ 1911 08ba 18       		.uleb128 0x18
+ 1912 08bb 6E697400 		.ascii	"nit\000"
+ 1913 08bf 05       		.byte	0x5
+ 1914 08c0 3C       		.byte	0x3c
+ 1915 08c1 CB080000 		.4byte	0x8cb
+ 1916 08c5 05       		.uleb128 0x5
+ 1917 08c6 03       		.byte	0x3
+ 1918 08c7 00000000 		.4byte	nit
+ 1919 08cb 06       		.uleb128 0x6
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 39
+
+
+ 1920 08cc AA080000 		.4byte	0x8aa
+ 1921 08d0 07       		.uleb128 0x7
+ 1922 08d1 A2000000 		.4byte	0xa2
+ 1923 08d5 E0080000 		.4byte	0x8e0
+ 1924 08d9 08       		.uleb128 0x8
+ 1925 08da AE000000 		.4byte	0xae
+ 1926 08de 13       		.byte	0x13
+ 1927 08df 00       		.byte	0
+ 1928 08e0 17       		.uleb128 0x17
+ 1929 08e1 8D020000 		.4byte	.LASF47
+ 1930 08e5 05       		.byte	0x5
+ 1931 08e6 3D       		.byte	0x3d
+ 1932 08e7 F1080000 		.4byte	0x8f1
+ 1933 08eb 05       		.uleb128 0x5
+ 1934 08ec 03       		.byte	0x3
+ 1935 08ed 00000000 		.4byte	telefono
+ 1936 08f1 06       		.uleb128 0x6
+ 1937 08f2 D0080000 		.4byte	0x8d0
+ 1938 08f6 17       		.uleb128 0x17
+ 1939 08f7 BA010000 		.4byte	.LASF48
+ 1940 08fb 05       		.byte	0x5
+ 1941 08fc 3E       		.byte	0x3e
+ 1942 08fd 07090000 		.4byte	0x907
+ 1943 0901 05       		.uleb128 0x5
+ 1944 0902 03       		.byte	0x3
+ 1945 0903 00000000 		.4byte	direccion
+ 1946 0907 06       		.uleb128 0x6
+ 1947 0908 84080000 		.4byte	0x884
+ 1948 090c 07       		.uleb128 0x7
+ 1949 090d A2000000 		.4byte	0xa2
+ 1950 0911 1C090000 		.4byte	0x91c
+ 1951 0915 08       		.uleb128 0x8
+ 1952 0916 AE000000 		.4byte	0xae
+ 1953 091a 1F       		.byte	0x1f
+ 1954 091b 00       		.byte	0
+ 1955 091c 17       		.uleb128 0x17
+ 1956 091d 3D010000 		.4byte	.LASF49
+ 1957 0921 05       		.byte	0x5
+ 1958 0922 3F       		.byte	0x3f
+ 1959 0923 2D090000 		.4byte	0x92d
+ 1960 0927 05       		.uleb128 0x5
+ 1961 0928 03       		.byte	0x3
+ 1962 0929 00000000 		.4byte	lema1
+ 1963 092d 06       		.uleb128 0x6
+ 1964 092e 0C090000 		.4byte	0x90c
+ 1965 0932 17       		.uleb128 0x17
+ 1966 0933 43010000 		.4byte	.LASF50
+ 1967 0937 05       		.byte	0x5
+ 1968 0938 40       		.byte	0x40
+ 1969 0939 43090000 		.4byte	0x943
+ 1970 093d 05       		.uleb128 0x5
+ 1971 093e 03       		.byte	0x3
+ 1972 093f 00000000 		.4byte	lema2
+ 1973 0943 06       		.uleb128 0x6
+ 1974 0944 0C090000 		.4byte	0x90c
+ 1975 0948 07       		.uleb128 0x7
+ 1976 0949 A2000000 		.4byte	0xa2
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 40
+
+
+ 1977 094d 58090000 		.4byte	0x958
+ 1978 0951 08       		.uleb128 0x8
+ 1979 0952 AE000000 		.4byte	0xae
+ 1980 0956 01       		.byte	0x1
+ 1981 0957 00       		.byte	0
+ 1982 0958 17       		.uleb128 0x17
+ 1983 0959 9B010000 		.4byte	.LASF51
+ 1984 095d 05       		.byte	0x5
+ 1985 095e 41       		.byte	0x41
+ 1986 095f 69090000 		.4byte	0x969
+ 1987 0963 05       		.uleb128 0x5
+ 1988 0964 03       		.byte	0x3
+ 1989 0965 00000000 		.4byte	id_logo
+ 1990 0969 06       		.uleb128 0x6
+ 1991 096a 48090000 		.4byte	0x948
+ 1992 096e 18       		.uleb128 0x18
+ 1993 096f 6B6D00   		.ascii	"km\000"
+ 1994 0972 05       		.byte	0x5
+ 1995 0973 42       		.byte	0x42
+ 1996 0974 7E090000 		.4byte	0x97e
+ 1997 0978 05       		.uleb128 0x5
+ 1998 0979 03       		.byte	0x3
+ 1999 097a 00000000 		.4byte	km
+ 2000 097e 06       		.uleb128 0x6
+ 2001 097f 48090000 		.4byte	0x948
+ 2002 0983 07       		.uleb128 0x7
+ 2003 0984 81000000 		.4byte	0x81
+ 2004 0988 93090000 		.4byte	0x993
+ 2005 098c 08       		.uleb128 0x8
+ 2006 098d AE000000 		.4byte	0xae
+ 2007 0991 02       		.byte	0x2
+ 2008 0992 00       		.byte	0
+ 2009 0993 17       		.uleb128 0x17
+ 2010 0994 95010000 		.4byte	.LASF52
+ 2011 0998 05       		.byte	0x5
+ 2012 0999 43       		.byte	0x43
+ 2013 099a 83090000 		.4byte	0x983
+ 2014 099e 05       		.uleb128 0x5
+ 2015 099f 03       		.byte	0x3
+ 2016 09a0 00000000 		.4byte	fecha
+ 2017 09a4 07       		.uleb128 0x7
+ 2018 09a5 81000000 		.4byte	0x81
+ 2019 09a9 B4090000 		.4byte	0x9b4
+ 2020 09ad 08       		.uleb128 0x8
+ 2021 09ae AE000000 		.4byte	0xae
+ 2022 09b2 01       		.byte	0x1
+ 2023 09b3 00       		.byte	0
+ 2024 09b4 17       		.uleb128 0x17
+ 2025 09b5 49010000 		.4byte	.LASF53
+ 2026 09b9 05       		.byte	0x5
+ 2027 09ba 44       		.byte	0x44
+ 2028 09bb A4090000 		.4byte	0x9a4
+ 2029 09bf 05       		.uleb128 0x5
+ 2030 09c0 03       		.byte	0x3
+ 2031 09c1 00000000 		.4byte	hora
+ 2032 09c5 17       		.uleb128 0x17
+ 2033 09c6 7D010000 		.4byte	.LASF54
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 41
+
+
+ 2034 09ca 05       		.byte	0x5
+ 2035 09cb 59       		.byte	0x59
+ 2036 09cc 5F010000 		.4byte	0x15f
+ 2037 09d0 05       		.uleb128 0x5
+ 2038 09d1 03       		.byte	0x3
+ 2039 09d2 00000000 		.4byte	rventa1
+ 2040 09d6 17       		.uleb128 0x17
+ 2041 09d7 85010000 		.4byte	.LASF55
+ 2042 09db 05       		.byte	0x5
+ 2043 09dc 5A       		.byte	0x5a
+ 2044 09dd 5F010000 		.4byte	0x15f
+ 2045 09e1 05       		.uleb128 0x5
+ 2046 09e2 03       		.byte	0x3
+ 2047 09e3 00000000 		.4byte	rventa2
+ 2048 09e7 17       		.uleb128 0x17
+ 2049 09e8 3E000000 		.4byte	.LASF56
+ 2050 09ec 05       		.byte	0x5
+ 2051 09ed 5F       		.byte	0x5f
+ 2052 09ee A4090000 		.4byte	0x9a4
+ 2053 09f2 05       		.uleb128 0x5
+ 2054 09f3 03       		.byte	0x3
+ 2055 09f4 00000000 		.4byte	print1
+ 2056 09f8 17       		.uleb128 0x17
+ 2057 09f9 45000000 		.4byte	.LASF57
+ 2058 09fd 05       		.byte	0x5
+ 2059 09fe 60       		.byte	0x60
+ 2060 09ff A4090000 		.4byte	0x9a4
+ 2061 0a03 05       		.uleb128 0x5
+ 2062 0a04 03       		.byte	0x3
+ 2063 0a05 00000000 		.4byte	print2
+ 2064 0a09 19       		.uleb128 0x19
+ 2065 0a0a D4000000 		.4byte	.LASF58
+ 2066 0a0e D4000000 		.4byte	.LASF58
+ 2067 0a12 07       		.byte	0x7
+ 2068 0a13 8B       		.byte	0x8b
+ 2069 0a14 19       		.uleb128 0x19
+ 2070 0a15 31030000 		.4byte	.LASF59
+ 2071 0a19 31030000 		.4byte	.LASF59
+ 2072 0a1d 07       		.byte	0x7
+ 2073 0a1e 8A       		.byte	0x8a
+ 2074 0a1f 19       		.uleb128 0x19
+ 2075 0a20 48020000 		.4byte	.LASF60
+ 2076 0a24 48020000 		.4byte	.LASF60
+ 2077 0a28 08       		.byte	0x8
+ 2078 0a29 28       		.byte	0x28
+ 2079 0a2a 19       		.uleb128 0x19
+ 2080 0a2b CA000000 		.4byte	.LASF61
+ 2081 0a2f CA000000 		.4byte	.LASF61
+ 2082 0a33 08       		.byte	0x8
+ 2083 0a34 27       		.byte	0x27
+ 2084 0a35 00       		.byte	0
+ 2085              		.section	.debug_abbrev,"",%progbits
+ 2086              	.Ldebug_abbrev0:
+ 2087 0000 01       		.uleb128 0x1
+ 2088 0001 11       		.uleb128 0x11
+ 2089 0002 01       		.byte	0x1
+ 2090 0003 25       		.uleb128 0x25
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 42
+
+
+ 2091 0004 0E       		.uleb128 0xe
+ 2092 0005 13       		.uleb128 0x13
+ 2093 0006 0B       		.uleb128 0xb
+ 2094 0007 03       		.uleb128 0x3
+ 2095 0008 0E       		.uleb128 0xe
+ 2096 0009 1B       		.uleb128 0x1b
+ 2097 000a 0E       		.uleb128 0xe
+ 2098 000b 55       		.uleb128 0x55
+ 2099 000c 17       		.uleb128 0x17
+ 2100 000d 11       		.uleb128 0x11
+ 2101 000e 01       		.uleb128 0x1
+ 2102 000f 10       		.uleb128 0x10
+ 2103 0010 17       		.uleb128 0x17
+ 2104 0011 00       		.byte	0
+ 2105 0012 00       		.byte	0
+ 2106 0013 02       		.uleb128 0x2
+ 2107 0014 24       		.uleb128 0x24
+ 2108 0015 00       		.byte	0
+ 2109 0016 0B       		.uleb128 0xb
+ 2110 0017 0B       		.uleb128 0xb
+ 2111 0018 3E       		.uleb128 0x3e
+ 2112 0019 0B       		.uleb128 0xb
+ 2113 001a 03       		.uleb128 0x3
+ 2114 001b 0E       		.uleb128 0xe
+ 2115 001c 00       		.byte	0
+ 2116 001d 00       		.byte	0
+ 2117 001e 03       		.uleb128 0x3
+ 2118 001f 16       		.uleb128 0x16
+ 2119 0020 00       		.byte	0
+ 2120 0021 03       		.uleb128 0x3
+ 2121 0022 0E       		.uleb128 0xe
+ 2122 0023 3A       		.uleb128 0x3a
+ 2123 0024 0B       		.uleb128 0xb
+ 2124 0025 3B       		.uleb128 0x3b
+ 2125 0026 0B       		.uleb128 0xb
+ 2126 0027 49       		.uleb128 0x49
+ 2127 0028 13       		.uleb128 0x13
+ 2128 0029 00       		.byte	0
+ 2129 002a 00       		.byte	0
+ 2130 002b 04       		.uleb128 0x4
+ 2131 002c 24       		.uleb128 0x24
+ 2132 002d 00       		.byte	0
+ 2133 002e 0B       		.uleb128 0xb
+ 2134 002f 0B       		.uleb128 0xb
+ 2135 0030 3E       		.uleb128 0x3e
+ 2136 0031 0B       		.uleb128 0xb
+ 2137 0032 03       		.uleb128 0x3
+ 2138 0033 08       		.uleb128 0x8
+ 2139 0034 00       		.byte	0
+ 2140 0035 00       		.byte	0
+ 2141 0036 05       		.uleb128 0x5
+ 2142 0037 16       		.uleb128 0x16
+ 2143 0038 00       		.byte	0
+ 2144 0039 03       		.uleb128 0x3
+ 2145 003a 0E       		.uleb128 0xe
+ 2146 003b 3A       		.uleb128 0x3a
+ 2147 003c 0B       		.uleb128 0xb
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 43
+
+
+ 2148 003d 3B       		.uleb128 0x3b
+ 2149 003e 05       		.uleb128 0x5
+ 2150 003f 49       		.uleb128 0x49
+ 2151 0040 13       		.uleb128 0x13
+ 2152 0041 00       		.byte	0
+ 2153 0042 00       		.byte	0
+ 2154 0043 06       		.uleb128 0x6
+ 2155 0044 35       		.uleb128 0x35
+ 2156 0045 00       		.byte	0
+ 2157 0046 49       		.uleb128 0x49
+ 2158 0047 13       		.uleb128 0x13
+ 2159 0048 00       		.byte	0
+ 2160 0049 00       		.byte	0
+ 2161 004a 07       		.uleb128 0x7
+ 2162 004b 01       		.uleb128 0x1
+ 2163 004c 01       		.byte	0x1
+ 2164 004d 49       		.uleb128 0x49
+ 2165 004e 13       		.uleb128 0x13
+ 2166 004f 01       		.uleb128 0x1
+ 2167 0050 13       		.uleb128 0x13
+ 2168 0051 00       		.byte	0
+ 2169 0052 00       		.byte	0
+ 2170 0053 08       		.uleb128 0x8
+ 2171 0054 21       		.uleb128 0x21
+ 2172 0055 00       		.byte	0
+ 2173 0056 49       		.uleb128 0x49
+ 2174 0057 13       		.uleb128 0x13
+ 2175 0058 2F       		.uleb128 0x2f
+ 2176 0059 0B       		.uleb128 0xb
+ 2177 005a 00       		.byte	0
+ 2178 005b 00       		.byte	0
+ 2179 005c 09       		.uleb128 0x9
+ 2180 005d 13       		.uleb128 0x13
+ 2181 005e 01       		.byte	0x1
+ 2182 005f 03       		.uleb128 0x3
+ 2183 0060 0E       		.uleb128 0xe
+ 2184 0061 0B       		.uleb128 0xb
+ 2185 0062 0B       		.uleb128 0xb
+ 2186 0063 3A       		.uleb128 0x3a
+ 2187 0064 0B       		.uleb128 0xb
+ 2188 0065 3B       		.uleb128 0x3b
+ 2189 0066 0B       		.uleb128 0xb
+ 2190 0067 01       		.uleb128 0x1
+ 2191 0068 13       		.uleb128 0x13
+ 2192 0069 00       		.byte	0
+ 2193 006a 00       		.byte	0
+ 2194 006b 0A       		.uleb128 0xa
+ 2195 006c 0D       		.uleb128 0xd
+ 2196 006d 00       		.byte	0
+ 2197 006e 03       		.uleb128 0x3
+ 2198 006f 08       		.uleb128 0x8
+ 2199 0070 3A       		.uleb128 0x3a
+ 2200 0071 0B       		.uleb128 0xb
+ 2201 0072 3B       		.uleb128 0x3b
+ 2202 0073 0B       		.uleb128 0xb
+ 2203 0074 49       		.uleb128 0x49
+ 2204 0075 13       		.uleb128 0x13
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 44
+
+
+ 2205 0076 38       		.uleb128 0x38
+ 2206 0077 0B       		.uleb128 0xb
+ 2207 0078 00       		.byte	0
+ 2208 0079 00       		.byte	0
+ 2209 007a 0B       		.uleb128 0xb
+ 2210 007b 0D       		.uleb128 0xd
+ 2211 007c 00       		.byte	0
+ 2212 007d 03       		.uleb128 0x3
+ 2213 007e 0E       		.uleb128 0xe
+ 2214 007f 3A       		.uleb128 0x3a
+ 2215 0080 0B       		.uleb128 0xb
+ 2216 0081 3B       		.uleb128 0x3b
+ 2217 0082 0B       		.uleb128 0xb
+ 2218 0083 49       		.uleb128 0x49
+ 2219 0084 13       		.uleb128 0x13
+ 2220 0085 38       		.uleb128 0x38
+ 2221 0086 0B       		.uleb128 0xb
+ 2222 0087 00       		.byte	0
+ 2223 0088 00       		.byte	0
+ 2224 0089 0C       		.uleb128 0xc
+ 2225 008a 2E       		.uleb128 0x2e
+ 2226 008b 01       		.byte	0x1
+ 2227 008c 3F       		.uleb128 0x3f
+ 2228 008d 19       		.uleb128 0x19
+ 2229 008e 03       		.uleb128 0x3
+ 2230 008f 0E       		.uleb128 0xe
+ 2231 0090 3A       		.uleb128 0x3a
+ 2232 0091 0B       		.uleb128 0xb
+ 2233 0092 3B       		.uleb128 0x3b
+ 2234 0093 0B       		.uleb128 0xb
+ 2235 0094 27       		.uleb128 0x27
+ 2236 0095 19       		.uleb128 0x19
+ 2237 0096 11       		.uleb128 0x11
+ 2238 0097 01       		.uleb128 0x1
+ 2239 0098 12       		.uleb128 0x12
+ 2240 0099 06       		.uleb128 0x6
+ 2241 009a 40       		.uleb128 0x40
+ 2242 009b 18       		.uleb128 0x18
+ 2243 009c 9742     		.uleb128 0x2117
+ 2244 009e 19       		.uleb128 0x19
+ 2245 009f 01       		.uleb128 0x1
+ 2246 00a0 13       		.uleb128 0x13
+ 2247 00a1 00       		.byte	0
+ 2248 00a2 00       		.byte	0
+ 2249 00a3 0D       		.uleb128 0xd
+ 2250 00a4 05       		.uleb128 0x5
+ 2251 00a5 00       		.byte	0
+ 2252 00a6 03       		.uleb128 0x3
+ 2253 00a7 08       		.uleb128 0x8
+ 2254 00a8 3A       		.uleb128 0x3a
+ 2255 00a9 0B       		.uleb128 0xb
+ 2256 00aa 3B       		.uleb128 0x3b
+ 2257 00ab 0B       		.uleb128 0xb
+ 2258 00ac 49       		.uleb128 0x49
+ 2259 00ad 13       		.uleb128 0x13
+ 2260 00ae 02       		.uleb128 0x2
+ 2261 00af 17       		.uleb128 0x17
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 45
+
+
+ 2262 00b0 00       		.byte	0
+ 2263 00b1 00       		.byte	0
+ 2264 00b2 0E       		.uleb128 0xe
+ 2265 00b3 05       		.uleb128 0x5
+ 2266 00b4 00       		.byte	0
+ 2267 00b5 03       		.uleb128 0x3
+ 2268 00b6 0E       		.uleb128 0xe
+ 2269 00b7 3A       		.uleb128 0x3a
+ 2270 00b8 0B       		.uleb128 0xb
+ 2271 00b9 3B       		.uleb128 0x3b
+ 2272 00ba 0B       		.uleb128 0xb
+ 2273 00bb 49       		.uleb128 0x49
+ 2274 00bc 13       		.uleb128 0x13
+ 2275 00bd 02       		.uleb128 0x2
+ 2276 00be 17       		.uleb128 0x17
+ 2277 00bf 00       		.byte	0
+ 2278 00c0 00       		.byte	0
+ 2279 00c1 0F       		.uleb128 0xf
+ 2280 00c2 34       		.uleb128 0x34
+ 2281 00c3 00       		.byte	0
+ 2282 00c4 03       		.uleb128 0x3
+ 2283 00c5 08       		.uleb128 0x8
+ 2284 00c6 3A       		.uleb128 0x3a
+ 2285 00c7 0B       		.uleb128 0xb
+ 2286 00c8 3B       		.uleb128 0x3b
+ 2287 00c9 0B       		.uleb128 0xb
+ 2288 00ca 49       		.uleb128 0x49
+ 2289 00cb 13       		.uleb128 0x13
+ 2290 00cc 02       		.uleb128 0x2
+ 2291 00cd 17       		.uleb128 0x17
+ 2292 00ce 00       		.byte	0
+ 2293 00cf 00       		.byte	0
+ 2294 00d0 10       		.uleb128 0x10
+ 2295 00d1 34       		.uleb128 0x34
+ 2296 00d2 00       		.byte	0
+ 2297 00d3 03       		.uleb128 0x3
+ 2298 00d4 0E       		.uleb128 0xe
+ 2299 00d5 3A       		.uleb128 0x3a
+ 2300 00d6 0B       		.uleb128 0xb
+ 2301 00d7 3B       		.uleb128 0x3b
+ 2302 00d8 0B       		.uleb128 0xb
+ 2303 00d9 49       		.uleb128 0x49
+ 2304 00da 13       		.uleb128 0x13
+ 2305 00db 02       		.uleb128 0x2
+ 2306 00dc 17       		.uleb128 0x17
+ 2307 00dd 00       		.byte	0
+ 2308 00de 00       		.byte	0
+ 2309 00df 11       		.uleb128 0x11
+ 2310 00e0 898201   		.uleb128 0x4109
+ 2311 00e3 01       		.byte	0x1
+ 2312 00e4 11       		.uleb128 0x11
+ 2313 00e5 01       		.uleb128 0x1
+ 2314 00e6 31       		.uleb128 0x31
+ 2315 00e7 13       		.uleb128 0x13
+ 2316 00e8 01       		.uleb128 0x1
+ 2317 00e9 13       		.uleb128 0x13
+ 2318 00ea 00       		.byte	0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 46
+
+
+ 2319 00eb 00       		.byte	0
+ 2320 00ec 12       		.uleb128 0x12
+ 2321 00ed 8A8201   		.uleb128 0x410a
+ 2322 00f0 00       		.byte	0
+ 2323 00f1 02       		.uleb128 0x2
+ 2324 00f2 18       		.uleb128 0x18
+ 2325 00f3 9142     		.uleb128 0x2111
+ 2326 00f5 18       		.uleb128 0x18
+ 2327 00f6 00       		.byte	0
+ 2328 00f7 00       		.byte	0
+ 2329 00f8 13       		.uleb128 0x13
+ 2330 00f9 898201   		.uleb128 0x4109
+ 2331 00fc 00       		.byte	0
+ 2332 00fd 11       		.uleb128 0x11
+ 2333 00fe 01       		.uleb128 0x1
+ 2334 00ff 31       		.uleb128 0x31
+ 2335 0100 13       		.uleb128 0x13
+ 2336 0101 00       		.byte	0
+ 2337 0102 00       		.byte	0
+ 2338 0103 14       		.uleb128 0x14
+ 2339 0104 898201   		.uleb128 0x4109
+ 2340 0107 01       		.byte	0x1
+ 2341 0108 11       		.uleb128 0x11
+ 2342 0109 01       		.uleb128 0x1
+ 2343 010a 31       		.uleb128 0x31
+ 2344 010b 13       		.uleb128 0x13
+ 2345 010c 00       		.byte	0
+ 2346 010d 00       		.byte	0
+ 2347 010e 15       		.uleb128 0x15
+ 2348 010f 0F       		.uleb128 0xf
+ 2349 0110 00       		.byte	0
+ 2350 0111 0B       		.uleb128 0xb
+ 2351 0112 0B       		.uleb128 0xb
+ 2352 0113 49       		.uleb128 0x49
+ 2353 0114 13       		.uleb128 0x13
+ 2354 0115 00       		.byte	0
+ 2355 0116 00       		.byte	0
+ 2356 0117 16       		.uleb128 0x16
+ 2357 0118 34       		.uleb128 0x34
+ 2358 0119 00       		.byte	0
+ 2359 011a 03       		.uleb128 0x3
+ 2360 011b 0E       		.uleb128 0xe
+ 2361 011c 3A       		.uleb128 0x3a
+ 2362 011d 0B       		.uleb128 0xb
+ 2363 011e 3B       		.uleb128 0x3b
+ 2364 011f 05       		.uleb128 0x5
+ 2365 0120 49       		.uleb128 0x49
+ 2366 0121 13       		.uleb128 0x13
+ 2367 0122 3F       		.uleb128 0x3f
+ 2368 0123 19       		.uleb128 0x19
+ 2369 0124 3C       		.uleb128 0x3c
+ 2370 0125 19       		.uleb128 0x19
+ 2371 0126 00       		.byte	0
+ 2372 0127 00       		.byte	0
+ 2373 0128 17       		.uleb128 0x17
+ 2374 0129 34       		.uleb128 0x34
+ 2375 012a 00       		.byte	0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 47
+
+
+ 2376 012b 03       		.uleb128 0x3
+ 2377 012c 0E       		.uleb128 0xe
+ 2378 012d 3A       		.uleb128 0x3a
+ 2379 012e 0B       		.uleb128 0xb
+ 2380 012f 3B       		.uleb128 0x3b
+ 2381 0130 0B       		.uleb128 0xb
+ 2382 0131 49       		.uleb128 0x49
+ 2383 0132 13       		.uleb128 0x13
+ 2384 0133 3F       		.uleb128 0x3f
+ 2385 0134 19       		.uleb128 0x19
+ 2386 0135 02       		.uleb128 0x2
+ 2387 0136 18       		.uleb128 0x18
+ 2388 0137 00       		.byte	0
+ 2389 0138 00       		.byte	0
+ 2390 0139 18       		.uleb128 0x18
+ 2391 013a 34       		.uleb128 0x34
+ 2392 013b 00       		.byte	0
+ 2393 013c 03       		.uleb128 0x3
+ 2394 013d 08       		.uleb128 0x8
+ 2395 013e 3A       		.uleb128 0x3a
+ 2396 013f 0B       		.uleb128 0xb
+ 2397 0140 3B       		.uleb128 0x3b
+ 2398 0141 0B       		.uleb128 0xb
+ 2399 0142 49       		.uleb128 0x49
+ 2400 0143 13       		.uleb128 0x13
+ 2401 0144 3F       		.uleb128 0x3f
+ 2402 0145 19       		.uleb128 0x19
+ 2403 0146 02       		.uleb128 0x2
+ 2404 0147 18       		.uleb128 0x18
+ 2405 0148 00       		.byte	0
+ 2406 0149 00       		.byte	0
+ 2407 014a 19       		.uleb128 0x19
+ 2408 014b 2E       		.uleb128 0x2e
+ 2409 014c 00       		.byte	0
+ 2410 014d 3F       		.uleb128 0x3f
+ 2411 014e 19       		.uleb128 0x19
+ 2412 014f 3C       		.uleb128 0x3c
+ 2413 0150 19       		.uleb128 0x19
+ 2414 0151 6E       		.uleb128 0x6e
+ 2415 0152 0E       		.uleb128 0xe
+ 2416 0153 03       		.uleb128 0x3
+ 2417 0154 0E       		.uleb128 0xe
+ 2418 0155 3A       		.uleb128 0x3a
+ 2419 0156 0B       		.uleb128 0xb
+ 2420 0157 3B       		.uleb128 0x3b
+ 2421 0158 0B       		.uleb128 0xb
+ 2422 0159 00       		.byte	0
+ 2423 015a 00       		.byte	0
+ 2424 015b 00       		.byte	0
+ 2425              		.section	.debug_loc,"",%progbits
+ 2426              	.Ldebug_loc0:
+ 2427              	.LLST0:
+ 2428 0000 00000000 		.4byte	.LVL0
+ 2429 0004 10000000 		.4byte	.LVL1
+ 2430 0008 0100     		.2byte	0x1
+ 2431 000a 50       		.byte	0x50
+ 2432 000b 10000000 		.4byte	.LVL1
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 48
+
+
+ 2433 000f 30040000 		.4byte	.LFE63
+ 2434 0013 0400     		.2byte	0x4
+ 2435 0015 F3       		.byte	0xf3
+ 2436 0016 01       		.uleb128 0x1
+ 2437 0017 50       		.byte	0x50
+ 2438 0018 9F       		.byte	0x9f
+ 2439 0019 00000000 		.4byte	0
+ 2440 001d 00000000 		.4byte	0
+ 2441              	.LLST1:
+ 2442 0021 00000000 		.4byte	.LVL0
+ 2443 0025 13000000 		.4byte	.LVL2-1
+ 2444 0029 0100     		.2byte	0x1
+ 2445 002b 51       		.byte	0x51
+ 2446 002c 13000000 		.4byte	.LVL2-1
+ 2447 0030 30040000 		.4byte	.LFE63
+ 2448 0034 0400     		.2byte	0x4
+ 2449 0036 F3       		.byte	0xf3
+ 2450 0037 01       		.uleb128 0x1
+ 2451 0038 51       		.byte	0x51
+ 2452 0039 9F       		.byte	0x9f
+ 2453 003a 00000000 		.4byte	0
+ 2454 003e 00000000 		.4byte	0
+ 2455              	.LLST2:
+ 2456 0042 00000000 		.4byte	.LVL0
+ 2457 0046 13000000 		.4byte	.LVL2-1
+ 2458 004a 0100     		.2byte	0x1
+ 2459 004c 52       		.byte	0x52
+ 2460 004d 13000000 		.4byte	.LVL2-1
+ 2461 0051 18040000 		.4byte	.LVL139
+ 2462 0055 0100     		.2byte	0x1
+ 2463 0057 58       		.byte	0x58
+ 2464 0058 18040000 		.4byte	.LVL139
+ 2465 005c 30040000 		.4byte	.LFE63
+ 2466 0060 0400     		.2byte	0x4
+ 2467 0062 F3       		.byte	0xf3
+ 2468 0063 01       		.uleb128 0x1
+ 2469 0064 52       		.byte	0x52
+ 2470 0065 9F       		.byte	0x9f
+ 2471 0066 00000000 		.4byte	0
+ 2472 006a 00000000 		.4byte	0
+ 2473              	.LLST3:
+ 2474 006e 00000000 		.4byte	.LVL0
+ 2475 0072 13000000 		.4byte	.LVL2-1
+ 2476 0076 0100     		.2byte	0x1
+ 2477 0078 53       		.byte	0x53
+ 2478 0079 13000000 		.4byte	.LVL2-1
+ 2479 007d 18040000 		.4byte	.LVL139
+ 2480 0081 0100     		.2byte	0x1
+ 2481 0083 55       		.byte	0x55
+ 2482 0084 18040000 		.4byte	.LVL139
+ 2483 0088 30040000 		.4byte	.LFE63
+ 2484 008c 0400     		.2byte	0x4
+ 2485 008e F3       		.byte	0xf3
+ 2486 008f 01       		.uleb128 0x1
+ 2487 0090 53       		.byte	0x53
+ 2488 0091 9F       		.byte	0x9f
+ 2489 0092 00000000 		.4byte	0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 49
+
+
+ 2490 0096 00000000 		.4byte	0
+ 2491              	.LLST4:
+ 2492 009a 00000000 		.4byte	.LVL0
+ 2493 009e 18040000 		.4byte	.LVL139
+ 2494 00a2 0200     		.2byte	0x2
+ 2495 00a4 91       		.byte	0x91
+ 2496 00a5 00       		.sleb128 0
+ 2497 00a6 18040000 		.4byte	.LVL139
+ 2498 00aa 30040000 		.4byte	.LFE63
+ 2499 00ae 0200     		.2byte	0x2
+ 2500 00b0 7D       		.byte	0x7d
+ 2501 00b1 00       		.sleb128 0
+ 2502 00b2 00000000 		.4byte	0
+ 2503 00b6 00000000 		.4byte	0
+ 2504              	.LLST5:
+ 2505 00ba 14000000 		.4byte	.LVL2
+ 2506 00be 18000000 		.4byte	.LVL3
+ 2507 00c2 0200     		.2byte	0x2
+ 2508 00c4 30       		.byte	0x30
+ 2509 00c5 9F       		.byte	0x9f
+ 2510 00c6 18000000 		.4byte	.LVL3
+ 2511 00ca 20000000 		.4byte	.LVL5
+ 2512 00ce 0100     		.2byte	0x1
+ 2513 00d0 54       		.byte	0x54
+ 2514 00d1 22000000 		.4byte	.LVL6
+ 2515 00d5 36000000 		.4byte	.LVL7
+ 2516 00d9 0100     		.2byte	0x1
+ 2517 00db 54       		.byte	0x54
+ 2518 00dc 38000000 		.4byte	.LVL8
+ 2519 00e0 42000000 		.4byte	.LVL10
+ 2520 00e4 0100     		.2byte	0x1
+ 2521 00e6 54       		.byte	0x54
+ 2522 00e7 44000000 		.4byte	.LVL11
+ 2523 00eb 68000000 		.4byte	.LVL14
+ 2524 00ef 0100     		.2byte	0x1
+ 2525 00f1 54       		.byte	0x54
+ 2526 00f2 6A000000 		.4byte	.LVL15
+ 2527 00f6 86000000 		.4byte	.LVL17
+ 2528 00fa 0100     		.2byte	0x1
+ 2529 00fc 54       		.byte	0x54
+ 2530 00fd 86000000 		.4byte	.LVL17
+ 2531 0101 8A000000 		.4byte	.LVL18
+ 2532 0105 0200     		.2byte	0x2
+ 2533 0107 31       		.byte	0x31
+ 2534 0108 9F       		.byte	0x9f
+ 2535 0109 8A000000 		.4byte	.LVL18
+ 2536 010d 94000000 		.4byte	.LVL20
+ 2537 0111 0100     		.2byte	0x1
+ 2538 0113 54       		.byte	0x54
+ 2539 0114 96000000 		.4byte	.LVL21
+ 2540 0118 BA000000 		.4byte	.LVL24
+ 2541 011c 0100     		.2byte	0x1
+ 2542 011e 54       		.byte	0x54
+ 2543 011f BC000000 		.4byte	.LVL25
+ 2544 0123 D8000000 		.4byte	.LVL27
+ 2545 0127 0100     		.2byte	0x1
+ 2546 0129 54       		.byte	0x54
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 50
+
+
+ 2547 012a D8000000 		.4byte	.LVL27
+ 2548 012e DC000000 		.4byte	.LVL28
+ 2549 0132 0200     		.2byte	0x2
+ 2550 0134 31       		.byte	0x31
+ 2551 0135 9F       		.byte	0x9f
+ 2552 0136 DC000000 		.4byte	.LVL28
+ 2553 013a E6000000 		.4byte	.LVL30
+ 2554 013e 0100     		.2byte	0x1
+ 2555 0140 54       		.byte	0x54
+ 2556 0141 E8000000 		.4byte	.LVL31
+ 2557 0145 00010000 		.4byte	.LVL34
+ 2558 0149 0100     		.2byte	0x1
+ 2559 014b 54       		.byte	0x54
+ 2560 014c 02010000 		.4byte	.LVL35
+ 2561 0150 0A010000 		.4byte	.LVL37
+ 2562 0154 0100     		.2byte	0x1
+ 2563 0156 54       		.byte	0x54
+ 2564 0157 0C010000 		.4byte	.LVL38
+ 2565 015b 20010000 		.4byte	.LVL39
+ 2566 015f 0100     		.2byte	0x1
+ 2567 0161 54       		.byte	0x54
+ 2568 0162 22010000 		.4byte	.LVL40
+ 2569 0166 2C010000 		.4byte	.LVL42
+ 2570 016a 0100     		.2byte	0x1
+ 2571 016c 54       		.byte	0x54
+ 2572 016d 2E010000 		.4byte	.LVL43
+ 2573 0171 5A010000 		.4byte	.LVL49
+ 2574 0175 0100     		.2byte	0x1
+ 2575 0177 54       		.byte	0x54
+ 2576 0178 3E020000 		.4byte	.LVL73
+ 2577 017c 48020000 		.4byte	.LVL75
+ 2578 0180 0100     		.2byte	0x1
+ 2579 0182 54       		.byte	0x54
+ 2580 0183 4A020000 		.4byte	.LVL76
+ 2581 0187 4C020000 		.4byte	.LVL77
+ 2582 018b 0100     		.2byte	0x1
+ 2583 018d 54       		.byte	0x54
+ 2584 018e 4E020000 		.4byte	.LVL78
+ 2585 0192 5A020000 		.4byte	.LVL79
+ 2586 0196 0100     		.2byte	0x1
+ 2587 0198 54       		.byte	0x54
+ 2588 0199 62020000 		.4byte	.LVL80
+ 2589 019d 6C020000 		.4byte	.LVL82
+ 2590 01a1 0100     		.2byte	0x1
+ 2591 01a3 54       		.byte	0x54
+ 2592 01a4 6E020000 		.4byte	.LVL83
+ 2593 01a8 70020000 		.4byte	.LVL84
+ 2594 01ac 0100     		.2byte	0x1
+ 2595 01ae 54       		.byte	0x54
+ 2596 01af 72020000 		.4byte	.LVL85
+ 2597 01b3 7E020000 		.4byte	.LVL86
+ 2598 01b7 0100     		.2byte	0x1
+ 2599 01b9 54       		.byte	0x54
+ 2600 01ba 86020000 		.4byte	.LVL87
+ 2601 01be 90020000 		.4byte	.LVL89
+ 2602 01c2 0100     		.2byte	0x1
+ 2603 01c4 54       		.byte	0x54
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 51
+
+
+ 2604 01c5 92020000 		.4byte	.LVL90
+ 2605 01c9 94020000 		.4byte	.LVL91
+ 2606 01cd 0100     		.2byte	0x1
+ 2607 01cf 54       		.byte	0x54
+ 2608 01d0 96020000 		.4byte	.LVL92
+ 2609 01d4 A0020000 		.4byte	.LVL93
+ 2610 01d8 0100     		.2byte	0x1
+ 2611 01da 54       		.byte	0x54
+ 2612 01db AC020000 		.4byte	.LVL95
+ 2613 01df FC020000 		.4byte	.LVL96
+ 2614 01e3 0200     		.2byte	0x2
+ 2615 01e5 34       		.byte	0x34
+ 2616 01e6 9F       		.byte	0x9f
+ 2617 01e7 FC020000 		.4byte	.LVL96
+ 2618 01eb 10030000 		.4byte	.LVL100
+ 2619 01ef 0100     		.2byte	0x1
+ 2620 01f1 54       		.byte	0x54
+ 2621 01f2 12030000 		.4byte	.LVL101
+ 2622 01f6 3E030000 		.4byte	.LVL105
+ 2623 01fa 0100     		.2byte	0x1
+ 2624 01fc 54       		.byte	0x54
+ 2625 01fd 3E030000 		.4byte	.LVL105
+ 2626 0201 44030000 		.4byte	.LVL106
+ 2627 0205 0200     		.2byte	0x2
+ 2628 0207 36       		.byte	0x36
+ 2629 0208 9F       		.byte	0x9f
+ 2630 0209 44030000 		.4byte	.LVL106
+ 2631 020d 72030000 		.4byte	.LVL112
+ 2632 0211 0100     		.2byte	0x1
+ 2633 0213 54       		.byte	0x54
+ 2634 0214 74030000 		.4byte	.LVL113
+ 2635 0218 8E030000 		.4byte	.LVL116
+ 2636 021c 0100     		.2byte	0x1
+ 2637 021e 54       		.byte	0x54
+ 2638 021f 8E030000 		.4byte	.LVL116
+ 2639 0223 94030000 		.4byte	.LVL117
+ 2640 0227 0200     		.2byte	0x2
+ 2641 0229 36       		.byte	0x36
+ 2642 022a 9F       		.byte	0x9f
+ 2643 022b 94030000 		.4byte	.LVL117
+ 2644 022f A6030000 		.4byte	.LVL121
+ 2645 0233 0100     		.2byte	0x1
+ 2646 0235 54       		.byte	0x54
+ 2647 0236 A8030000 		.4byte	.LVL122
+ 2648 023a 18040000 		.4byte	.LVL139
+ 2649 023e 0100     		.2byte	0x1
+ 2650 0240 54       		.byte	0x54
+ 2651 0241 00000000 		.4byte	0
+ 2652 0245 00000000 		.4byte	0
+ 2653              	.LLST6:
+ 2654 0249 AC020000 		.4byte	.LVL95
+ 2655 024d FC020000 		.4byte	.LVL96
+ 2656 0251 0200     		.2byte	0x2
+ 2657 0253 30       		.byte	0x30
+ 2658 0254 9F       		.byte	0x9f
+ 2659 0255 FC020000 		.4byte	.LVL96
+ 2660 0259 04030000 		.4byte	.LVL97
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 52
+
+
+ 2661 025d 0100     		.2byte	0x1
+ 2662 025f 53       		.byte	0x53
+ 2663 0260 04030000 		.4byte	.LVL97
+ 2664 0264 0E030000 		.4byte	.LVL99
+ 2665 0268 0200     		.2byte	0x2
+ 2666 026a 31       		.byte	0x31
+ 2667 026b 9F       		.byte	0x9f
+ 2668 026c 0E030000 		.4byte	.LVL99
+ 2669 0270 21030000 		.4byte	.LVL102-1
+ 2670 0274 0100     		.2byte	0x1
+ 2671 0276 53       		.byte	0x53
+ 2672 0277 3E030000 		.4byte	.LVL105
+ 2673 027b 44030000 		.4byte	.LVL106
+ 2674 027f 0200     		.2byte	0x2
+ 2675 0281 30       		.byte	0x30
+ 2676 0282 9F       		.byte	0x9f
+ 2677 0283 44030000 		.4byte	.LVL106
+ 2678 0287 55030000 		.4byte	.LVL107-1
+ 2679 028b 0100     		.2byte	0x1
+ 2680 028d 52       		.byte	0x52
+ 2681 028e 56030000 		.4byte	.LVL107
+ 2682 0292 5A030000 		.4byte	.LVL108
+ 2683 0296 0200     		.2byte	0x2
+ 2684 0298 31       		.byte	0x31
+ 2685 0299 9F       		.byte	0x9f
+ 2686 029a 5A030000 		.4byte	.LVL108
+ 2687 029e 63030000 		.4byte	.LVL109-1
+ 2688 02a2 0100     		.2byte	0x1
+ 2689 02a4 52       		.byte	0x52
+ 2690 02a5 64030000 		.4byte	.LVL109
+ 2691 02a9 70030000 		.4byte	.LVL111
+ 2692 02ad 0200     		.2byte	0x2
+ 2693 02af 31       		.byte	0x31
+ 2694 02b0 9F       		.byte	0x9f
+ 2695 02b1 70030000 		.4byte	.LVL111
+ 2696 02b5 81030000 		.4byte	.LVL114-1
+ 2697 02b9 0100     		.2byte	0x1
+ 2698 02bb 52       		.byte	0x52
+ 2699 02bc 8E030000 		.4byte	.LVL116
+ 2700 02c0 94030000 		.4byte	.LVL117
+ 2701 02c4 0200     		.2byte	0x2
+ 2702 02c6 30       		.byte	0x30
+ 2703 02c7 9F       		.byte	0x9f
+ 2704 02c8 94030000 		.4byte	.LVL117
+ 2705 02cc 9A030000 		.4byte	.LVL118
+ 2706 02d0 0100     		.2byte	0x1
+ 2707 02d2 53       		.byte	0x53
+ 2708 02d3 9A030000 		.4byte	.LVL118
+ 2709 02d7 A4030000 		.4byte	.LVL120
+ 2710 02db 0200     		.2byte	0x2
+ 2711 02dd 31       		.byte	0x31
+ 2712 02de 9F       		.byte	0x9f
+ 2713 02df A4030000 		.4byte	.LVL120
+ 2714 02e3 AE030000 		.4byte	.LVL123
+ 2715 02e7 0100     		.2byte	0x1
+ 2716 02e9 53       		.byte	0x53
+ 2717 02ea 00000000 		.4byte	0
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 53
+
+
+ 2718 02ee 00000000 		.4byte	0
+ 2719              		.section	.debug_aranges,"",%progbits
+ 2720 0000 1C000000 		.4byte	0x1c
+ 2721 0004 0200     		.2byte	0x2
+ 2722 0006 00000000 		.4byte	.Ldebug_info0
+ 2723 000a 04       		.byte	0x4
+ 2724 000b 00       		.byte	0
+ 2725 000c 0000     		.2byte	0
+ 2726 000e 0000     		.2byte	0
+ 2727 0010 00000000 		.4byte	.LFB63
+ 2728 0014 30040000 		.4byte	.LFE63-.LFB63
+ 2729 0018 00000000 		.4byte	0
+ 2730 001c 00000000 		.4byte	0
+ 2731              		.section	.debug_ranges,"",%progbits
+ 2732              	.Ldebug_ranges0:
+ 2733 0000 00000000 		.4byte	.LFB63
+ 2734 0004 30040000 		.4byte	.LFE63
+ 2735 0008 00000000 		.4byte	0
+ 2736 000c 00000000 		.4byte	0
+ 2737              		.section	.debug_line,"",%progbits
+ 2738              	.Ldebug_line0:
+ 2739 0000 E1020000 		.section	.debug_str,"MS",%progbits,1
+ 2739      02007101 
+ 2739      00000201 
+ 2739      FB0E0D00 
+ 2739      01010101 
+ 2740              	.LASF43:
+ 2741 0000 76657273 		.ascii	"version\000"
+ 2741      696F6E00 
+ 2742              	.LASF45:
+ 2743 0008 6C61646F 		.ascii	"lado2\000"
+ 2743      3200
+ 2744              	.LASF2:
+ 2745 000e 73686F72 		.ascii	"short int\000"
+ 2745      7420696E 
+ 2745      7400
+ 2746              	.LASF16:
+ 2747 0018 73697A65 		.ascii	"sizetype\000"
+ 2747      74797065 
+ 2747      00
+ 2748              	.LASF24:
+ 2749 0021 64696E65 		.ascii	"dinero\000"
+ 2749      726F00
+ 2750              	.LASF32:
+ 2751 0028 63656475 		.ascii	"cedula\000"
+ 2751      6C6100
+ 2752              	.LASF33:
+ 2753 002f 70617373 		.ascii	"password\000"
+ 2753      776F7264 
+ 2753      00
+ 2754              	.LASF34:
+ 2755 0038 7475726E 		.ascii	"turno\000"
+ 2755      6F00
+ 2756              	.LASF56:
+ 2757 003e 7072696E 		.ascii	"print1\000"
+ 2757      743100
+ 2758              	.LASF57:
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 54
+
+
+ 2759 0045 7072696E 		.ascii	"print2\000"
+ 2759      743200
+ 2760              	.LASF30:
+ 2761 004c 696D7072 		.ascii	"imprimir\000"
+ 2761      696D6972 
+ 2761      00
+ 2762              	.LASF41:
+ 2763 0055 6E6F6D62 		.ascii	"nombre_pro2\000"
+ 2763      72655F70 
+ 2763      726F3200 
+ 2764              	.LASF46:
+ 2765 0061 6E6F6D62 		.ascii	"nombre\000"
+ 2765      726500
+ 2766              	.LASF27:
+ 2767 0068 6D616E67 		.ascii	"manguera\000"
+ 2767      75657261 
+ 2767      00
+ 2768              	.LASF11:
+ 2769 0071 75696E74 		.ascii	"uint8\000"
+ 2769      3800
+ 2770              	.LASF22:
+ 2771 0077 696D7072 		.ascii	"impresiones\000"
+ 2771      6573696F 
+ 2771      6E657300 
+ 2772              	.LASF20:
+ 2773 0083 73757274 		.ascii	"surtidor\000"
+ 2773      69646F72 
+ 2773      00
+ 2774              	.LASF44:
+ 2775 008c 6C61646F 		.ascii	"lado1\000"
+ 2775      3100
+ 2776              	.LASF12:
+ 2777 0092 666C6F61 		.ascii	"float\000"
+ 2777      7400
+ 2778              	.LASF6:
+ 2779 0098 6C6F6E67 		.ascii	"long long int\000"
+ 2779      206C6F6E 
+ 2779      6720696E 
+ 2779      7400
+ 2780              	.LASF4:
+ 2781 00a6 6C6F6E67 		.ascii	"long int\000"
+ 2781      20696E74 
+ 2781      00
+ 2782              	.LASF37:
+ 2783 00af 64696769 		.ascii	"digito\000"
+ 2783      746F00
+ 2784              	.LASF17:
+ 2785 00b6 746F7461 		.ascii	"totales\000"
+ 2785      6C657300 
+ 2786              	.LASF15:
+ 2787 00be 6C6F6E67 		.ascii	"long double\000"
+ 2787      20646F75 
+ 2787      626C6500 
+ 2788              	.LASF61:
+ 2789 00ca 6C656572 		.ascii	"leer_hora\000"
+ 2789      5F686F72 
+ 2789      6100
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 55
+
+
+ 2790              	.LASF58:
+ 2791 00d4 52533233 		.ascii	"RS232_PutString\000"
+ 2791      325F5075 
+ 2791      74537472 
+ 2791      696E6700 
+ 2792              	.LASF1:
+ 2793 00e4 756E7369 		.ascii	"unsigned char\000"
+ 2793      676E6564 
+ 2793      20636861 
+ 2793      7200
+ 2794              	.LASF23:
+ 2795 00f2 706F7369 		.ascii	"posicion\000"
+ 2795      63696F6E 
+ 2795      00
+ 2796              	.LASF0:
+ 2797 00fb 7369676E 		.ascii	"signed char\000"
+ 2797      65642063 
+ 2797      68617200 
+ 2798              	.LASF7:
+ 2799 0107 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2799      206C6F6E 
+ 2799      6720756E 
+ 2799      7369676E 
+ 2799      65642069 
+ 2800              	.LASF39:
+ 2801 011e 70707578 		.ascii	"ppux10\000"
+ 2801      313000
+ 2802              	.LASF35:
+ 2803 0125 6175746F 		.ascii	"autorizado\000"
+ 2803      72697A61 
+ 2803      646F00
+ 2804              	.LASF8:
+ 2805 0130 756E7369 		.ascii	"unsigned int\000"
+ 2805      676E6564 
+ 2805      20696E74 
+ 2805      00
+ 2806              	.LASF49:
+ 2807 013d 6C656D61 		.ascii	"lema1\000"
+ 2807      3100
+ 2808              	.LASF50:
+ 2809 0143 6C656D61 		.ascii	"lema2\000"
+ 2809      3200
+ 2810              	.LASF53:
+ 2811 0149 686F7261 		.ascii	"hora\000"
+ 2811      00
+ 2812              	.LASF26:
+ 2813 014e 70726F64 		.ascii	"producto\000"
+ 2813      7563746F 
+ 2813      00
+ 2814              	.LASF3:
+ 2815 0157 73686F72 		.ascii	"short unsigned int\000"
+ 2815      7420756E 
+ 2815      7369676E 
+ 2815      65642069 
+ 2815      6E7400
+ 2816              	.LASF18:
+ 2817 016a 67726164 		.ascii	"grado\000"
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 56
+
+
+ 2817      6F00
+ 2818              	.LASF25:
+ 2819 0170 766F6C75 		.ascii	"volumen\000"
+ 2819      6D656E00 
+ 2820              	.LASF14:
+ 2821 0178 63686172 		.ascii	"char\000"
+ 2821      00
+ 2822              	.LASF54:
+ 2823 017d 7276656E 		.ascii	"rventa1\000"
+ 2823      74613100 
+ 2824              	.LASF55:
+ 2825 0185 7276656E 		.ascii	"rventa2\000"
+ 2825      74613200 
+ 2826              	.LASF10:
+ 2827 018d 696E7433 		.ascii	"int32_t\000"
+ 2827      325F7400 
+ 2828              	.LASF52:
+ 2829 0195 66656368 		.ascii	"fecha\000"
+ 2829      6100
+ 2830              	.LASF51:
+ 2831 019b 69645F6C 		.ascii	"id_logo\000"
+ 2831      6F676F00 
+ 2832              	.LASF19:
+ 2833 01a3 6D616E67 		.ascii	"mangueras\000"
+ 2833      75657261 
+ 2833      7300
+ 2834              	.LASF63:
+ 2835 01ad 5072696E 		.ascii	"Print.c\000"
+ 2835      742E6300 
+ 2836              	.LASF36:
+ 2837 01b5 70726F64 		.ascii	"prod\000"
+ 2837      00
+ 2838              	.LASF48:
+ 2839 01ba 64697265 		.ascii	"direccion\000"
+ 2839      6363696F 
+ 2839      6E00
+ 2840              	.LASF5:
+ 2841 01c4 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2841      20756E73 
+ 2841      69676E65 
+ 2841      6420696E 
+ 2841      7400
+ 2842              	.LASF21:
+ 2843 01d6 72656369 		.ascii	"recibo\000"
+ 2843      626F00
+ 2844              	.LASF13:
+ 2845 01dd 646F7562 		.ascii	"double\000"
+ 2845      6C6500
+ 2846              	.LASF64:
+ 2847 01e4 433A5C55 		.ascii	"C:\\Users\\leo40\\OneDrive\\Empresa\\Proyectos\\Ora"
+ 2847      73657273 
+ 2847      5C6C656F 
+ 2847      34305C4F 
+ 2847      6E654472 
+ 2848 0211 6E67655F 		.ascii	"nge_Pi\\Carro_Taller\\Prueba_USB\\V1.0\\FC_Impresio"
+ 2848      50695C43 
+ 2848      6172726F 
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 57
+
+
+ 2848      5F54616C 
+ 2848      6C65725C 
+ 2849 0240 6E2E6379 		.ascii	"n.cydsn\000"
+ 2849      64736E00 
+ 2850              	.LASF60:
+ 2851 0248 6C656572 		.ascii	"leer_fecha\000"
+ 2851      5F666563 
+ 2851      686100
+ 2852              	.LASF28:
+ 2853 0253 70726573 		.ascii	"preset\000"
+ 2853      657400
+ 2854              	.LASF9:
+ 2855 025a 5F5F696E 		.ascii	"__int32_t\000"
+ 2855      7433325F 
+ 2855      7400
+ 2856              	.LASF40:
+ 2857 0264 6E6F6D62 		.ascii	"nombre_pro1\000"
+ 2857      72655F70 
+ 2857      726F3100 
+ 2858              	.LASF31:
+ 2859 0270 7469706F 		.ascii	"tipo_venta\000"
+ 2859      5F76656E 
+ 2859      746100
+ 2860              	.LASF42:
+ 2861 027b 6E6F6D62 		.ascii	"nombre_pro3\000"
+ 2861      72655F70 
+ 2861      726F3300 
+ 2862              	.LASF29:
+ 2863 0287 706C6163 		.ascii	"placa\000"
+ 2863      6100
+ 2864              	.LASF47:
+ 2865 028d 74656C65 		.ascii	"telefono\000"
+ 2865      666F6E6F 
+ 2865      00
+ 2866              	.LASF38:
+ 2867 0296 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2867      52784275 
+ 2867      66666572 
+ 2867      00
+ 2868              	.LASF62:
+ 2869 02a3 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2869      43313120 
+ 2869      352E342E 
+ 2869      31203230 
+ 2869      31363036 
+ 2870 02d6 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2870      20726576 
+ 2870      6973696F 
+ 2870      6E203233 
+ 2870      37373135 
+ 2871 0309 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2871      66756E63 
+ 2871      74696F6E 
+ 2871      2D736563 
+ 2871      74696F6E 
+ 2872              	.LASF59:
+ 2873 0331 52533233 		.ascii	"RS232_PutChar\000"
+ARM GAS  C:\Users\leo40\AppData\Local\Temp\ccUVeDuz.s 			page 58
+
+
+ 2873      325F5075 
+ 2873      74436861 
+ 2873      7200
+ 2874              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
